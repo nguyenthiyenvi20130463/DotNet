@@ -1,0 +1,124 @@
+.news-hot__main{
+    .image{
+        .block;
+        .relative;
+        .xo;
+        img{
+            width: 100%;
+            .transition(0.3s);
+            .transform(scale(1));
+        }
+        &:hover{
+            img{
+                .transform(scale(1.1));
+                .transition(0.3s);
+            }
+            .date-main{
+                .transform(rotate(10deg));
+                .transition(0.3s);   
+            }
+        }
+    }
+    .title{
+        .f18;
+        .normal;
+        margin-top: 10px;
+    }
+    
+
+}
+.date-main{
+    .absolute;
+    top: 10px;
+    left: 10px;
+    background: #fff;
+    padding:10px 5px;
+    .thin;
+    width:60px;
+    .transition(0.3s);   
+    z-index: 10;
+    .center;
+    .c(#666);
+    .date{
+        .f24;
+    }
+    .month{
+        .f10;
+        .upper;
+    }
+}
+.news-hot__item{
+    margin-bottom: 10px;
+}
+.news__image{
+    width: 150px;
+    .left;
+    margin-right: 10px;
+    img{
+        width: 100%;
+        transition:all 0.3s ease;
+        &:hover{
+            transform:scale(1.1);
+            transition:all 0.3s ease;
+        }
+    }
+    a{
+        overflow:hidden;
+        .block;
+
+    }
+}
+.news__date{
+    margin:5px 0px;
+    .c(#888);
+    .f12;
+    .thin;
+}
+.news__title{
+    .f16;
+    .block;
+    .normal;
+    margin-top: 10px;
+    line-height: 20px;
+
+}
+.news__shortdesc{
+    .f13;
+    .thin;
+    .c(#666);
+}
+.news__cat__list{
+    .news__image{
+        width: 30%;
+        .left;
+        margin-right: 10px;
+        @media (max-width:480px) {
+            width: 100%;
+        }
+
+    }
+    .news__cat__item{
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px dotted @borc;
+        &:last-child{
+            border-bottom: 0px;
+
+        }
+    }
+}
+.category__sidebar__box{
+    .news__image{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .news__title{
+        .f13;
+        .normal;
+        text-transform: normal;
+        a{
+          .f13;  
+        }
+        
+    }
+}

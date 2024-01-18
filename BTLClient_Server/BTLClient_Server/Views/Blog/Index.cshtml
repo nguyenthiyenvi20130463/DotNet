@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    var lstTinTuc = ViewBag.lstTinTuc;
+}
+<div>
+    <input type="hidden" value="0" id="ViTriXemThemTinTuc" />
+    <input type="hidden" value = "@ViewBag.SoLuongTinTuc" id="SoLuongTinTuc" />
+    <section class="sec sec__category">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h2 class="title__main"><span>TIN TỨC</span></h2>
+                    <div class="news__cat__list" id="DanhSach_TinTuc">
+                        @foreach (var item in lstTinTuc)
+                        {
+                            <div class="news__cat__item" th:each="DanhSachTinTuc:${DanhSachTinTuc}">
+                                <div class="news__image">
+                                    <a href="/Blog/TinTucChiTiet?idTinTuc=@item.idTin">
+                                        <img src="~/Theme/Image/@item.anh" alt="">
+                                    </a>
+                                </div>
+                                <h4 class="news__title">
+                                    <a href="/Blog/TinTucChiTiet?idTinTuc=@item.idTin">@item.tieuDe</a>
+                                </h4>
+                                <div class="news__date">
+                                    <span class="-ap icon icon-access_time"></span>
+                                    <span>@item.ngayTao</span>
+                                </div>
+                                <div class="news__shortdesc" style="display: -webkit-box;max-width: 100%;-webkit-line-clamp: 4;-webkit-box-orient: vertical;overflow: hidden;">
+                                    @Html.Raw(item.noiDung)
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row AnHienLoad" id="LoadingTinTuc" style="text-align: center;">
+                <img src="~/Theme/Image/Load1.gif" style="width: 2%;">
+            </div>
+            <div class="row" style="text-align: center;" id="XemThemTinTuc">
+                <button href="#" class="btn btn-primary" onclick="XemThemTinTuc()">Xem thêm</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            $(".catalog__item").removeClass("active");
+            $(".layout_menu_blog").addClass("active");
+            $("#ViTriXemThemTinTuc").val('0');
+        });
+
+        function XemThemTinTuc() {
+            $("#LoadingTinTuc").removeClass("AnHienLoad");
+            var ViTri = parseInt($("#ViTriXemThemTinTuc").val());
+            var SoLuongSanPham = parseInt($("#SoLuongTinTuc").val());
+
+            var solamtron = (SoLuongSanPham / 8).toFixed()
+            if (solamtron < SoLuongSanPham / 8) {
+                solamtron = solamtron + 1;
+            }
+            if (ViTri <= solamtron) {
+                ViTri = ViTri + 1;
+                $("#ViTriXemThemTinTuc").val(ViTri);
+                $.get("/Blog/XemThemTinTuc", { "ViTri": ViTri }, function (data) {
+                    $("#DanhSach_TinTuc").append(data);
+                    $("#LoadingTinTuc").addClass("AnHienLoad");
+                    if (ViTri = solamtron) {
+                        $("#XemThemTinTuc").addClass("AnHienLoad");
+                    }
+                }
+                );
+            }
+            else {
+                if (ViTri = solamtron) {
+                    $("#XemThemTinTuc").addClass("AnHienLoad");
+                }
+            }
+        }
+
+    </script>
+</div>

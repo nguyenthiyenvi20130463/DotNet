@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+    var lstXemThemTinTuc = ViewBag.lstXemThemTinTuc;
+}
+
+@foreach (var item in lstXemThemTinTuc)
+{
+    <div class="news__cat__item">
+        <div class="news__image">
+            <a href="/Blog/TinTucChiTiet?idTinTuc=@item.idTin">
+                <img src="~/Theme/Image/@item.anh" alt="">
+            </a>
+        </div>
+        <h4 class="news__title">
+            <a href="/Blog/TinTucChiTiet?idTinTuc=@item.idTin">@item.tieuDe</a>
+        </h4>
+        <div class="news__date">
+            <span class="-ap icon icon-access_time"></span>
+            <span>@item.ngayTao</span>
+        </div>
+        <div class="news__shortdesc" style="display: -webkit-box;max-width: 100%;-webkit-line-clamp: 4;-webkit-box-orient: vertical;overflow: hidden;">
+            @Html.Raw(item.noiDung)
+        </div>
+        <div class="clearfix"></div>
+    </div>
+}

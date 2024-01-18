@@ -1,0 +1,377 @@
+﻿@model BTLClient_Server.Areas.Admin.Models.DTO.OrderDTO
+
+@{
+    ViewBag.Title = "Thông tin đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thông tin đơn hàng</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        @Html.ActionLink("Danh sách", "Index", "AdminHome")
+                    </li>
+                    <li class="breadcrumb-item active">Thông tin đơn hàng</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    @using (Html.BeginForm("Edit", "AdminHome", FormMethod.Post, new { @onsubmit = "return validateForm()" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-outline card-info">
+                    <div class="card-header header-edit-order">
+                        <h4 class="">
+                            Trạng thái
+                        </h4>
+                        <select class="form-control" name="tt">
+                            @{
+                                var selectNew_ = "";
+                                var selectNew = "";
+                                var selectM = "";
+                                var selectDone = "";
+                                var selectDone_ = "";
+                                if (Model.trangThai == 3)
+                                {
+                                    selectDone = "selected";
+                                }
+                                else if (Model.trangThai == 2)
+                                {
+                                    selectM = "selected";
+                                }
+                                else if (Model.trangThai == 5)
+                                {
+                                    selectNew = "selected";
+                                }
+                                else if (Model.trangThai == 4)
+                                {
+                                    selectDone_ = "selected";
+                                }
+                                else if (Model.trangThai == 1)
+                                {
+                                    selectNew_ = "selected";
+                                }
+                            }
+                            <option @selectNew_ value="1">Chờ xác nhận</option>
+                            <option @selectNew value="5">Đã nhận được hàng</option>
+                            <option @selectM value="2">Đã thanh toán</option>
+                            <option @selectDone value="3">Hoàn thành</option>
+                            <option @selectDone_ value="4">Hủy đơn</option>
+                        </select>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-spinner"></i>
+                                    </span>
+                                </div>
+                                <input id="keyWordPro" type="text" class="form-control" placeholder="Tên sản phẩm">
+                            </div>
+                        </div>
+                        <table class="table table-order">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        <i class="fas fa-image"></i>
+                                    </th>
+                                    <th>Tên sản phẩm</th>
+                                    <th class="text-center">Giá</th>
+                                    <th class="text-center">Số lượng</th>
+                                    <th class="text-center">Tổng</th>
+                                    <th class="text-center">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="text-center no-product" style="display: none">
+                                        <p style="margin-bottom: 0;">Chưa có sản phẩm nào được chọn</p>
+                                    </td>
+                                </tr>
+                                @foreach (var item in Model.listItem)
+                                {
+                                    <tr id="@item.idSp">
+                                        <td class="text-center" style="padding: 9px .75rem;">
+                                            <img src="~/Theme/Image/@item.anhDaiDien">
+                                        </td>
+                                        <td>@item.ten</td>
+                                        <td class="text-right">@item.giaBan.Value.ToString("N0")</td>
+                                        <td class="text-center">
+                                            <input class="input-quantity" type="number" value="@item.soLuong" min="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                        </td>
+                                        <td id="sum-@item.idSp" class="text-right">@item.thanhTien.Value.ToString("N0")</td>
+                                        <td class="text-center delete-row">
+                                            <i class="fas fa-trash-alt" style="color: red;"></i>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4" class="text-right">
+                                        <b>Tổng phải trả: </b>
+                                    </td>
+                                    <td colspan="2" class="text-right">
+                                        <b id="total-money" name="totalMoney">@Model.tongTien.Value.ToString("N0")</b>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-2">
+                                <button type="submit" class="btn btn-block btn-success btn-lg">
+                                    <i class="ace-icon fa fa-check"></i>
+                                    Cập nhật
+                                </button>
+                            </div>
+                            <div class="col-2">
+                                <a href="~/Admin/AdminHome/Edit/@Model.idDon" class="btn btn-block btn-info btn-lg">
+                                    <i class="fas fa-sync"></i>
+                                    Nhập lại
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-md-4">
+                <div class="card card-outline card-info">
+                    <div class="card-header">
+                        <h4 class="">
+                            Khách hàng
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>
+                                Họ tên:
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
+                                @Html.EditorFor(model => model.idDon, new { htmlAttributes = new { @type = "hidden" } })
+                                @Html.EditorFor(model => model.idKhach, new { htmlAttributes = new { @type = "hidden" } })
+
+                                <input id="idUs" name="idUs" value="" type="hidden">
+                                @Html.EditorFor(model => model.hoTen, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                @Html.ValidationMessageFor(model => model.hoTen, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Số điện thoại:
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </span>
+                                </div>
+                                @*<input id="phone" name="phone" value="@Model.Phone" type="tel" class="form-control" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>*@
+                                @Html.EditorFor(model => model.sdt, new { htmlAttributes = new { @class = "form-control", @type = "tel", @maxlength = "10", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57", required = true } })
+                                @Html.ValidationMessageFor(model => model.sdt, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Địa chỉ:
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            @Html.EditorFor(model => model.diaChiGiao, new { htmlAttributes = new { @class = "form-control", required = true } })
+                            @Html.ValidationMessageFor(model => model.diaChiGiao, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Đơn vị giao: @Model.donViGiao
+                            </label>
+                            @Html.EditorFor(model => model.donViGiao, new { htmlAttributes = new { @type = "hidden" } })
+                        </div>
+                        <div class="form-group">
+                            <label>Ghi chú:</label>
+                            @Html.TextAreaFor(model => model.moTa, new { @class = "form-control", @rows = "3" })
+                            @Html.ValidationMessageFor(model => model.moTa, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+@section script{
+    <script>
+        var tMoney = @Model.tongTien.Value;
+        var common = {
+            init: function () {
+                common.registerEvent();
+            },
+            registerEvent: function () {
+                $("#keyWordPro").autocomplete({
+                    minLength: 0,
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/AdminHome/ListProduct",
+                            dataType: "json",
+                            data: {
+                                key: request.term
+                            },
+                            success: function (res) {
+                                response(res.data);
+                            }
+                        });
+                    },
+                    focus: function (event, ui) {
+                        $("#keyWordPro").val(ui.item.label);
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        $('.no-product')[0].style.display = "none";
+                        var tmp = $('.table-order').find('[id="' + ui.item.idSp + '"]');
+                        if (tmp.length == 0) {
+                            var price = String(ui.item.gia).replace(/(.)(?=(\d{3})+$)/g, '$1,');
+                            var markup = "<tr id = \"" + ui.item.idSp + "\">"
+                                + "<td class=\"text-center\" style=\"padding: 9px .75rem;\">"
+                                + "<img src=\"/Theme/Image/" + ui.item.anhDaiDien + "\">"
+                                + "</td>"
+                                + "<td>" + ui.item.ten + "</td>"
+                                + "<td class=\"text-right\">" + price + "</td>"
+                                + "<td class=\"text-center\">"
+                                + "<input class=\"input-quantity\" type=\"number\" value=\"1\" min=\"1\" onkeypress=\"return event.charCode >= 48 && event.charCode <= 57\">"
+                                + "</td>"
+                                + "<td id = \"sum-" + ui.item.idSp + "\" class=\"text-right\">" + price + "</td>"
+                                + "<td class=\"text-center delete-row\">"
+                                + "<i class=\"fas fa-trash-alt\" style=\"color: red;\"></i>"
+                                + "</td>"
+                                + "</tr>";
+                            $("table tbody").append(markup);
+
+                            $.ajax({
+                                url: "/AdminHome/AddItem",
+                                dataType: "json",
+                                data: { id: ui.item.idSp },
+                                success: function (res) {
+                                    $('#total-money').html(String(res.data.totalMoney).replace(/(.)(?=(\d{3})+$)/g, '$1,'));
+                                    tMoney = res.data.totalMoney;
+                                }
+                            });
+                        }
+                        return false;
+                    }
+                })
+                    .autocomplete("instance")._renderItem = function (ul, item) {
+                        return $("<li>")
+                            .append("<div id = \"" + item.idSp + "\" class = \"add-product\">" +
+                                item.ten + " - " + String(item.gia).replace(/(.)(?=(\d{3})+$)/g, '$1,') +
+                                "đ</div>")
+                            .appendTo(ul);
+                    };
+            }
+        }
+        common.init();
+
+        // Find and remove selected table rows
+        $(document).on('click', '.delete-row', function () {
+            $.ajax({
+                url: "/AdminHome/DeleteItem",
+                dataType: "json",
+                data: { id: $(this)[0].parentElement.id },
+                success: function (res) {
+                    tMoney = res.data.totalMoney;
+                    $('#total-money').html(String(res.data.totalMoney).replace(/(.)(?=(\d{3})+$)/g, '$1,'));
+                    if (res.data.totalMoney == 0) {
+                        $('.no-product')[0].style.display = "revert";
+                    }
+                }
+            });
+            $(this).parents("tr").remove();
+        });
+
+        //Update item quantity
+        $(document).on('input', '.input-quantity', function () {
+            $.ajax({
+                url: "/AdminHome/UpdateItem",
+                dataType: "json",
+                data: {
+                    id: $(this)[0].parentElement.parentElement.id,
+                    quantity: $(this).val()
+                },
+                success: function (res) {
+                    $('#sum-' + res.data.id).html(String(res.data.value).replace(/(.)(?=(\d{3})+$)/g, '$1,'));
+                    $('#total-money').html(String(res.data.totalMoney).replace(/(.)(?=(\d{3})+$)/g, '$1,'));
+                    tMoney = res.data.totalMoney;
+                }
+            });
+        });
+
+        var autoCompleteFullName = {
+            init: function () {
+                autoCompleteFullName.registerEvent();
+            },
+            registerEvent: function () {
+                $("#fullName").autocomplete({
+                    minLength: 0,
+                    source: function (request, response) {
+                        $.ajax({
+                            url: "/AdminHome/ListFullName",
+                            dataType: "json",
+                            data: {
+                                key: request.term
+                            },
+                            success: function (res) {
+                                response(res.data);
+                            }
+                        });
+                    },
+                    focus: function (event, ui) {
+                        $("#fullName").val(ui.item.label);
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        $("#idKhach").val(ui.item.UserID);
+                        $("#hoTen").val(ui.item.FullName);
+                        $("#sdt").val(ui.item.Phone);
+                        $("#diaChiGiao").val(ui.item.UserAddress);
+                        return false;
+                    }
+                })
+                    .autocomplete("instance")._renderItem = function (ul, item) {
+                        return $("<li>")
+                            .append("<div id = \"" + item.idKhach + "\">" + item.hoTen + " - " + item.sdt + "</div>")
+                            .appendTo(ul);
+                    };
+            }
+        }
+        autoCompleteFullName.init();
+
+        function validateForm() {
+            if (tMoney == 0) {
+                alert("Bạn chưa chọn sản phẩm nào!");
+                return false;
+            }
+        }
+    </script>
+}

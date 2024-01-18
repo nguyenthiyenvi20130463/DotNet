@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "DanhSachSanPham";
+    Layout = null;
+    var lstThuongHieu = ViewBag.lstThuongHieu;
+}
+<ul class="list-cat__sub">
+    @foreach(var item in lstThuongHieu)
+    {
+        <li class="catalog-sub__item"><a href="/SanPham/SanPhamThuongHieu?IdThuongHieu=@item.idThuongHieu" class="catalog-sub__link"><span class="fa fa-caret-right icon"></span>@item.tenThuongHieu</a></li>
+    }
+</ul>

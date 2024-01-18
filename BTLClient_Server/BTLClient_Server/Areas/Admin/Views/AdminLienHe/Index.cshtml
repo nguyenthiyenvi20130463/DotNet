@@ -1,0 +1,144 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<BTLClient_Server.Areas.Admin.Models.DTO.LienHeDTO>
+
+@{
+    ViewBag.Title = "Danh sách bài viết";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh sách bài viết</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid card card-outline card-info">
+        <div class="form-search">
+            @using (Html.BeginForm("Index", "AdminLienHe", FormMethod.Get, new { }))
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="">
+                                    <input type="text" class="form-control" name="keywords" placeholder="Email" value="@ViewBag.keywords">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="">
+                                    Từ:
+                                    <input type="date" class="form-control" name="startTime" value="@ViewBag.startTime" style="display:inline; width: 85%;">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="">
+                                    Đến:
+                                    <input type="date" class="form-control" name="endTime" value="@ViewBag.endTime" style="display:inline; width: 85%;">
+                                </div>
+                            </div>
+                            <div class="col-1">
+                                <div class="btn-search">
+                                    <button type="submit" class="btn btn-default btn-pro" title="Tìm kiếm" style="background-color: #2ea1f8; flex: auto; ">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    <a href="~/Admin/AdminNews" class="btn btn-default btn-pro" title="Tải lại" style="background-color: #34a544">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @using (Html.BeginForm("Index", "AdminLienHe", FormMethod.Post, new { }))
+        {
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                        @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @keywords = @ViewBag.keywords, @startTime = @ViewBag.startTime, @endTime = @ViewBag.endTime }))
+                    </div>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            <input type="checkbox" id="checkBoxAll" />
+                        </th>
+                        <th class="text-center">Nội dung</th>
+                        <th class="text-center">Tên</th>
+                        <th class="text-center">Họ</th>
+                        <th class="text-center">Tài khoản</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">SĐT</th>
+                        <th class="text-center">Ngày tạo</th>
+                        <th class="text-center">
+                            <i class="fas fa-cogs"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td class="text-center">
+                            <input type="checkbox" class="checkBoxId" value="@item.IdLienHe" name="checkBoxId" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NoiDung)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Ten)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Ho)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.TaiKhoan)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.NgayTao_)
+                        </td>
+                        <td class="text-center">
+                            <a href="~/Admin/AdminLienHe/Delete/@item.IdLienHe" title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                <i class="fas fa-trash-alt" style="color:red;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</section>
+
+@section script{
+    <script>
+        $(document).ready(function () {
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked"))
+                    $('.checkBoxId').prop('checked', true);
+                else
+                    $('.checkBoxId').prop('checked', false);
+            });
+        });
+
+    </script>
+}

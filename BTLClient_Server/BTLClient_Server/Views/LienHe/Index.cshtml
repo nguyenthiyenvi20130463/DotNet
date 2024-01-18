@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div>
+    <div class="sec sec__contact">
+        <div class="container">
+            <h2 class="title__main" style="padding-bottom: 25px;">Liên hệ</h2>
+            <div class="row">
+                <div class="list-contact col-md-5 col-sm-6 col-xs-12">
+                    <div class="item">
+                        <div class="contact">
+                            <p class="info ">
+                                <span class="icon -ap icon-old-phone"></span>
+                                <span class="name-header">Điện thoại: </span>
+                                <span class="disb">(04) 7308 6680</span>
+                            </p>
+                        </div>
+                        <div class="contact">
+                            <p class="info ">
+                                <span class="icon -ap icon-location3"></span>
+                                <span class="name-header texU disb fow">Địa chỉ: </span>
+                                <span class="disb">32 Võ Văn Dũng, Đống Đa, Hà Nội</span>
+                            </p>
+                        </div>
+                        <div class="contact">
+                            <p class="info ">
+                                <span class="icon -ap  icon-envelope2"></span>
+                                <span class="name-header texU disb fow">Email:</span>
+                                <span class="disb">contact@nhanhoa.com</span>
+                            </p>
+                        </div>
+                        <div class="contact">
+
+                            <p class="info ">
+                                <span class="icon -ap icon-access_time"></span>
+                                <span class="name-header texU disb fow">Thời gian mở cửa: </span>
+                                <span class="disb">Mon - Sat : 9:00 am - 22:00 pm</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-contact col-md-7 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <div class="label">Họ</div>
+                                <input type="text" class="form-control" placeholder="Họ" id="txtHo">
+                                <small id="alertHo" class="form-text text-muted AnHienLoad" style="color: #f94f4f;font-size: 10px;">Không được để trống họ</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <div class="label">Tên</div>
+                                <input type="text" class="form-control" placeholder="Tên" id="txtTen">
+                                <small id="alertTen" class="form-text text-muted AnHienLoad" style="color: #f94f4f;font-size: 10px;">Không được để trống tên</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="label">Email</div>
+                        <input type="email" class="form-control" placeholder="Email..." id="txtEmail">
+                        <small id="alertEmail" class="form-text text-muted AnHienLoad" style="color: #f94f4f;font-size: 10px;">Không được để trống email</small>
+                    </div>
+                    <div class="form-group">
+                        <div class="label">Số điện thoại</div>
+                        <input type="text" class="form-control" placeholder="Số điện thoại..." id="txtSDT" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))">
+                        <small id="alertSDT" class="form-text text-muted AnHienLoad" style="color: #f94f4f;font-size: 10px;">Không được để trống số điên thoại</small>
+                    </div>
+                    <div class="form-group">
+                        <div class="label">Nội dung:</div>
+                        <textarea name="" cols="30" rows="10" class="form-control" placeholder="Nhập nội dung" id="txtNoiDung"></textarea>
+                        <small id="alertNoiDung" class="form-text text-muted AnHienLoad" style="color: #f94f4f;font-size: 10px;">Không được để trống nội dung</small>
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="btn btn-submit" onclick="GuiNoiDungLienHe()">Gửi</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="vendor/js/jquery.2.1.1.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      	$(".catalog__item").removeClass("active")
+      	$(".layout_menu_lienhe").addClass("active")
+    });
+
+    function GuiNoiDungLienHe()
+    {
+    	var txtHo=$("#txtHo").val();
+    	var txtTen=$("#txtTen").val();
+    	var txtEmail=$("#txtEmail").val();
+    	var txtSDT=$("#txtSDT").val();
+    	var txtNoiDung=$("#txtNoiDung").val();
+    	if(txtHo=='')
+    	{
+    		$("#alertHo").removeClass("AnHienLoad");
+    	}
+    	if(txtTen=='')
+    	{
+    		$("#alertTen").removeClass("AnHienLoad");
+    	}
+    	if(txtEmail=='')
+    	{
+    		$("#alertEmail").removeClass("AnHienLoad");
+    	}
+    	if(txtSDT=='')
+    	{
+    		$("#alertSDT").removeClass("AnHienLoad");
+    	}
+    	if(txtNoiDung=='')
+    	{
+    		$("#alertNoiDung").removeClass("AnHienLoad");
+    	}
+    	if(txtHo!=''&&txtTen!=''&&txtEmail!=''&&txtSDT!=''&&txtNoiDung!=''){
+            $.post("/LienHe/GuiFromLienHe", { "txtHo": txtHo ,"txtTen": txtTen,"txtEmail":txtEmail,"txtSDT":txtSDT,"txtNoiDung":txtNoiDung}, function (data) {
+				if(data.Icon=="success")
+				{
+					$("#txtHo").val("");
+					$("#txtTen").val("");
+					$("#txtEmail").val("");
+					$("#txtSDT").val("");
+					$("#txtNoiDung").val("");
+					$("#alertHo").addClass("AnHienLoad");
+					$("#alertTen").addClass("AnHienLoad");
+					$("#alertEmail").addClass("AnHienLoad");
+					$("#alertSDT").addClass("AnHienLoad");
+					$("#alertNoiDung").addClass("AnHienLoad");
+				}
+				else
+				{
+					$("#alertHo").addClass("AnHienLoad");
+					$("#alertTen").addClass("AnHienLoad");
+					$("#alertEmail").addClass("AnHienLoad");
+					$("#alertSDT").addClass("AnHienLoad");
+					$("#alertNoiDung").addClass("AnHienLoad");
+				}
+				MessageBox(data.Title,data.Icon);
+        	});
+    	}
+    }
+    </script>
+</div>

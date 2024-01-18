@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewBag.Title = "XacNhanThanhToan";
+    var thanhtoan = ViewBag.thanhtoan;
+    var login = ViewBag.login;
+}
+<div layout:fragment="content-main">
+    <div class="sec sec__shopcart">
+        <div class="container">
+            <div class="nav-steps">
+                <div class="nav-step__item active">
+                    <span class="number">1</span>
+                    <span class="txt">Chọn sản phẩm</span>
+                </div>
+                <div class="nav-step__item waiting">
+                    <span class="number">2</span>
+                    <span class="txt">Nhập thông tin</span>
+                </div>
+                <div class="nav-step__item">
+                    <span class="number">3</span>
+                    <span class="txt">Xác nhận</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="sec__shopcart__info col-md-7 col-sm-7 col-xs-12">
+                    <div class="box-user__info panel" style="display:none">
+                        <div class="title">Thông tin cá nhân</div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Họ tên</div>
+                                        <div class="name"><span>@login.hoTen</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Tài khoản</div>
+                                        <div class="name"><span>@login.tenDangNhap</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="label">Email</div>
+                                <div class="name"><span>@login.email</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-user__info panel">
+                        <div class="title">Thông tin thanh toán và nhận hàng</div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Họ tên:</div>
+                                        <div class="name"><span>@thanhtoan.txtTen</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Tài khoản:</div>
+                                        <div class="name"><span>@login.tenDangNhap</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="label">Email</div>
+                                <div class="name"><span>@thanhtoan.txtEmail</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Tỉnh thành:</div>
+                                        <div class="name"><span>@thanhtoan.txtTinhThanh</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Quận huyện:</div>
+                                        <div class="name"><span>@thanhtoan.txtQuanHuyen</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Xã phường:</div>
+                                        <div class="name"><span>@thanhtoan.txtXaPhuong</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="label">Ghi chú:</div>
+                                <div class="name"><span>@thanhtoan.txtNoiDung</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Hình thức thanh toán:</div>
+                                        @if (thanhtoan.HTThanhToan == "0")
+                                        {
+                                            <div class="name"><span>Thanh toán khi nhận hàng</span></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="name"><span>Thanh toán qua VNPay</span></div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Hình thức giao hàng:</div>
+                                        @if (thanhtoan.HinhThucGiaoHang == "0")
+                                        {
+                                            <div class="name"><span>Giao hàng qua giao hàng tiết kiệm</span></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="name"><span>Giao hàng qua giao hàng nhanh</span></div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Phí:</div>
+                                        <div class="name"><span>@thanhtoan.PhiGiaoHang</span><span> đ</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-user__info panel" style="display:none">
+                        <div class="title">Hình thức thanh toán</div>
+                        <div class="content">
+                            <div class="list-payment">
+                                <div class="item active">
+                                    @if (thanhtoan.HinhThucThanhToan == "1")
+                                    {
+                                        <img src="/Theme/uploads/payment/bank-transfer.png" alt="">
+                                    }
+                                    @if (thanhtoan.HinhThucThanhToan == "2")
+                                    {
+                                        <img src="/Theme/uploads/payment/mastercard.png" alt="">
+                                    }
+                                    @if (thanhtoan.HinhThucThanhToan == "3")
+                                    {
+                                        <img src="/Theme/uploads/payment/paypal.png" alt="">
+                                    }
+                                    @if (thanhtoan.HinhThucThanhToan == "4")
+                                    {
+                                        <img src="/Theme/uploads/payment/visa.png" alt="">
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                    <div class="title">Giỏ hàng</div>
+                    <div class="content">
+                        <div class="product__shopcart">
+                            <div class="product__list" id="GioHangChiTietRutGon">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-button">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12">
+                                <a class="btn btn__back" href="/ThanhToan/TienHanhThanhToan">Quay lại</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <a class="btn btn__next" href="javascript:void(0)" onclick="ThanhThoan_ThanhCong('@thanhtoan.HTThanhToan')">Tiếp tục thanh toán</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+		$(document).ready(function() {
+			$.get("/SanPham/ChiTietGioHangRutGon", {}, function (data) {
+				if(data.Icon=="success"){
+                    $("#GioHangChiTietRutGon").append(data.DataChiTietGioHang);
+				}
+			});
+        });
+
+        function ThanhThoan_ThanhCong(HinhThuThanhToan) {
+            swal.fire({
+                title: '',
+                text: 'Chắc chắn thanh toán?',
+                icon: 'question',
+                customClass: {
+                    confirmButton: 'btn btn-primary ml-2 text-center',
+                    cancelButton: 'btn btn-primary ml-2 text-center'
+                },
+                buttonsStyling: false,
+                showCancelButton: true,
+                confirmButtonText: 'Chấp nhận',
+                cancelButtonText: 'Không chấp nhận',
+                reverseButtons: false,
+            })
+                .then((result) => {
+                    if (result.value) {
+                        debugger;
+                        if (HinhThuThanhToan == "0") {
+                            location.href = "/ThanhToan/ThanhThoanThanhCong";
+                        }
+                        else {
+                            location.href = "/ThanhToan/ThanhThoanVNPay";
+                        }
+                    }
+                })
+        }
+        </script>
+    </div>
+</div>

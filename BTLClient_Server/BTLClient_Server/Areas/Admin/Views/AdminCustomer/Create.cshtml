@@ -1,0 +1,132 @@
+﻿@model BTLClient_Server.EF.KhachHang
+
+@{
+    ViewBag.Title = "Thêm mới khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới khách hàng</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    @using (Html.BeginForm("Create", "AdminCustomer", FormMethod.Post, new { @onsubmit = "return validateForm()", @name = "myForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-7">
+                <div class="card card-outline card-info">
+                    <div class="card-header">
+                        <h4 class="">
+                            Thông tin chính
+                        </h4>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>
+                                Họ và tên
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            @Html.EditorFor(model => model.hoTen, new { htmlAttributes = new { @class = "form-control", required = true } })
+                            @Html.ValidationMessageFor(model => model.hoTen, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Số điện thoại
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            @Html.EditorFor(model => model.sdt, new { htmlAttributes = new { @class = "form-control", @maxlength = "10", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57", required = true } })
+                            @Html.ValidationMessageFor(model => model.sdt, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Email
+                            </label>
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Địa chỉ
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control", required = true } })
+                            @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-md-5">
+                <div class="card card-outline card-info">
+                    <div class="card-header">
+                        <h4 class="">
+                            Tài khoản
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>
+                                Tên đăng nhập
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            @Html.EditorFor(model => model.tenDangNhap, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tenDangNhap, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Mật khẩu
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            @Html.EditorFor(model => model.matKhau, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                            @Html.ValidationMessageFor(model => model.matKhau, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Nhập lại mật khẩu
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            <input type="password" class="form-control" name="repassword" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="submit" id="Submit" class="btn btn-block btn-success btn-lg">
+                                        <i class="ace-icon fa fa-check"></i>
+                                        Thêm mới
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="reset" class="btn btn-block btn-info btn-lg">
+                                        <i class="fas fa-sync"></i>
+                                        Nhập lại
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+@section script{
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["Password"].value;
+            var y = document.forms["myForm"]["repassword"].value;
+            if (x == "" || x != y) {
+                alert("Xác nhận mật khẩu chưa chính xác!");
+                return false;
+            }
+        }
+    </script>
+}

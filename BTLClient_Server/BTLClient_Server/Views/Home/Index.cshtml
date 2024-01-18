@@ -1,0 +1,284 @@
+﻿@{
+    ViewBag.Title = "Index";
+    var lstSanPhamNoiBat = ViewBag.lstSanPhamNoiBat;
+    var lstDanhSachSanPham = ViewBag.lstDanhSachSanPham;
+}
+<div class="nav-anchor"></div>
+<div class="hero-banner">
+    <div class="container">
+        <div class="row">
+            <div id="Slide_Banner" class="carousel slide" data-ride="carousel">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="/Theme/Image/electronic01-1-electronic01-1.jpg" height="500">
+                    </div>
+                    <div class="item">
+                        <img src="/Theme/Image/bannerslide1-banner-slide-1.jpg" height="500">
+                    </div>
+                    <div class="item">
+                        <img src="/Theme/Image/Banner1_2.png" height="500">
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control carousel-control-prev" href="#Slide_Banner" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control carousel-control-next" href="#Slide_Banner" role="button" data-slide="next" style="right: 0;left: auto;">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sec product-list">
+    <div class="container">
+        <div class="product-list__head">
+            <h2 class="product-list__title">
+                SẢN PHẨM NỔI BẬT
+            </h2>
+            <div class="nav__slider nav-slider__product">
+                <div class="nav prev">
+                    <span class="icon fa fa-angle-left"></span>
+                </div>
+                <div class="nav next">
+                    <span class="icon fa fa-angle-right"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="product-list__wrap slider__product">
+                @if (lstSanPhamNoiBat != null)
+                {
+                    foreach (var item in lstSanPhamNoiBat)
+                    {
+                        <div class="product__item">
+                            <div class="w">
+                                <div class="product__image">
+                                    <a href="#" class="product__link">
+                                        <img src="~/Theme/Image/@item.anhDaiDien" alt="name your product">
+                                    </a>
+                                    <div class="product-item__actions">
+                                        <a href="javascript:void(0)" class="btn btn-cart" onclick="ThemGioHang('@item.idSp')">Thêm vào giỏ</a>
+                                        <a class="btn btn-detail" data-toggle="tooltip" data-placement="left" title="Chi tiết" href="/Home/ChiTietSanPham?IdSanPham=@item.idSp"><span class="-ap  icon-search2"></span></a>
+                                        <a href="javascript:void(0)" class="btn btn-quickview" onclick="XemNhanhSanPham('@item.idSp')" data-placement="top" title="Xem nhanh"><span class="fa fa-eye"></span></a>
+                                    </div>
+                                    <div class="product__overlay"></div>
+                                    @if (item.trangThai == 1)
+                                    {
+                                        <div class="product__status -new">@item.trangThaiMieuTa</div>
+                                    }
+                                    @if (item.trangThai == 2)
+                                    {
+                                        <div class="product__sale">@item.trangThaiMieuTa</div>
+                                    }
+                                    @if (item.trangThai == 5)
+                                    {
+                                        <div class="product__status -hot">@item.trangThaiMieuTa</div>
+                                    }
+                                </div>
+                                <h3 class="product__name"><a href="#">@item.ten</a></h3>
+                                <p>Số lượng: @item.soLuong</p>
+                                <div class="product__price">
+                                    @if (item.trangThai == 2)
+                                    {
+                                        <div class="product__price__old">@item.gia.ToString("N0") <span class="unit">đ</span></div>
+                                        <div class="product__price__regular">@item.giaKm.ToString("N0")  <span class="unit">đ</span></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="product__price__regular">@item.gia.ToString("N0")  <span class="unit">đ</span></div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sec__banner sec">
+    <div class="container">
+        <a class="effect banner__link">
+            <img src="~/Theme/uploads/banner/banner2.jpg" alt="">
+        </a>
+    </div>
+</div>
+<section class="sec sec__product__list">
+    <div class="container">
+        <div class="product-list__head">
+            <h2 class="product-list__title">
+                SẢN PHẨM MỚI
+            </h2>
+        </div>
+        <div class="product-list__wrap">
+            <div class="row" id="DanhSach_SanPham">
+                <input type="hidden" value="0" id="ValueXemThemSanPham" />
+                <input type="hidden" id="SoLuongSanPham" value="@ViewBag.SoLuongSanPham" />
+                @if (lstDanhSachSanPham != null)
+                {
+                    foreach (var item in lstDanhSachSanPham)
+                    {
+                        <div class="product__item">
+                            <div class="product__image">
+                                <a href="#" class="product__link"><img src="~/Theme/Image/@item.anhDaiDien" alt="name your product"></a>
+                                <div class="product-item__actions">
+                                    <a href="javascript:void(0)" class="btn btn-cart" onclick="ThemGioHang('@item.idSp')">Thêm vào giỏ</a>
+                                    <a class="btn btn-detail" data-toggle="tooltip" data-placement="left" title="Chi tiết" href="/Home/ChiTietSanPham?IdSanPham=@item.idSp"><span class="-ap  icon-search2"></span></a>
+                                    <a href="javascript:void(0)" class="btn btn-quickview" onclick="XemNhanhSanPham('@item.idSp')" data-placement="top" title="Xem nhanh"><span class="fa fa-eye"></span></a>
+                                </div>
+                                <div class="product__overlay"></div>
+                                @if (item.trangThai == 1)
+                                {
+                                    <div class="product__status -new">@item.trangThaiMieuTa</div>
+                                }
+                                @if (item.trangThai == 2)
+                                {
+                                    <div class="product__sale">@item.trangThaiMieuTa</div>
+                                }
+                                @if (item.trangThai == 5)
+                                {
+                                    <div class="product__status -hot">@item.trangThaiMieuTa</div>
+                                }
+                            </div>
+                            <h3 class="product__name"><a href="#">@item.ten</a></h3>
+                            <p>Số lượng: @item.soLuong</p>
+                            <div class="product__price">
+                                @if (item.trangThai == 2)
+                                {
+                                    <div class="product__price__old">@item.gia.ToString("N0") <span class="unit">đ</span></div>
+                                    <div class="product__price__regular">@item.giaKm.ToString("N0")  <span class="unit">đ</span></div>
+                                }
+                                else
+                                {
+                                    <div class="product__price__regular">@item.gia.ToString("N0")  <span class="unit">đ</span></div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="row AnHienLoad" id="LoadingSanPham" style="text-align: center;">
+                <img src="~/Theme/Image/Load1.gif" style="width: 2%;">
+            </div>
+            <div class="row" style="text-align: center;" id="XemThemSanPham">
+                <input type="hidden" value="0" id="ValueXemThemSanPham" />
+                <buttton onclick="XemThemSanPham()" class="btn btn-primary">Xem thêm</buttton>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 10px;">
+        <div class="col-md-2">
+            <div style=" text-align: center; line-height: 95px;">
+                <p style="font-size: 20px;font-weight: 500;">Thương hiệu</p>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="swiper mySwiper" style="max-height: 196px; width: 96%;">
+                <div class="swiper-wrapper col-md-10">
+                    <div class="swiper-slide"><img src="~/Theme/Image/asus.png" style=" border: 1px solid #26deed; border-radius: 5px;" /></div>
+                    <div class="swiper-slide">
+                        <img src="~/Theme/Image/apple.png" style=" border: 1px solid #26deed; border-radius: 5px;" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="~/Theme/Image/acer.png" style=" border: 1px solid #26deed; border-radius: 5px;" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="~/Theme/Image/dell.png" style=" border: 1px solid #26deed; border-radius: 5px;" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="~/Theme/Image/hp.png" style=" border: 1px solid #26deed; border-radius: 5px;" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="~/Theme/Image/lenovo.png" style=" border: 1px solid #26deed; border-radius: 5px;" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="~/Theme/Image/razer.png" style=" border: 1px solid #26deed; border-radius: 5px;" />
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="swiper-button-next col-md-1"></div>
+            <div class="swiper-button-prev col-md-1"></div>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
+        $(".catalog__item").removeClass("active");
+        $(".layout_menu_trangchu").addClass("active");
+        $("#ValueXemThemSanPham").val('0');
+    });
+</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 6,
+        spaceBetween: 20,
+        slidesPerGroup: 3,
+        loop: false,
+        loopFillGroupWithBlank: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+    function XemThemSanPham() {
+        debugger;
+        $("#LoadingSanPham").removeClass("AnHienLoad");
+        var ViTri = parseInt($("#ValueXemThemSanPham").val());
+        var SoLuongSanPham = parseInt($("#SoLuongSanPham").val());
+
+        var solamtron = (SoLuongSanPham / 8).toFixed()
+        if (solamtron < SoLuongSanPham / 8) {
+            solamtron = solamtron + 1;
+        }
+        if (ViTri <= solamtron) {
+            ViTri = ViTri + 1;
+            $("#ValueXemThemSanPham").val(ViTri);
+            $.get("/Home/XemThemSanPham", { "page": ViTri }, function (data) {
+                $("#DanhSach_SanPham").append(data);
+                $("#LoadingSanPham").addClass("AnHienLoad");
+                if (ViTri = solamtron) {
+                    $("#XemThemSanPham").addClass("AnHienLoad");
+                }
+            }
+            );
+        }
+        else {
+            if (ViTri = solamtron) {
+                $("#XemThemSanPham").addClass("AnHienLoad");
+            }
+        }
+    }
+</script>
+<div class="sec__banner sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <a class="effect banner__link">
+                    <img src="~/Theme/uploads/banner/banner3.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <a class="effect banner__link">
+                    <img src="~/Theme/uploads/banner/banner4.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <a class="effect banner__link">
+                    <img src="~/Theme/uploads/banner/banner5.jpg" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

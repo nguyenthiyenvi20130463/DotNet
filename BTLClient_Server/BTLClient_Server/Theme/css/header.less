@@ -1,0 +1,355 @@
+/* .top-menu */
+
+/*  End .main-menu */
+
+.header-top{
+   padding: 20px 0px;
+   border-bottom: 1px solid @borc;
+    .logo{
+        .block;
+        padding:5px 0px;
+        img{
+            height: 40px;
+
+        }
+        .name{
+            .hidden;
+        }
+
+    }
+    
+}
+.nav-toggle{
+    .hidden;
+}
+.title-mb{
+    .hidden;
+}
+.hotline{
+    color: #fff;
+    margin-top: 10px;
+    .tright;
+    .inline;
+    .f13;
+    .icon{
+        margin-right: 5px;
+    }
+    .number{
+        color: #fff;
+        .thick;
+    }
+}
+.header-menu{
+    background: @main;
+}
+.social{
+    .inline;
+    .right;
+    .btn{
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0px;
+        .center;
+        color: #fff;
+        &:hover{
+            color: @main;
+        }
+    }
+}
+.menu-category{
+    .relative;
+    .title{
+        .upper;
+        .f16;
+        .c(#444);
+        .pointer;
+        .relative;
+        padding:10px 10px;
+    }
+    &:hover{
+        .title{
+            .rgba(#000,0.1);
+        }
+        .catalog__list{
+            .block;
+        }
+
+    }
+
+
+}
+.catalog__list{
+    .fullw;
+    .catalog__item{
+        .left;
+        .relative;        
+        
+        >.catalog__link{
+            .block;
+            .center;
+            .upper;
+            padding:10px 20px;
+            color: #fff;
+            text-decoration: none;
+        }
+        &:hover{
+            >.catalog__link{
+                .c(#fff);
+            }
+            .catalog__sub{
+                visibility: visible;
+                .opacity(1);
+                transition:all 0.3s ease;
+                transform:translateX(0px);
+    
+            }
+        }
+        &.active, &:hover{
+            >.catalog__link{
+                color: @main;
+                background: #fff;
+                .relative;
+                .opacity(1);
+            }
+        }
+    }
+
+}
+.catalog__title{
+    .relative;
+    .block;
+    .center;
+    margin-bottom: 10px;
+
+    &:before{
+        content: "";
+        .absolute;
+        top: 0px;
+        right: 0px;
+        height: 1px;
+        border-bottom: 1px solid @borc;
+        left: 0px;
+        bottom: 0px;
+        margin:auto;
+    }
+    span{
+        background: #fff;
+        .c(@main);
+        .thick;
+        .upper;
+        .inline;
+        .relative;
+        .z(1);
+        padding:2px 5px;
+    }
+}
+.catalog__sub{
+    .absolute;
+    left: 0px;
+    top: 100%;
+    min-width: 100px;
+    width:550px;
+    background: #fff;
+    padding:10px;
+    visibility: hidden;
+    .opacity(0);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    margin-top: 0px;
+    transition:all 0.3s ease;
+    transform:translateX(10px);
+    .catalog-sub__item{
+        >.catalog-sub__link{
+            padding:5px 10px;
+            color: #555;
+            .block;
+            &:hover{
+                color: @main;
+            }
+        }
+    }
+    .product__image{
+        width:150px;
+        .left;
+        margin-right: 10px;
+    }
+    .icon{
+        margin-right: 5px;
+    }
+}
+
+
+.menu-icons__sub,.dropdown__shop__cart{
+    .absolute;
+    min-width: 200px;
+    .tleft;
+    background: #fff;
+    top: 100%;
+    right: 0px;
+    visibility: hidden;
+    .opacity(0);
+    z-index: 100;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    transition:all 0.3s ease;
+    .menu-icons__sub__item{
+        .menu-icon__sub-link{
+            padding:7px 10px;
+            .block;
+            .c(#555);
+
+        }
+        &:hover,&.active{
+            .menu-icon__sub-link{
+                .rgba(#000,0.1);    
+            }
+            
+        }
+
+    }
+}
+.dropdown__shop__cart{
+    min-width: 300px;
+    
+    .dropdown__head{
+        padding:10px;
+        background: #f6f6f6;
+        border-bottom: 1px solid #eee;
+        .number{
+            .c(@red);
+            .f18;
+            .thick;
+        }
+
+    }
+
+    .dropdown__bottom{
+        padding:10px;
+        background: #f6f6f6;
+        .center;
+        .total{
+            .f16;
+            .product__price{
+                .f16;
+            }
+            .number{
+                .c(@red);
+                .bold;
+            }
+        }
+        .btn__checkout{
+            .block;
+            .fullw;
+            margin-top: 10px;
+
+        }
+    }
+    
+}
+.header__second{
+    background: #222;
+    padding:10px 0px;
+    .logo{
+        .image{
+            img{
+                height: 40px;
+            }
+        }
+    }
+    .back__home{
+        
+        a{
+            color:#fff;    
+            padding:7px 10px;
+            .inline;
+            .corner(3px);
+            &:hover{
+                .rgba(#fff,0.1);
+            }
+        }
+        
+    }
+}
+.user-profile{
+    width: 120px;
+    .relative;
+    .tleft;
+    > a{
+        padding-left: 40px !important;   
+        .block; 
+    }
+    .avatar{
+        .absolute;
+        top: 10px;
+        left: 10px;
+        width: 20px;
+        .xo;
+        height: 20px;
+        border-radius: 50%;
+        img{
+            width: 100%;
+        }
+    }
+    .username{
+        .block;
+        color: white;
+    }
+    .title-line{
+        .f10;
+        .c(#fff);
+        .thin;
+        .block;
+    }
+}
+.header-top__location,.header-top__shopcart,.header-top__login{    
+    .right;
+    .pointer;
+    .relative;
+    padding:8px 0px;
+    padding-left: 40px;
+    margin-left: 20px;
+    >.icon,>.icon .fa{
+        .lh(28px);
+        color: @text;
+
+    }
+    .headline{
+        .f12;
+        color: @text;
+        opacity: 0.7;
+    }
+    >.title,>.txt{
+        color: @text;
+    }
+    >.icon{
+        width: 30px;
+        height: 30px;
+        color: #888;
+        .f28;
+        .center;
+        .absolute;
+        top: 8px;
+        left: 0px;
+        .corner(3px);
+    }
+}
+.header-top__shopcart{
+    &:hover{
+        .dropdown__shop__cart{
+            visibility: visible;
+            opacity: 1;
+
+        }
+    }
+    .product__price{
+        .c(@red);
+    }
+}
+.header-top__login{
+    &:hover{
+        .menu-icons__sub{
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}

@@ -1,0 +1,140 @@
+﻿@model BTLClient_Server.Areas.Admin.Models.DTO.OrderDTO
+
+@{ Layout = null; }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Invoice</title>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/dist/css/adminlte.min.css">
+    <!-- css_custom -->
+    <link href="~/Areas/Admin/Content/css_custom_admin.css" rel="stylesheet" />
+    <style>
+        .table-sign, .table-sign tr, .table-sign td {
+            border: none;
+        }
+
+            .table-sign th {
+                border: none;
+                background-color: #e9ecef00;
+            }
+
+            .table-sign.table-infor td {
+                vertical-align: top !important;
+            }
+    </style>
+</head>
+<body>
+    <section class="content" style="width: 1200px; margin: auto;">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <h2>HÓA ĐƠN BÁN HÀNG</h2>
+                    <p>Mã hóa đơn: @Model.idDon</p>
+                    <p class="text-right">Thời gian in: @DateTime.Now</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-sign table-infor">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Ngày mua hàng: @Model.ngayDat</p>
+                                <p><b>Khách hàng: @Model.hoTen</b></p>
+                                <p>Điện thoại: @Model.sdt</p>
+                                <p>Địa chỉ: @Model.diaChiGiao</p>
+                            </td>
+                            <td style="column-count: 9;">
+                            </td>
+                            <td>
+                                <p style="opacity: 0;">A</p>
+                                <p><b>My Shop Electronic</b></p>
+                                <p>Địa chỉ: 236 Hoàng Quốc Việt - Cổ Nhuế - Bắc Từ Liêm - Hà Nội</p>
+                                <p>Điện thoại: 08.68.99.1111</p>
+                                <p>Email: electronic@gmail.com - Website: electronic.vn</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>Đơn vị giao hàng: @Model.donViGiao</p>
+                <p>Ghi chú: @Model.moTa</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-order">
+                    <thead>
+                        <tr>
+                            <th class="text-center">STT</th>
+                            <th>Tên sản phẩm</th>
+                            <th class="text-center">Giá</th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-center">Tổng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.listItem.Count; i++)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    @(i + 1)
+                                </td>
+                                <td>@Model.listItem[i].ten</td>
+                                <td class="text-right">@Model.listItem[i].giaBan.Value.ToString("N0")</td>
+                                <td class="text-center">
+                                    @Model.listItem[i].soLuong
+                                </td>
+                                <td class="text-right">
+                                    @Model.listItem[i].thanhTien.Value.ToString("N0")
+                                </td>
+                            </tr>
+                            }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" class="text-right">
+                                <b>Thành tiền: </b>
+                            </td>
+                            <td colspan="2" class="text-right">
+                                <b>@Model.tongTien.Value.ToString("N0")</b>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.col-->
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-sign">
+                    <tbody>
+                        <tr>
+                            <td class="text-center">
+                                <b>Khách hàng</b>
+                                <p>(Ký, họ tên)</p>
+                            </td>
+                            <td>
+                            </td>
+                            <td class="text-center">
+                                <b>Nhân viên</b>
+                                <p>(Ký, họ tên)</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,120 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<BTLClient_Server.EF.ThuongHieu>
+
+@{
+    ViewBag.Title = "Danh sách thương hiệu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh sách thương hiệu</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card card-outline card-info">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th>Tên thương hiệu</th>
+                                <th class="text-center">
+                                    <i class="fas fa-cogs"></i>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.idThuongHieu)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tenThuongHieu)
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="#" onclick="funcEdit(@item.idThuongHieu)" title="Sửa">
+                                            <i class="fas fa-edit" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="~/Admin/AdminTrademark/Delete/@item.idThuongHieu" title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                            <i class="fas fa-trash-alt" style="color:red;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum }))
+                </div>
+            </div>
+        </div>
+        <!-- /.col-->
+        <div class="col-md-4">
+            <div class="card card-outline card-info">
+                <div class="card-header">
+                    <h4 class="">
+                        Thêm mới
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Create", "AdminTrademark", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <label>
+                                Tên thương hiệu
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control float-right" name="ten" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="submit" id="Submit" class="btn btn-block btn-success btn-lg">
+                                        <i class="ace-icon fa fa-check"></i>
+                                        Thêm mới
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="reset" class="btn btn-block btn-info btn-lg">
+                                        <i class="fas fa-sync"></i>
+                                        Nhập lại
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./row -->
+</section>
+
+<div class="modal fade" id="modalEdit" role="dialog" aria-hidden="true">
+
+</div>
+
+@section script{
+    <script>
+        function funcEdit(id) {
+            var url = "/Admin/AdminTrademark/Edit?id=" + id;
+            $("#modalEdit").load(url, function (data) {
+                $("#modalEdit").html(data);
+                $("#modalEdit").modal("show");
+            });
+        }
+
+    </script>
+}

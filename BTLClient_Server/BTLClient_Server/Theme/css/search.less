@@ -1,0 +1,63 @@
+.box-search{
+    .relative;
+    margin-top: 5px;
+    .form-control{
+        box-shadow: none;
+        background: none;
+        color: @text;
+        background: @bg;
+        border:1px solid @borc;
+        transition:all 0.3s ease;
+        padding-left: 40px;
+        .corner(2px);
+        height: 38px;
+        &:focus{
+            width: 100%;
+            background: #fff;
+            transition:all 0.3s ease;
+            border:1px solid @success;
+        }
+    }
+    .form-input{
+        .relative;
+        .btn__search{
+            background: none;
+            .absolute;
+            .c(#aaa);
+            top: 0px;
+            left: 0px;
+            width: 40px;
+            .center;
+        }
+    }
+    .bootstrap-select{
+        .btn{
+            box-shadow: none;
+            border:0px;
+            &:hover,&.active:focus,&:focus{
+                box-shadow: none;
+                background: none;
+            }
+        }
+        &.open{
+            >.btn{
+                &:hover,&:focus{
+                    background: none;
+                    box-shadow: none;
+                }
+                background: none;
+                box-shadow: none;
+            }
+        }
+        .form-control{
+            border:1px solid #ddd;
+            &:focus{
+                border:1px solid @success;
+            }
+        }
+        .dropdown-menu{
+            margin:0px;
+        }
+    }
+
+}

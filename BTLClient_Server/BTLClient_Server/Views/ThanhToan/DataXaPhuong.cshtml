@@ -1,0 +1,14 @@
+﻿
+@{
+    Layout = null;
+    var lstXaPhuong = ViewBag.lstXaPhuong;
+}
+<option value="" data-tenxaphuong="">Xã phường</option>
+@if (lstXaPhuong != null)
+{
+    foreach (var item in lstXaPhuong)
+    {
+        <option value="@item.WardCode" data-tenxaphuong="@item.WardName">@item.WardName</option>
+    }
+}
+

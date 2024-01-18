@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "XemPhanHoi";
+    Layout = null;
+    var query = ViewBag.query;
+    var stt = 0;
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tài khoản</th>
+            <th>Nhận xét</th>
+            <th>Ngày tạo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (query != null)
+        {
+            foreach (var item in query)
+            {
+                stt++;
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.TenKhachHang</td>
+                    <td>@Html.Raw(item.NhanXet)</td>
+                    <td>@item.NgayTao_</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

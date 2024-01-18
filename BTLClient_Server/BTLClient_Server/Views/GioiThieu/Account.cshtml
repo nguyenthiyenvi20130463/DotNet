@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Account";
+    var khachhang = ViewBag.khachhang;
+}
+<div class="sec sec__shopcart">
+    <input type="hidden" value="@khachhang.diaChi" id="DiaChi" />
+    <input type="hidden" value="@khachhang.idKhach" id="idKhachHang" />
+    <div class="container">
+        <div class="title">Thông tin Tài khoản</div>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-6 col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <div class="label">Số điện thoại:</div>
+                        <input type="text" class="form-control" placeholder="SĐT" id="txtSDT" value="@khachhang.sdt" required>
+                        <small id="errortxtSDT" class="form-text text-muted AnHienLoad">Không được để trống số diện thoại</small>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <div class="label">Họ tên:</div>
+                        <input type="text" class="form-control" placeholder="Tên" id="txtTen" value="@khachhang.hoTen" required>
+                        <small id="errortxtTen" class="form-text text-muted AnHienLoad">Không được để trống họ tên</small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">Tài khoản:</div>
+                <input type="text" class="form-control" placeholder="Tài khoản" id="txtTaiKhoan" value="@khachhang.tenDangNhap" required>
+                <small id="errortxtTaiKhoan" class="form-text text-muted AnHienLoad styleError">Không được bỏ trống tài khoản</small>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <div class="label">Password:</div>
+                        <input type="password" class="form-control" placeholder="Password" id="txtPass" value="@khachhang.matKhau" required>
+                        <small id="errortxtPass" class="form-text text-muted AnHienLoad styleError">Không được bỏ trống mật khẩu</small>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <div class="label">Confirm Password:</div>
+                        <input type="password" class="form-control" placeholder="Confirm Password" id="txtConfirmPass" value="@khachhang.matKhau" required>
+                        <small id="errortxtConfirmPass" class="form-text text-muted AnHienLoad styleError">Mật khẩu không trùng khớp</small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">Email</div>
+                <input type="text" class="form-control" placeholder="Email" id="txtEmail" value="@khachhang.email" required>
+                <small id="errortxtEmail" class="form-text text-muted AnHienLoad">Không được để trống email</small>
+            </div>
+            <div class="form-group">
+                <div class="label">Địa chỉ:</div>
+                <textarea name="" cols="30" rows="10" class="form-control" placeholder="Địa chỉ" id="txtDiaChi"></textarea>
+                <small id="errortxtDiaChi" class="form-text text-muted AnHienLoad">Không được để trống địa chỉ</small>
+            </div>
+            <div class="row" style="text-align: center;">
+                <button class="btn btn-primary" onclick="LuuThongTinKhachHang()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+	    function LuuThongTinKhachHang()
+	    {
+	    	var txtSDT=$("#txtSDT").val();
+	    	var txtTen=$("#txtTen").val();
+	    	var txtTaiKhoan=$("#txtTaiKhoan").val();
+	    	var txtPass=$("#txtPass").val();
+	    	var txtConfirmPass=$("#txtConfirmPass").val();
+	    	var txtEmail=$("#txtEmail").val();
+	    	var txtDiaChi=$("#txtDiaChi").val();
+	    	var idKhachHang=$("#idKhachHang").val();
+	    	if (txtSDT == "") {
+	            $("#errortxtSDT").removeClass("AnHienLoad");
+	        }
+	        if (txtTen == "") {
+	            $("#errortxtTen").removeClass("AnHienLoad");
+	        }
+	        if (txtTaiKhoan == "") {
+	            $("#errortxtTaiKhoan").removeClass("AnHienLoad");
+	        }
+	        if (txtPass == "") {
+	            $("#errortxtPass").removeClass("AnHienLoad");
+	        }
+	        if (txtConfirmPass == "") {
+	            $("#errortxtConfirmPass").removeClass("AnHienLoad");
+	        }
+	        if (txtEmail == "") {
+	            $("#errortxtEmail").removeClass("AnHienLoad");
+	        }
+	        if (txtDiaChi == "") {
+	            $("#errortxtDiaChi").removeClass("AnHienLoad");
+	        }
+	        if (txtPass != txtConfirmPass) {
+	            $("#errortxtConfirmPass").removeClass("AnHienLoad");
+	        }
+
+	        if(txtSDT != ""&&txtTen != ""&&txtTaiKhoan != ""&&txtPass != ""&&txtEmail != ""&&txtDiaChi != ""&&txtPass == txtConfirmPass)
+        	{
+                $.post("/GioiThieu/AccountEdit", { "txtSDT": txtSDT,"txtTen": txtTen,"txtTaiKhoan": txtTaiKhoan,"txtPass": txtPass,"txtEmail": txtEmail,"txtDiaChi": txtDiaChi,"idKhachHang": idKhachHang }, function (data) {
+					MessageBox(data.Title,data.Icon);
+                    $("#TaiKhoanDangNhap").html(data.Data);
+	            });
+        	}
+
+
+	    }
+
+	    $(document).ready(function(){
+	    	document.getElementById("txtDiaChi").value = $("#DiaChi").val();
+		});
+</script>

@@ -1,0 +1,176 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<BTLClient_Server.Areas.Admin.Models.DTO.CustomerDTO>
+
+@{
+    ViewBag.Title = "Danh sách khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh sách khách hàng</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid card card-outline card-info">
+        <div class="form-search">
+            @using (Html.BeginForm("Index", "AdminCustomer", FormMethod.Get, new { }))
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="">
+                                    <input type="text" class="form-control" name="ten" placeholder="Tên khách hàng" value="@ViewBag.ten">
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="">
+                                    <input type="text" class="form-control" name="dc" placeholder="Địa chỉ" value="@ViewBag.dc">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="btn-search">
+                                    <button type="submit" class="btn btn-default btn-pro" style="background-color: #2ea1f8; flex: auto; ">
+                                        <i class="fa fa-search"></i>
+                                        Tìm kiếm
+                                    </button>
+                                    <a href="~/Admin/AdminCustomer" class="btn btn-default btn-pro" style="background-color: #34a544; flex: auto; ">
+                                        <i class="fas fa-sync-alt"></i>
+                                        Tải lại
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @using (Html.BeginForm("Index", "AdminCustomer", FormMethod.Post, new { }))
+        {
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="~/Admin/AdminCustomer/Create" class="create-new">
+                            <i class="fas fa-plus"></i>
+                            Thêm mới
+                        </a>
+                        <button type="submit" class="btn-delete" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                            <i class="fa fa-trash-alt"></i>
+                            Xóa
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @ten = @ViewBag.ten, @dc = @ViewBag.dc }))
+                    </div>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            <input type="checkbox" id="checkBoxAll" />
+                        </th>
+                        <th class="text-center">Tên khách hàng</th>
+                        <th class="text-center">Tên đăng nhập</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Số điện thoại</th>
+                        <th class="text-center">Địa chỉ</th>
+                        <th class="text-center">Số đơn hàng</th>
+                        <th class="text-center">
+                            <i class="fas fa-cogs"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <input type="checkbox" class="checkBoxId" value="@item.idKhach" name="checkBoxId" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hoTen)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tenDangNhap)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.email)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.sdt)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.diaChi)
+                            </td>
+                            <td class="text-center">
+                                <a href="~/Admin/AdminCustomer/ListOrder/@item.idKhach" title="Đơn hàng">
+                                    <i class="fas fa-file-invoice-dollar" style="color: green;"></i>
+                                    @Html.DisplayFor(modelItem => item.Count)
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="#" onclick="funcEdit(@item.idKhach)" title="Sửa">
+                                    <i class="fas fa-edit" aria-hidden="true"></i>
+                                </a>
+                                <a href="#" onclick="funcEditPassword(@item.idKhach)" title="Thay đổi mật khẩu" style="color: darkorange;">
+                                    <i class="fas fa-key"></i>
+                                </a>
+                                <a href="~/Admin/AdminUser/Delete/@item.idKhach" title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                    <i class="fas fa-trash-alt" style="color:red;"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</section>
+
+<div class="modal fade" id="modalEdit" role="dialog" aria-hidden="true">
+
+</div>
+
+<div class="modal fade" id="modalEditPassword" role="dialog" aria-hidden="true">
+
+</div>
+
+@section script{
+    <script>
+        $(document).ready(function () {
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked"))
+                    $('.checkBoxId').prop('checked', true);
+                else
+                    $('.checkBoxId').prop('checked', false);
+            });
+        });
+
+        function funcEdit(id) {
+            var url = "/Admin/AdminCustomer/Edit?id=" + id;
+            $("#modalEdit").load(url, function (data) {
+                $("#modalEdit").html(data);
+                $("#modalEdit").modal("show");
+            });
+        }
+
+        function funcEditPassword(id) {
+            var url = "/Admin/AdminCustomer/EditPassword?id=" + id;
+            $("#modalEditPassword").load(url, function (data) {
+                $("#modalEditPassword").html(data);
+                $("#modalEditPassword").modal("show");
+            });
+        }
+
+    </script>
+}

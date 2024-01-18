@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Doanh thu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Doanh thu theo tháng</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        @Html.ActionLink("Trang chủ", "Index", "AdminHome")
+                    </li>
+                    <li class="breadcrumb-item active">Doanh thu</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid card card-outline card-info">
+        <div class="form-input-infor">
+            @using (Html.BeginForm("Index", "AdminStatistics", FormMethod.Get, new { }))
+            {
+                <div class="row" style="align-items: center;">
+                    <div class="col-2">
+                        <label>Năm</label>
+                        <select class="form-control" name="year">
+                            @foreach (var item in ViewBag.year)
+                            {
+                                var select = "";
+                                if (item == ViewBag.yearSelected)
+                                {
+                                    select = "selected";
+                                }
+                                <option @select value="@item">@item</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <label>Tháng</label>
+                        <select class="form-control" name="month">
+                            @for (var i = 1; i < 13; i++)
+                            {
+                                var select = "";
+                                if (i == ViewBag.month)
+                                {
+                                    select = "selected";
+                                }
+                                <option @select value="@i">@i</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-1">
+                        <div class="btn-search">
+                            <button type="submit" id="Submit" class="btn btn-block btn-success btn-lg" style="padding: 0.35rem 0rem;">
+                                Xem
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-7 text-right">
+                        <b>Tổng doanh thu: @ViewBag.total.ToString("N0") VND</b>
+                    </div>
+                </div>
+            }
+        </div>
+        <div id="chart_container">
+            <canvas id="char_"></canvas>
+        </div>
+    </div>
+</section>
+
+
+
+@section script{
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script>
+        var days = @Html.Raw(Json.Encode(ViewBag.days));
+        var revenues = @Html.Raw(Json.Encode(ViewBag.revenues));
+        var ctx = $('#char_');
+        var chart_ = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: days,
+                datasets: [{
+                    label: "Doanh thu (VND)",
+                    data: revenues,
+                    backgroundColor: 'rgba(0, 0, 255, 1)'
+                }]
+            },
+            options: {
+
+            },
+        })
+    </script>
+}

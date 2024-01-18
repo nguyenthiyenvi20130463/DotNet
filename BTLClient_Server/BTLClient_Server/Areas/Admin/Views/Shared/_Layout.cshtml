@@ -1,0 +1,278 @@
+﻿//var username = Session["username"];
+//if (username == null)
+//{
+//    Response.Redirect("../AdminLogin/");
+//}
+//ViewBag.Title = "Tổng quan hệ thống";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    @*<link rel="icon" type="image/png" href="~/Content/dist/img/mta_icon.ico" />*@
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/plugins/fontawesome-free/css/all.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- jquery-ui -->
+    <link href="~/Areas/Admin/Content/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    @*<link rel="stylesheet" href="~/Areas/Admin/Content/plugins/jqvmap/jqvmap.min.css">*@
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+
+    <!-- css_custom -->
+    <link href="~/Areas/Admin/Content/css_custom_admin.css" rel="stylesheet" />
+
+    @RenderSection("linkCss", required: false)
+    <style>
+        .AnHienLoad{
+            display:none;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        @RenderPage("~/Areas/Admin/Views/Shared/_Header.cshtml")
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="/Admin/AdminHome" class="brand-link" title="Trang chủ">
+                <img src="~/Theme/img/LogoAdmin.png" alt="AdminWebsite Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">AMarket</span>
+            </a>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a href="/Admin/AdminHome" class="nav-link">
+                                <i class="nav-icon fas fa-file-invoice"></i>
+                                <p>
+                                    Đơn hàng
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right">@Html.Action("CountOrder", "AdminHome")</span>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Admin/AdminHome/Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Đơn đặt hàng</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/AdminHome/Create" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm đơn hàng</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/AdminProduct" class="nav-link">
+                                <i class="nav-icon fas fa-cubes"></i>
+                                <p>
+                                    Sản phẩm
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Admin/AdminProduct/Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Danh sách sản phẩm</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/AdminProduct/Create" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm sản phẩm</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/AdminNews" class="nav-link">
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                <p>Tin tức</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/AdminLienHe" class="nav-link">
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                <p>Liên hệ</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/AdminCustomer" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Khách hàng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/AdminTrademark" class="nav-link">
+                                <i class="nav-icon far fa-calendar-alt"></i>
+                                <p>Thương hiệu</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/AdminStatistics" class="nav-link">
+                                <i class="nav-icon fas fa-chart-line"></i>
+                                <p>
+                                    Thống kê
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Admin/AdminStatistics/Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Doanh thu</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/AdminStatistics/HotProduct" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Sản phẩm bán chạy</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Admin/AdminUser" class="nav-link">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>
+                                    Cài đặt
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Admin/AdminUser/Profile" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tài khoản</p>
+                                    </a>
+                                </li>
+                                @{if ((int)Session["isAdmin"] == 0)
+                                    {
+                                        <li class="nav-item">
+                                            <a href="/Admin/AdminUser/Index" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Nâng cao</p>
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <section class="content">
+                @RenderBody()
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2021 AdminWebsite</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+
+    <div class="modal fade" id="modalProfile" role="dialog" aria-hidden="true">
+
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    @*<script src="~/Areas/Admin/Content/plugins/jquery/jquery.min.js"></script>*@
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Areas/Admin/Content/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>$.widget.bridge('uibutton', $.ui.button)</script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Areas/Admin/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    @*<script src="~/Content/plugins/chart.js/Chart.min.js"></script>*@
+    <!-- Sparkline -->
+    @*<script src="~/Areas/Admin/Content/plugins/sparklines/sparkline.js"></script>*@
+    <!-- JQVMap -->
+    @*<script src="~/Areas/Admin/Content/plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="~/Areas/Admin/Content/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>*@
+    <!-- jQuery Knob Chart -->
+    @*<script src="~/Areas/Admin/Content/plugins/jquery-knob/jquery.knob.min.js"></script>*@
+    <!-- Tempusdominus Bootstrap 4 -->
+    @*<script src="~/Areas/Admin/Content/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>*@
+    <!-- overlayScrollbars -->
+    <script src="~/Areas/Admin/Content/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Areas/Admin/Content/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Areas/Admin/Content/dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    @*<script src="~/Areas/Admin/Content/dist/js/pages/dashboard.js"></script>*@@*warning*@
+    <!-- js_custom -->
+    @*<script src="~/Content/js/js_custom.js"></script>*@
+    
+    <script>
+        $('.nav-sidebar, .nav-treeview').on('click', 'li a', function () {
+            $('.nav-sidebar li a.active, .nav-treeview li a.active').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $(document).ready(function () {
+            try {
+                var url = window.location.pathname;
+                var arr = url.split('/');
+                var urlParent = "/" + arr[1] + "/" + arr[2];
+                $('.sidebar').find('[href="' + urlParent + '"]').addClass('active');
+                if (arr.length == 4) {
+                    $('.sidebar').find('[href="' + urlParent + '"]')[0].parentElement.classList.add('menu-is-opening');
+                    $('.sidebar').find('[href="' + urlParent + '"]')[0].parentElement.classList.add('menu-open');
+                    var urlChild = "/" + arr[1] + "/" + arr[2] + "/" + arr[3];
+                    try {
+                        $('.sidebar').find('[href="' + urlChild + '"]')[0].parentElement.parentElement.style.display = "block";
+                        $('.sidebar').find('[href="' + urlChild + '"]').addClass('active');
+                    }
+                    catch { }
+                }
+            } catch { }
+        });
+
+    </script>
+
+    @RenderSection("script", required: false)
+</body>
+</html>

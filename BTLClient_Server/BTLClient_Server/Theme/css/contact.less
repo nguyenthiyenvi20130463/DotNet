@@ -1,0 +1,47 @@
+.sec__contact{
+    .list-contact{
+        margin: 40px 0px;
+        .item{
+            border-left: 3px solid #eee;
+            padding-left: 10px;
+            margin-bottom: 30px;
+
+            .icon{
+                color: #999;
+                margin-right: 5px;
+            }
+            .contact{
+                margin-bottom: 10px;
+            }
+        }
+    }
+    .form-contact{
+        padding:40px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        .label{
+            .block;
+            padding:0px;
+            margin-bottom: 10px;
+            .upper;
+            .c(#888);
+            .tleft;
+            .normal;
+        }
+        .form-control{
+            box-shadow: none;
+            padding: 10px 20px;
+            height: 42px;
+            &:focus{
+                border:1px solid @success;
+            }
+        }
+        .btn-submit{
+            padding:10px 30px;
+            background: @success;
+            color: #fff;
+            &:hover{
+                background: darken(@success, 10%);
+            }
+        }
+    }
+}

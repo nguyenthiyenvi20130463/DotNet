@@ -1,0 +1,384 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    var lstThuongHieu = ViewBag.lstThuongHieu;
+    var SanPham = ViewBag.SanPham;
+    var AnhSanPham = ViewBag.AnhSanPham;
+}
+<style>
+    .image_container {
+        height: 120px;
+        width: 200px;
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 10px;
+        float: left;
+    }
+
+        .image_container img {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+        }
+
+        .image_container span {
+            top: -8px;
+            right: 8px;
+            color: red;
+            font-size: 28px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+    .AnAnh {
+        display: none !important;
+    }
+</style>
+<input type="hidden" value="@SanPham.moTa" id="Mota_SanPham"/>
+<input type="hidden" value="@SanPham.chiTiet" id="Chitiet_SanPham" />
+<div>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Sửa sản phẩm</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a href="/Admin/AdminProduct/Index">Danh sách sản phẩm</a>
+                        </li>
+                        <li class="breadcrumb-item active">Thêm mới sản phẩm</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <form action="/Admin/AdminProduct/Edit" method="post" enctype="multipart/form-data" id="myDropzone">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card card-outline card-info">
+                        <input value="@SanPham.idSp" name="IdSanPham" Id="IdSanPham" type="hidden" />
+                        <div class="card-header">
+                            <h4 class="">
+                                Thông tin chính
+                            </h4>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="nameProduct">
+                                    Tên sản phẩm
+                                    <i class="fas fa-asterisk"></i>
+                                </label>
+                                <input type="text" class="form-control" name="tensanpham" id="tensanpham" value="@SanPham.ten" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="summernote">Thông tin nổi bật</label>
+                                <textarea id="motasanpham" name="motasanpham">
+		                            @*@Html.Raw(SanPham.moTa)*@
+                                </textarea>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="summernote">Thông tin chi tiết</label>
+                                <textarea id="chitietsanpham" name="chitietsanpham">
+		                            @*@Html.Raw(SanPham.chitiet)*@
+                                </textarea>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Ảnh đại diện</label>
+                                <input type="file" id="photo" name="photo" onchange="previewFile(this);">
+                                <img id="previewImg" src="~/Theme/Image/@SanPham.anhDaiDien"
+                                     style="width: 90px;; display: block; margin-top: 10px;">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="actions">Hình ảnh sản phẩm</label><br />
+                                <div>
+                                    <input type="file" id="image" name="image" onchange="image_select()" multiple class="d-none">
+                                    <div id="previews" class="dz-default dz-message box__input dropzone">
+                                        <div style="text-align:center">
+                                            <a href="javascript:void(0)" onclick="document.getElementById('image').click()"><i class="fa fa-cloud-upload" style="font-size:23px;position:relative;top:4px;"></i> <span style="margin-left:20px">Chọn ảnh</span></a>
+                                        </div>
+                                    </div>
+                                    <div id="previewFiles">
+                                        @if (AnhSanPham != null)
+                                        {
+                                            foreach (var item in AnhSanPham)
+                                            {
+                                                <div id="Anh_@item.idAnh">
+                                                    <div class="image_container d-flex justify-content-center position-relative">
+                                                        <img src="~/Theme/Image/@item.link" alt="Image"><span class="position-absolute" onclick="XoaAnhSanPham('A_@item.idAnh')">×</span>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-->
+                <div class="col-md-3">
+                    <div class="card card-outline card-info">
+                        <div class="card-header">
+                            <h4 class="">
+                                Cập nhật
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="submit" id="Submit" name="Submit" class="btn btn-block btn-success btn-lg">
+                                            <i class="ace-icon fa fa-check"></i>
+                                            Cập nhật
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button class="btn btn-block btn-info btn-lg">
+                                            <i class="fas fa-sync"></i>
+                                            Nhập lại
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Trạng thái</label>
+                                <select class="form-control select2" name="trangthaisanpham" id="trangthaisanpham" style="width: 100%;">
+                                    @if (SanPham.trangThai == 0)
+                                    {
+                                        <option value="0" selected>Trạng thái</option>
+                                        <option value="1">Mới</option>
+                                        <option value="2">Khuyến mãi</option>
+                                        <option value="3">Hết hàng</option>
+                                        <option value="4">Không hoạt động</option>
+                                        <option value="5">Hot</option>
+                                    }
+                                    @if (SanPham.trangThai == 1)
+                                    {
+                                        <option value="0">Trạng thái</option>
+                                        <option selected value="1">Mới</option>
+                                        <option value="2">Khuyến mãi</option>
+                                        <option value="3">Hết hàng</option>
+                                        <option value="4">Không hoạt động</option>
+                                        <option value="5">Hot</option>
+                                    }
+                                    @if (SanPham.trangThai == 2)
+                                    {
+                                        <option value="0">Trạng thái</option>
+                                        <option value="1">Mới</option>
+                                        <option value="2" selected>Khuyến mãi</option>
+                                        <option value="3">Hết hàng</option>
+                                        <option value="4">Không hoạt động</option>
+                                        <option value="5">Hot</option>
+                                    }
+                                    @if (SanPham.trangThai == 3)
+                                    {
+                                        <option value="0">Trạng thái</option>
+                                        <option value="1">Mới</option>
+                                        <option value="2">Khuyến mãi</option>
+                                        <option value="3" selected>Hết hàng</option>
+                                        <option value="4">Không hoạt động</option>
+                                        <option value="5">Hot</option>
+                                    }
+                                    @if (SanPham.trangThai == 4)
+                                    {
+                                        <option value="0">Trạng thái</option>
+                                        <option value="1">Mới</option>
+                                        <option value="2">Khuyến mãi</option>
+                                        <option value="3">Hết hàng</option>
+                                        <option value="4">Không hoạt động</option>
+                                        <option value="4" selected>Không hoạt động</option>
+                                        <option value="5">Hot</option>
+                                    }
+                                    @if (SanPham.trangThai == 5)
+                                    {
+                                        <option value="0">Trạng thái</option>
+                                        <option value="1">Mới</option>
+                                        <option value="2">Khuyến mãi</option>
+                                        <option value="3">Hết hàng</option>
+                                        <option value="4">Không hoạt động</option>
+                                        <option value="5" selected>Hot</option>
+                                    }
+                                </select>
+
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Thương Hiệu</label>
+                                <select class="form-control select2" name="thuonghieusanpham" id="thuonghieusanpham" style="width: 100%;">
+                                    @if (lstThuongHieu != null)
+                                    {
+                                        foreach (var item in lstThuongHieu)
+                                        {
+                                            if (item.idThuongHieu == SanPham.idThuongHieu)
+                                            {
+                                                <option value="@item.idThuongHieu" selected>@item.tenThuongHieu</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.idThuongHieu">@item.tenThuongHieu</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    Số lượng
+                                    <i class="fas fa-asterisk"></i>
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-cubes"></i>
+                                        </span>
+                                    </div>
+                                    <input type="number" class="form-control" name="SoLuongSanPham" id="SoLuongSanPham" value="0" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    Giá bán
+                                    <i class="fas fa-asterisk"></i>
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-money-bill-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="giabansanpham" id="giabansanpham" value="@SanPham.gia" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Giá khuyến mãi</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-gift"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="giakhuyenmaisanpham" id="giakhuyenmaisanpham" value="@SanPham.giaKm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./row -->
+        </form>
+    </section>
+</div>
+@section linkCss{
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/plugins/summernote/summernote-bs4.min.css">
+}
+@section script{
+    <script>
+        function XoaAnhSanPham(idSanPham) {
+            debugger;
+            var idAnh = idSanPham.split("_");
+            $.post("/AdminProduct/XoaAnhSanPham", { "idAnh": idAnh[1] }, function (data) {
+                $("#Anh_" + idAnh[1]).addClass("AnHienLoad");
+            });
+        }
+
+        var images = [];
+
+        function RessetAnh() {
+            $(".An_Anh").addClass("AnAnh");
+            $.post("/AdminProduct/LuuThong_TinHinhAnhXoaEdit", {}, function (data) {
+            });
+            images = [];
+        }
+
+        function image_select() {
+            RessetAnh();
+            var image = document.getElementById('image').files;
+            for (i = 0; i < image.length; i++) {
+                if (check_duplicate(image[i].name)) {
+                    images.push({
+                        "name": image[i].name,
+                        "url": URL.createObjectURL(image[i]),
+                        "file": image[i]
+                    })
+                }
+                else {
+                    alert(images[i].name + " đã tồn tại ảnh này trong list ")
+                }
+            }
+            //document.getElementById("from").reset();
+            $("#previewFiles").append(image_show());
+        }
+
+        function image_show() {
+            var image = "";
+            $(".AnhH").addClass("AnAnh");
+            images.forEach((i) => {
+                image += '  <div class="image_container d-flex justify-content-center position-relative An_Anh AnhH"><img src="' + i.url + '" alt="Image" ><span class="position-absolute" onclick="delete_image(' + images.indexOf(i) + ')">&times;</span></div >';
+            })
+            return image;
+        }
+
+        function delete_image(e) {
+            LuuThongTinXoa(e);
+            images.splice(e, 1);
+            $("#previewFiles").append(image_show());
+        }
+
+        function check_duplicate(name) {
+            debugger;
+            var image = true;
+            if (images.length > 0) {
+                for (e = 0; e < images.length; e++) {
+                    if (images[e].name == name) {
+                        image = false;
+                        break;
+                    }
+                }
+            }
+            return image;
+        }
+
+        function LuuThongTinXoa(stt) {
+            debugger;
+            var TT_Image = images[stt].name;
+            $.post("/AdminProduct/LuuThongTinHinhAnhXoaEdit", { "TenHinhAnh": TT_Image }, function (data) {
+            });
+        }
+
+        $(function () {
+            debugger;
+            document.getElementById("motasanpham").innerHTML = $("#Mota_SanPham").val();
+            document.getElementById("chitietsanpham").innerHTML = $("#Chitiet_SanPham").val();
+            // Summernote
+            $('#motasanpham').summernote()
+            $('#chitietsanpham').summernote()
+        });
+
+        function previewFile(input) {
+            var file = $("#photo").get(0).files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $("#previewImg").attr("src", reader.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
+    <script src="~/Areas/Admin/Content/plugins/summernote/summernote-bs4.min.js"></script>
+}

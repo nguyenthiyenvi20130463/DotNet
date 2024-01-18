@@ -1,0 +1,682 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebBanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="DlNgay_Result">
+    <Property Name="Thang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TongTien" Type="Int32" />
+  </ComplexType>
+  <ComplexType Name="Func_ThongKeDoanhThu_Result">
+    <Property Name="Ngay" Type="Int32" />
+    <Property Name="DoanhThu" Type="Double" />
+  </ComplexType>
+  <EntityContainer Name="WebBanHangEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="DlNgay" IsComposable="true" ReturnType="Collection(WebBanHangModel.DlNgay_Result)">
+      <Parameter Name="Thang" Mode="In" Type="Int32" />
+      <Parameter Name="Nam" Mode="In" Type="Int32" />
+      <Parameter Name="Ngay" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Func_ThongKeDoanhThu" IsComposable="true" ReturnType="Collection(WebBanHangModel.Func_ThongKeDoanhThu_Result)">
+      <Parameter Name="Nam" Mode="In" Type="Int32" />
+      <Parameter Name="Thang" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="BaoCaoDoanhThuThang" ReturnType="Collection(WebBanHangModel.BaoCaoDoanhThuThang_Result)">
+      <Parameter Name="Thang" Mode="In" Type="Int32" />
+      <Parameter Name="Nam" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DanhSachSanPham" ReturnType="Collection(WebBanHangModel.DanhSachSanPham_Result)">
+      <Parameter Name="TenSanPham" Mode="In" Type="String" />
+      <Parameter Name="IdThuongHieu" Mode="In" Type="Int32" />
+      <Parameter Name="TrangThai" Mode="In" Type="String" />
+      <Parameter Name="GiaThapNhat" Mode="In" Type="Double" />
+      <Parameter Name="GiaCaoNhat" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="GetListDonHang" ReturnType="Collection(WebBanHangModel.GetListDonHang_Result)">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="tt" Mode="In" Type="Int32" />
+      <Parameter Name="tu" Mode="In" Type="DateTime" />
+      <Parameter Name="den" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="getListNews" ReturnType="Collection(WebBanHangModel.getListNews_Result)">
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="StartTime" Mode="In" Type="DateTime" />
+      <Parameter Name="EndTime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetListOrder" ReturnType="Collection(Int32)">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="tt" Mode="In" Type="String" />
+      <Parameter Name="tu" Mode="In" Type="DateTime" />
+      <Parameter Name="den" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetListOrderByPage" ReturnType="Collection(WebBanHangModel.GetListOrderByPage_Result)">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="tt" Mode="In" Type="String" />
+      <Parameter Name="tu" Mode="In" Type="DateTime" />
+      <Parameter Name="den" Mode="In" Type="DateTime" />
+      <Parameter Name="page" Mode="In" Type="Int32" />
+      <Parameter Name="pageRows" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="listCustomer" ReturnType="Collection(WebBanHangModel.listCustomer_Result)">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="dc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="listCustomerByPage" ReturnType="Collection(WebBanHangModel.listCustomerByPage_Result)">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="dc" Mode="In" Type="String" />
+      <Parameter Name="page" Mode="In" Type="Int32" />
+      <Parameter Name="pageRows" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="listNews" ReturnType="Collection(WebBanHangModel.listNews_Result)">
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="StartTime" Mode="In" Type="DateTime" />
+      <Parameter Name="EndTime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="listNewsByPage" ReturnType="Collection(WebBanHangModel.listNewsByPage_Result)">
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="StartTime" Mode="In" Type="DateTime" />
+      <Parameter Name="EndTime" Mode="In" Type="DateTime" />
+      <Parameter Name="page" Mode="In" Type="Int32" />
+      <Parameter Name="pageRows" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="listPro" ReturnType="Collection(WebBanHangModel.listPro_Result)">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="idTh" Mode="In" Type="Int32" />
+      <Parameter Name="tt" Mode="In" Type="Int32" />
+      <Parameter Name="min" Mode="In" Type="Double" />
+      <Parameter Name="max" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="listProByPage" ReturnType="Collection(WebBanHangModel.listProByPage_Result)">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="idTh" Mode="In" Type="Int32" />
+      <Parameter Name="tt" Mode="In" Type="Int32" />
+      <Parameter Name="min" Mode="In" Type="Double" />
+      <Parameter Name="max" Mode="In" Type="Double" />
+      <Parameter Name="page" Mode="In" Type="Int32" />
+      <Parameter Name="pageRows" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="listProduct" ReturnType="Collection(WebBanHangModel.listProduct_Result)">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="idTh" Mode="In" Type="Int32" />
+      <Parameter Name="tt" Mode="In" Type="Int32" />
+      <Parameter Name="min" Mode="In" Type="Double" />
+      <Parameter Name="max" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="lstOrderByIdKhachAndPage" ReturnType="Collection(WebBanHangModel.lstOrderByIdKhachAndPage_Result)">
+      <Parameter Name="idKhach" Mode="In" Type="Int32" />
+      <Parameter Name="tu" Mode="In" Type="DateTime" />
+      <Parameter Name="den" Mode="In" Type="DateTime" />
+      <Parameter Name="page" Mode="In" Type="Int32" />
+      <Parameter Name="pageRows" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="lstSearchCusByNameInOrder" ReturnType="Collection(WebBanHangModel.lstSearchCusByNameInOrder_Result)">
+      <Parameter Name="ten" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="lstSearchHotProduct" ReturnType="Collection(WebBanHangModel.lstSearchHotProduct_Result)">
+      <Parameter Name="Nam" Mode="In" Type="Int32" />
+      <Parameter Name="Thang" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="lstSearchPro" ReturnType="Collection(WebBanHangModel.lstSearchPro_Result)">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="idLoai" Mode="In" Type="Int32" />
+      <Parameter Name="min" Mode="In" Type="Double" />
+      <Parameter Name="max" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="lstSearchProByNameInOrder" ReturnType="Collection(WebBanHangModel.lstSearchProByNameInOrder_Result)">
+      <Parameter Name="ProName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WebBanHangModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(WebBanHangModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="listLienHe" ReturnType="Collection(WebBanHangModel.listLienHe_Result)">
+      <Parameter Name="NoiDung" Mode="In" Type="String" />
+      <Parameter Name="StartTime" Mode="In" Type="DateTime" />
+      <Parameter Name="EndTime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="Anhs" EntityType="WebBanHangModel.Anh" />
+    <EntitySet Name="CT_DonHang" EntityType="WebBanHangModel.CT_DonHang" />
+    <EntitySet Name="DanhGias" EntityType="WebBanHangModel.DanhGia" />
+    <EntitySet Name="DonHangs" EntityType="WebBanHangModel.DonHang" />
+    <EntitySet Name="KhachHangs" EntityType="WebBanHangModel.KhachHang" />
+    <EntitySet Name="LienHes" EntityType="WebBanHangModel.LienHe" />
+    <EntitySet Name="LoaiSps" EntityType="WebBanHangModel.LoaiSp" />
+    <EntitySet Name="SanPhams" EntityType="WebBanHangModel.SanPham" />
+    <EntitySet Name="sysdiagrams" EntityType="WebBanHangModel.sysdiagram" />
+    <EntitySet Name="ThuongHieux" EntityType="WebBanHangModel.ThuongHieu" />
+    <EntitySet Name="TinTucs" EntityType="WebBanHangModel.TinTuc" />
+    <EntitySet Name="Users" EntityType="WebBanHangModel.User" />
+    <AssociationSet Name="FK_Anh_SanPham" Association="WebBanHangModel.FK_Anh_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="Anh" EntitySet="Anhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CT_DonHang_DonHang" Association="WebBanHangModel.FK_CT_DonHang_DonHang">
+      <End Role="DonHang" EntitySet="DonHangs" />
+      <End Role="CT_DonHang" EntitySet="CT_DonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CT_DonHang_SanPham" Association="WebBanHangModel.FK_CT_DonHang_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="CT_DonHang" EntitySet="CT_DonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DanhGia_KhachHang" Association="WebBanHangModel.FK_DanhGia_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="DanhGia" EntitySet="DanhGias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DanhGia_SanPham" Association="WebBanHangModel.FK_DanhGia_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="DanhGia" EntitySet="DanhGias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonHang_KhachHang" Association="WebBanHangModel.FK_DonHang_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="DonHang" EntitySet="DonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LienHe_KhachHang" Association="WebBanHangModel.FK_LienHe_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="LienHe" EntitySet="LienHes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_LoaiSp" Association="WebBanHangModel.FK_SanPham_LoaiSp">
+      <End Role="LoaiSp" EntitySet="LoaiSps" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_ThuongHieu" Association="WebBanHangModel.FK_SanPham_ThuongHieu">
+      <End Role="ThuongHieu" EntitySet="ThuongHieux" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="BaoCaoDoanhThuThang_Result">
+    <Property Type="Double" Name="N1" Nullable="true" />
+    <Property Type="Int32" Name="N2" Nullable="true" />
+    <Property Type="Int32" Name="N3" Nullable="true" />
+    <Property Type="Int32" Name="N4" Nullable="true" />
+    <Property Type="Int32" Name="N5" Nullable="true" />
+    <Property Type="Int32" Name="N6" Nullable="true" />
+    <Property Type="Int32" Name="N7" Nullable="true" />
+    <Property Type="Int32" Name="N8" Nullable="true" />
+    <Property Type="Int32" Name="N9" Nullable="true" />
+    <Property Type="Int32" Name="N10" Nullable="true" />
+    <Property Type="Int32" Name="N11" Nullable="true" />
+    <Property Type="Int32" Name="N12" Nullable="true" />
+    <Property Type="Int32" Name="N13" Nullable="true" />
+    <Property Type="Int32" Name="N14" Nullable="true" />
+    <Property Type="Int32" Name="N15" Nullable="true" />
+    <Property Type="Int32" Name="N16" Nullable="true" />
+    <Property Type="Int32" Name="N17" Nullable="true" />
+    <Property Type="Int32" Name="N18" Nullable="true" />
+    <Property Type="Int32" Name="N19" Nullable="true" />
+    <Property Type="Int32" Name="N20" Nullable="true" />
+    <Property Type="Int32" Name="N21" Nullable="true" />
+    <Property Type="Int32" Name="N22" Nullable="true" />
+    <Property Type="Int32" Name="N23" Nullable="true" />
+    <Property Type="Int32" Name="N24" Nullable="true" />
+    <Property Type="Int32" Name="N25" Nullable="true" />
+    <Property Type="Int32" Name="N26" Nullable="true" />
+    <Property Type="Int32" Name="N27" Nullable="true" />
+    <Property Type="Int32" Name="N28" Nullable="true" />
+    <Property Type="Int32" Name="N29" Nullable="true" />
+    <Property Type="Int32" Name="N30" Nullable="true" />
+    <Property Type="Int32" Name="N31" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DanhSachSanPham_Result">
+    <Property Type="Int32" Name="idSp" Nullable="false" />
+    <Property Type="String" Name="ten" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="moTa" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="chiTiet" Nullable="true" MaxLength="Max" />
+    <Property Type="Double" Name="gia" Nullable="true" />
+    <Property Type="Double" Name="giaKm" Nullable="true" />
+    <Property Type="Int32" Name="trangThai" Nullable="true" />
+    <Property Type="Int32" Name="idLoai" Nullable="true" />
+    <Property Type="Int32" Name="idThuongHieu" Nullable="true" />
+    <Property Type="Int32" Name="idUser" Nullable="true" />
+    <Property Type="Int32" Name="soLuong" Nullable="true" />
+    <Property Type="String" Name="trangThaiMieuTa" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="anhDaiDien" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MieuTaSanPhamNoiBat" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetListDonHang_Result">
+    <Property Type="Int32" Name="idDon" Nullable="false" />
+    <Property Type="DateTime" Name="ngayDat" Nullable="true" Precision="23" />
+    <Property Type="String" Name="diaChiGiao" Nullable="true" MaxLength="200" />
+    <Property Type="Double" Name="tongTien" Nullable="true" />
+    <Property Type="Int32" Name="idKhach" Nullable="true" />
+    <Property Type="Int32" Name="trangThai" Nullable="true" />
+    <Property Type="String" Name="donViGiao" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="moTa" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="hoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="sdt" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="getListNews_Result">
+    <Property Type="Int32" Name="idTin" Nullable="false" />
+    <Property Type="String" Name="anh" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="ngayTao" Nullable="true" Precision="23" />
+    <Property Type="String" Name="tieuDe" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="hoTen" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetListOrderByPage_Result">
+    <Property Type="Int32" Name="idDon" Nullable="false" />
+    <Property Type="DateTime" Name="ngayDat" Nullable="true" Precision="23" />
+    <Property Type="String" Name="diaChiGiao" Nullable="true" MaxLength="200" />
+    <Property Type="Double" Name="tongTien" Nullable="true" />
+    <Property Type="Int32" Name="idKhach" Nullable="true" />
+    <Property Type="Int32" Name="trangThai" Nullable="true" />
+    <Property Type="String" Name="moTa" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="hoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="sdt" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="listCustomer_Result">
+    <Property Type="Int32" Name="idKhach" Nullable="false" />
+    <Property Type="String" Name="hoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="tenDangNhap" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="matKhau" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="sdt" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="diaChi" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="listCustomerByPage_Result">
+    <Property Type="Int32" Name="idKhach" Nullable="false" />
+    <Property Type="String" Name="hoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="tenDangNhap" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="matKhau" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="sdt" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="diaChi" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="listNews_Result">
+    <Property Type="Int32" Name="idTin" Nullable="false" />
+    <Property Type="String" Name="tieuDe" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="anh" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="noiDung" Nullable="true" MaxLength="Max" />
+    <Property Type="DateTime" Name="ngayTao" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="idUser" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="listNewsByPage_Result">
+    <Property Type="Int32" Name="idTin" Nullable="false" />
+    <Property Type="String" Name="tieuDe" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="anh" Nullable="true" MaxLength="200" />
+    <Property Type="DateTime" Name="ngayTao" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="idUser" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="listPro_Result">
+    <Property Type="Int32" Name="idSp" Nullable="false" />
+    <Property Type="String" Name="ten" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="anhDaiDien" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="gia" Nullable="true" />
+    <Property Type="Double" Name="giaKm" Nullable="true" />
+    <Property Type="Int32" Name="trangThai" Nullable="true" />
+    <Property Type="String" Name="tenThuongHieu" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="listProByPage_Result">
+    <Property Type="Int32" Name="idSp" Nullable="false" />
+    <Property Type="String" Name="ten" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="anhDaiDien" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="gia" Nullable="true" />
+    <Property Type="Double" Name="giaKm" Nullable="true" />
+    <Property Type="Int32" Name="trangThai" Nullable="true" />
+    <Property Type="String" Name="tenThuongHieu" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="listProduct_Result">
+    <Property Type="Int32" Name="idSp" Nullable="false" />
+    <Property Type="String" Name="ten" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="anhDaiDien" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="gia" Nullable="true" />
+    <Property Type="Double" Name="giaKm" Nullable="true" />
+    <Property Type="Int32" Name="trangThai" Nullable="true" />
+    <Property Type="String" Name="tenThuongHieu" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="lstOrderByIdKhachAndPage_Result">
+    <Property Type="Int32" Name="idDon" Nullable="false" />
+    <Property Type="DateTime" Name="ngayDat" Nullable="true" Precision="23" />
+    <Property Type="String" Name="diaChiGiao" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="moTa" Nullable="true" MaxLength="200" />
+    <Property Type="Double" Name="tongTien" Nullable="true" />
+    <Property Type="Int32" Name="idKhach" Nullable="true" />
+    <Property Type="Int32" Name="idUser" Nullable="true" />
+    <Property Type="Int32" Name="trangThai" Nullable="true" />
+    <Property Type="String" Name="donViGiao" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="lstSearchCusByNameInOrder_Result">
+    <Property Type="Int32" Name="idKhach" Nullable="false" />
+    <Property Type="String" Name="hoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="diaChi" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="sdt" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="tenDangNhap" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="matKhau" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="trangThai" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="lstSearchHotProduct_Result">
+    <Property Type="Int32" Name="idSp" Nullable="false" />
+    <Property Type="String" Name="ten" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="gia" Nullable="true" />
+    <Property Type="Double" Name="giaKm" Nullable="true" />
+    <Property Type="Int32" Name="trangThai" Nullable="true" />
+    <Property Type="String" Name="anhDaiDien" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="tenThuongHieu" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="lstSearchPro_Result">
+    <Property Type="Int32" Name="idSp" Nullable="false" />
+    <Property Type="String" Name="ten" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="gia" Nullable="true" />
+    <Property Type="Double" Name="giaKm" Nullable="true" />
+    <Property Type="String" Name="trangThaiMieuTa" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="anhDaiDien" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="tenLoaiSp" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="lstSearchProByNameInOrder_Result">
+    <Property Type="Int32" Name="idSp" Nullable="false" />
+    <Property Type="String" Name="ten" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="gia" Nullable="true" />
+    <Property Type="Double" Name="giaKm" Nullable="true" />
+    <Property Type="Int32" Name="trangThai" Nullable="true" />
+    <Property Type="String" Name="anhDaiDien" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="listLienHe_Result">
+    <Property Type="Int32" Name="IdLienHe" Nullable="false" />
+    <Property Type="String" Name="Ho" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Ten" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SDT" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="Int32" Name="idKhach" Nullable="true" />
+    <Property Type="DateTime" Name="NgayTao" Nullable="false" Precision="23" />
+  </ComplexType>
+  <EntityType Name="Anh">
+    <Key>
+      <PropertyRef Name="idAnh" />
+    </Key>
+    <Property Name="idAnh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="idSp" Type="Int32" />
+    <NavigationProperty Name="SanPham" Relationship="WebBanHangModel.FK_Anh_SanPham" FromRole="Anh" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="CT_DonHang">
+    <Key>
+      <PropertyRef Name="idDon" />
+      <PropertyRef Name="idSp" />
+    </Key>
+    <Property Name="idDon" Type="Int32" Nullable="false" />
+    <Property Name="idSp" Type="Int32" Nullable="false" />
+    <Property Name="giaBan" Type="Double" />
+    <Property Name="soLuong" Type="Int32" />
+    <Property Name="thanhTien" Type="Double" />
+    <NavigationProperty Name="DonHang" Relationship="WebBanHangModel.FK_CT_DonHang_DonHang" FromRole="CT_DonHang" ToRole="DonHang" />
+    <NavigationProperty Name="SanPham" Relationship="WebBanHangModel.FK_CT_DonHang_SanPham" FromRole="CT_DonHang" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="DanhGia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="idSp" Type="Int32" Nullable="false" />
+    <Property Name="idKhach" Type="Int32" Nullable="false" />
+    <Property Name="ngayTao" Type="DateTime" Precision="3" />
+    <Property Name="noiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="KhachHang" Relationship="WebBanHangModel.FK_DanhGia_KhachHang" FromRole="DanhGia" ToRole="KhachHang" />
+    <NavigationProperty Name="SanPham" Relationship="WebBanHangModel.FK_DanhGia_SanPham" FromRole="DanhGia" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="idDon" />
+    </Key>
+    <Property Name="idDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ngayDat" Type="DateTime" Precision="3" />
+    <Property Name="diaChiGiao" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="moTa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="tongTien" Type="Double" />
+    <Property Name="idKhach" Type="Int32" />
+    <Property Name="idUser" Type="Int32" />
+    <Property Name="trangThai" Type="Int32" />
+    <Property Name="donViGiao" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CT_DonHang" Relationship="WebBanHangModel.FK_CT_DonHang_DonHang" FromRole="DonHang" ToRole="CT_DonHang" />
+    <NavigationProperty Name="KhachHang" Relationship="WebBanHangModel.FK_DonHang_KhachHang" FromRole="DonHang" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="idKhach" />
+    </Key>
+    <Property Name="idKhach" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="diaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sdt" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="tenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="matKhau" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="trangThai" Type="Boolean" />
+    <NavigationProperty Name="DanhGias" Relationship="WebBanHangModel.FK_DanhGia_KhachHang" FromRole="KhachHang" ToRole="DanhGia" />
+    <NavigationProperty Name="DonHangs" Relationship="WebBanHangModel.FK_DonHang_KhachHang" FromRole="KhachHang" ToRole="DonHang" />
+    <NavigationProperty Name="LienHes" Relationship="WebBanHangModel.FK_LienHe_KhachHang" FromRole="KhachHang" ToRole="LienHe" />
+  </EntityType>
+  <EntityType Name="LienHe">
+    <Key>
+      <PropertyRef Name="IdLienHe" />
+    </Key>
+    <Property Name="IdLienHe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ho" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idKhach" Type="Int32" />
+    <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="KhachHang" Relationship="WebBanHangModel.FK_LienHe_KhachHang" FromRole="LienHe" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="LoaiSp">
+    <Key>
+      <PropertyRef Name="idLoai" />
+    </Key>
+    <Property Name="idLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenLoaiSp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="trangThai" Type="Boolean" />
+    <Property Name="idUser" Type="Int32" />
+    <NavigationProperty Name="SanPhams" Relationship="WebBanHangModel.FK_SanPham_LoaiSp" FromRole="LoaiSp" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="idSp" />
+    </Key>
+    <Property Name="idSp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="moTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="chiTiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gia" Type="Double" />
+    <Property Name="giaKm" Type="Double" />
+    <Property Name="trangThai" Type="Int32" />
+    <Property Name="idLoai" Type="Int32" />
+    <Property Name="idThuongHieu" Type="Int32" />
+    <Property Name="idUser" Type="Int32" />
+    <Property Name="soLuong" Type="Int32" />
+    <Property Name="trangThaiMieuTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="anhDaiDien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MieuTaSanPhamNoiBat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Anhs" Relationship="WebBanHangModel.FK_Anh_SanPham" FromRole="SanPham" ToRole="Anh" />
+    <NavigationProperty Name="CT_DonHang" Relationship="WebBanHangModel.FK_CT_DonHang_SanPham" FromRole="SanPham" ToRole="CT_DonHang" />
+    <NavigationProperty Name="DanhGias" Relationship="WebBanHangModel.FK_DanhGia_SanPham" FromRole="SanPham" ToRole="DanhGia" />
+    <NavigationProperty Name="LoaiSp" Relationship="WebBanHangModel.FK_SanPham_LoaiSp" FromRole="SanPham" ToRole="LoaiSp" />
+    <NavigationProperty Name="ThuongHieu" Relationship="WebBanHangModel.FK_SanPham_ThuongHieu" FromRole="SanPham" ToRole="ThuongHieu" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ThuongHieu">
+    <Key>
+      <PropertyRef Name="idThuongHieu" />
+    </Key>
+    <Property Name="idThuongHieu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenThuongHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idUser" Type="Int32" />
+    <NavigationProperty Name="SanPhams" Relationship="WebBanHangModel.FK_SanPham_ThuongHieu" FromRole="ThuongHieu" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="idTin" />
+    </Key>
+    <Property Name="idTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tieuDe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="anh" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="noiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ngayTao" Type="DateTime" Precision="3" />
+    <Property Name="idUser" Type="Int32" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="matKhau" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="quyen" Type="Int32" />
+    <Property Name="trangThai" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_Anh_SanPham">
+    <End Type="WebBanHangModel.SanPham" Role="SanPham" Multiplicity="0..1" />
+    <End Type="WebBanHangModel.Anh" Role="Anh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="idSp" />
+      </Principal>
+      <Dependent Role="Anh">
+        <PropertyRef Name="idSp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CT_DonHang_DonHang">
+    <End Type="WebBanHangModel.DonHang" Role="DonHang" Multiplicity="1" />
+    <End Type="WebBanHangModel.CT_DonHang" Role="CT_DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonHang">
+        <PropertyRef Name="idDon" />
+      </Principal>
+      <Dependent Role="CT_DonHang">
+        <PropertyRef Name="idDon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CT_DonHang_SanPham">
+    <End Type="WebBanHangModel.SanPham" Role="SanPham" Multiplicity="1" />
+    <End Type="WebBanHangModel.CT_DonHang" Role="CT_DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="idSp" />
+      </Principal>
+      <Dependent Role="CT_DonHang">
+        <PropertyRef Name="idSp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DanhGia_KhachHang">
+    <End Type="WebBanHangModel.KhachHang" Role="KhachHang" Multiplicity="1" />
+    <End Type="WebBanHangModel.DanhGia" Role="DanhGia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="idKhach" />
+      </Principal>
+      <Dependent Role="DanhGia">
+        <PropertyRef Name="idKhach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DanhGia_SanPham">
+    <End Type="WebBanHangModel.SanPham" Role="SanPham" Multiplicity="1" />
+    <End Type="WebBanHangModel.DanhGia" Role="DanhGia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="idSp" />
+      </Principal>
+      <Dependent Role="DanhGia">
+        <PropertyRef Name="idSp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonHang_KhachHang">
+    <End Type="WebBanHangModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
+    <End Type="WebBanHangModel.DonHang" Role="DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="idKhach" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="idKhach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LienHe_KhachHang">
+    <End Type="WebBanHangModel.KhachHang" Role="KhachHang" Multiplicity="0..1" />
+    <End Type="WebBanHangModel.LienHe" Role="LienHe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="idKhach" />
+      </Principal>
+      <Dependent Role="LienHe">
+        <PropertyRef Name="idKhach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_LoaiSp">
+    <End Type="WebBanHangModel.LoaiSp" Role="LoaiSp" Multiplicity="0..1" />
+    <End Type="WebBanHangModel.SanPham" Role="SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSp">
+        <PropertyRef Name="idLoai" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="idLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_ThuongHieu">
+    <End Type="WebBanHangModel.ThuongHieu" Role="ThuongHieu" Multiplicity="0..1" />
+    <End Type="WebBanHangModel.SanPham" Role="SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ThuongHieu">
+        <PropertyRef Name="idThuongHieu" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="idThuongHieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

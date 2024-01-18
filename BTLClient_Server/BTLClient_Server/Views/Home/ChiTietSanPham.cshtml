@@ -1,0 +1,294 @@
+﻿@{
+    ViewBag.Title = "ChiTietSanPham";
+    var SanPham = ViewBag.SanPham;
+    var lstDanhGia = ViewBag.lstDanhGia;
+    var lstAnhSanPham = ViewBag.lstAnhSanPham;
+    var RandomSanPham = ViewBag.RandomSanPham;
+}
+<div>
+    <section class="sec sec__product__detail">
+        <div class="container">
+            <div class="row">
+                <div class="product__view__image col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-sm-9 col-xs-12">
+                            <div class="product__view__image--list">
+                                <a href="/Theme/Image/@SanPham.anhDaiDien" data-fancybox="gallery" class="fancybox">
+                                    <img src="~/Theme/Image/@SanPham.anhDaiDien" class="elevate__zoom" data-zoom-image="/Theme/Image/@SanPham.anhDaiDien" id="elevate__zoom" title="product-2">
+                                </a>
+                                <div class="hidden">
+                                    @foreach (var item in lstAnhSanPham)
+                                    {
+                                        <a href="/Theme/Image/@item.link" data-fancybox="gallery" class="fancybox">
+                                            <img src="~/Theme/Image/@item.link" alt="">
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-12">
+                            <div class="product__view__image--thumb" id="image-additional-carousel">
+                                <div class="item">
+                                    @foreach (var item in lstAnhSanPham)
+                                    {
+                                        <a href="/Theme/Image/@item.link" data-image="/Theme/Image/@item.link" class="elevate__zoom">
+                                            <img src="~/Theme/Image/@item.link" data-zoom-image="~/Theme/Image/@item.link" title="product-2" alt="">
+                                        </a>
+                                    }
+                                </div>
+                                <div class="item">
+                                    @foreach (var item in lstAnhSanPham)
+                                    {
+                                        <a href="/Theme/Image/@item.link" data-image="/Theme/Image/@item.link" class="elevate__zoom">
+                                            <img src="~/Theme/Image/@item.link" data-zoom-image="~/Theme/Image/@item.link" title="product-2" alt="">
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product__view__content col-md-6 col-sm-6 col-xs-12">
+                    <h2 class="product__view__name">@SanPham.ten</h2>
+                    <div class="product__price product__price__view">
+                        <span class="product__price--txt">Giá bán</span>
+                        @if (SanPham.trangThai == 2)
+                        {
+                            <div class="product__price__regular"><span>@SanPham.giaKm.ToString("N0")</span><span class="unit">đ</span></div>
+                            <div class="product__price__old"><span>@SanPham.gia.ToString("N0")</span><span class="unit">đ</span></div>
+                        }
+                        else
+                        {
+                            <div class="product__price__regular"><span>@SanPham.gia.ToString("N0")</span><span class="unit">đ</span></div>
+                        }
+
+                    </div>
+                    <div class="product__view__info">
+                        <p class="info">Thương hiệu : <a href="#" style="font-size: 20px;">@ViewBag.tenThuongHieu </a></p>
+                        @if (SanPham.trangThai == 1)
+                        {
+                            <p class="info">Tình trạng: <span class="name">Mới</span></p>
+                        }
+                        @if (SanPham.trangThai == 2)
+                        {
+                            <p class="info">Tình trạng: <span class="name">Khuyến mãi</span></p>
+                        }
+                        @if (SanPham.trangThai == 3)
+                        {
+                            <p class="info">Tình trạng: <span class="name">Hết hàng</span></p>
+                        }
+                        @if (SanPham.trangThai == 4)
+                        {
+                            <p class="info">Tình trạng: <span class="name">Không hoạt động</span></p>
+                        }
+                        @if (SanPham.trangThai == 4)
+                        {
+                            <p class="info">Tình trạng: <span class="name">Hot</span></p>
+                        }
+                    </div>
+                    <div class="product__view__info">
+                        <p class="info">Số lượng : @SanPham.soLuong</p>
+                    </div>
+                    <div class="product__view__desc">
+                        <div class="product__desc__title bold">Mô tả:</div>
+                        <div class="product__shortdesc__txt">
+                            @Html.Raw(SanPham.moTa)
+                        </div>
+                    </div>
+                    <div class="product__quantity product__view__quantity">
+                        <div class="name">Số lượng:</div>
+                        <button class="btn-minus btn" onclick="GiamSoLuongSanPhamXemNhanhChiTiet()">
+                            -
+                        </button>
+                        <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" class="input-number" value="1" id="SoLuongSanPhamXemNhanh">
+                        <button class="btn-plus btn" onclick="TangSoLuongSanPhamXemNhanhChiTiet('@SanPham.idSp')">
+                            +
+                        </button>
+                        <div class="clearfix"></div>
+                    </div>
+                    <a class="product__view__button__cart" onclick="ThemGioHangXemNhanh('@SanPham.idSp')"><span class="icon fa fa-shopping-bag"></span>Mua ngay</a>
+                </div>
+            </div>
+            <div class="product__detail__content">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">THÔNG TIN SẢN PHẨM</a></li>
+                    <li><a data-toggle="tab" href="#menu1">ĐÁNH GIÁ</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <article class="article" each="GetThongTinChiTietSanPham:${GetThongTinChiTietSanPham}">
+                            <div class="std">
+                                @Html.Raw(SanPham.chiTiet)
+                            </div>
+                        </article>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <div id="NoiDungPhanHoi">
+                            @foreach (var item in lstDanhGia)
+                            {
+                                <div class="DanhGia">
+                                    <p style="margin: 0;"><span>@item.tenKhachHang</span></p>
+                                    <div class="news__date">
+                                        <span class="-ap icon icon-access_time" style="font-size: 12px;"></span>
+                                        <span style="font-size: 12px;">@item.ngayTao</span>
+                                    </div>
+                                    <p style="margin: 0;">
+                                        @Html.Raw(item.noiDung)
+                                    </p>
+                                </div>
+                            }
+                        </div>
+
+                        <h3 style="font-size: 20px;">Đánh giá sản phẩm </h3>
+                        <hr>
+                        <textarea name="editor1" id="editor1"></textarea>
+                        <div class="form-group" style="text-align: center;margin: 5px;">
+                            <input type="hidden" value="@ViewBag.IdSanPham" id="IdSanPham" />
+                            <button href="#" class="btn btn-primary" onclick="GuiNoiDungPhanHoi()">Gửi</button>
+                        </div>
+                        <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+                        <script>
+
+                            function GiamSoLuongSanPhamXemNhanhChiTiet() {
+                                var soLuongSanPham = parseInt($("#SoLuongSanPhamXemNhanh").val(), 10);
+                                if (soLuongSanPham > 0) {
+                                    $("#SoLuongSanPhamXemNhanh").val(soLuongSanPham - 1);
+                                }
+                                else {
+                                    MessageBox("Số lượng mua không hợp lệ", "error");
+                                }
+                            }
+
+                            function TangSoLuongSanPhamXemNhanhChiTiet(idSanPham) {
+                                var soLuongSanPham = parseInt($("#SoLuongSanPhamXemNhanh").val(), 10);
+                                $.post("/Home/KiemTraSoLuongSanPham", { "IdSanPham": idSanPham }, function (data) {
+                                    if (data.Icon == "success") {
+                                        var slSP = parseInt(data.Data, 10);
+                                        if (soLuongSanPham >= 0 && soLuongSanPham < slSP) {
+                                            $("#SoLuongSanPhamXemNhanh").val(soLuongSanPham + 1);
+                                        }
+                                        else {
+                                            MessageBox("Số lượng mua không hợp lệ", "error");
+                                        }
+                                    }
+                                });
+                            }
+
+                            function GuiNoiDungPhanHoi(IdSanPham) {
+                                var NoiDungPhanHoi = CKEDITOR.instances.editor1.getData();
+                                swal.fire({
+                                    title: '',
+                                    text: 'Chắc chắn gửi phản hồi này?',
+                                    icon: 'question',
+                                    customClass: {
+                                        confirmButton: 'btn btn-primary ml-2 text-center',
+                                        cancelButton: 'btn btn-primary ml-2 text-center'
+
+                                    },
+                                    buttonsStyling: false,
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Chấp nhận',
+                                    cancelButtonText: 'Không chấp nhận',
+                                    reverseButtons: false,
+                                })
+                                    .then((result) => {
+                                        if (result.value) {
+                                            if (NoiDungPhanHoi != '') {
+                                                $.post("/Home/GuiNoiDungPhanHoi", { "IdSanPham": $("#IdSanPham").val(), "NoiDungPhanHoi": NoiDungPhanHoi }, function (data) {
+                                                    debugger;
+                                                    if (data.Icon == "success" && data.Data != "error") {
+                                                        CKEDITOR.instances['editor1'].setData('');
+                                                        $("#NoiDungPhanHoi").prepend(data.Data);
+                                                        MessageBox(data.Title, data.Icon);
+                                                    }
+                                                    else if (data.Icon == "error" && data.Data == "error") {
+                                                        MessageBox(data.Title, data.Icon);
+                                                        $("#login").modal("show");
+                                                    }
+                                                    else {
+                                                        MessageBox(data.Title, data.Icon);
+                                                    }
+                                                });
+                                            }
+                                            else {
+                                                MessageBox("Bạn chưa điền nội dung đánh giá", "error");
+                                            }
+
+                                        }
+                                    })
+                            }
+                            $(document).ready(function () {
+                                $(".catalog__item").removeClass("active");
+                                $(".layout_menu_sanPham").addClass("active");
+                            });
+                            CKEDITOR.replace('editor1');
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="sec product-list">
+                <div class="product-list__head">
+                    <h2 class="product-list__title">
+                        SẢN PHẨM LIÊN QUAN
+                    </h2>
+                    <div class="nav__slider nav-slider__product">
+                        <div class="nav prev">
+                            <span class="icon fa fa-angle-left"></span>
+                        </div>
+                        <div class="nav next">
+                            <span class="icon fa fa-angle-right"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-list__wrap slider__product">
+                    @foreach (var item in RandomSanPham)
+                    {
+                        <div class="product__item">
+                            <div class="w">
+                                <div class="product__image">
+                                    <a href="#" class="product__link">
+                                        <img src="~/Theme/Image/@item.anhDaiDien" alt="name your product">
+                                    </a>
+                                    <div class="product-item__actions">
+                                        <a href="javascript:void(0)" class="btn btn-cart" onclick="ThemGioHang('@item.idSp')">Thêm vào giỏ</a>
+                                        <a class="btn btn-detail" data-toggle="tooltip" data-placement="left" title="Chi tiết" href="/Home/ChiTietSanPham?IdSanPham=@item.idSp"><span class="-ap  icon-search2"></span></a>
+                                        <a href="javascript:void(0)" class="btn btn-quickview" onclick="XemNhanhSanPham('@item.idSp')" data-placement="top" title="Xem nhanh"><span class="fa fa-eye"></span></a>
+                                    </div>
+                                    <div class="product__overlay"></div>
+                                    @if (item.trangThai == 1)
+                                    {
+                                        <div class="product__status -new">@item.trangThaiMieuTa</div>
+                                    }
+                                    @if (item.trangThai == 2)
+                                    {
+                                        <div class="product__sale">@item.trangThaiMieuTa</div>
+                                    }
+                                    @if (item.trangThai == 5)
+                                    {
+                                        <div class="product__status -hot">@item.trangThaiMieuTa</div>
+                                    }
+                                </div>
+                                <h3 class="product__name"><a href="#">@item.ten</a></h3>
+                                <p>Số lượng: @item.soLuong</p>
+                                <div class="product__price">
+                                    @if (item.trangThai == 2)
+                                    {
+                                        <div class="product__price__old">@item.gia.ToString("N0") <span class="unit">đ</span></div>
+                                        <div class="product__price__regular">@item.giaKm.ToString("N0")  <span class="unit">đ</span></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="product__price__regular">@item.gia.ToString("N0")  <span class="unit">đ</span></div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

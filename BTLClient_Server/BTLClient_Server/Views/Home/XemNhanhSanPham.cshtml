@@ -1,0 +1,132 @@
+﻿
+@{
+    Layout = null;
+    var lstAnhSanPham = ViewBag.lstAnhSanPham;
+    var IdSanPham = ViewBag.IdSanPham;
+}
+<div class="row">
+    <div class="product__view__/Image col-md-5 col-sm-6 col-xs-12">
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                @if (lstAnhSanPham != null)
+                {
+                    foreach (var item in lstAnhSanPham)
+                    {
+                        if (item == lstAnhSanPham[0])
+                        {
+                            <div class="item active">
+                                <img src="~/Theme/Image/@item.link" alt="Los Angeles" width="1100" height="500">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="item">
+                                <img src="~/Theme/Image/@item.link" alt="Los Angeles" width="1100" height="500">
+                            </div>
+                        }
+                    }
+                }
+
+            </div>
+            @if (lstAnhSanPham != null)
+            {
+                <!-- Left and right controls -->
+                <a class="carousel-control carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control carousel-control-next" href="#myCarousel" role="button" data-slide="next" style="right: 0;left: auto;">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            }
+
+        </div>
+    </div>
+    <div class="product__view__content col-md-7 col-sm-6 col-xs-12">
+        <h2 class="product__view__name">@IdSanPham.ten</h2>
+        <div class="product__price product__price__view">
+            <span class="product__price--txt">Giá bán</span>
+            @if (IdSanPham.trangThai == 2)
+            {
+                <div class="product__price__old">@IdSanPham.gia.ToString("N0") <span class="unit">đ</span></div>
+                <div class="product__price__regular">@IdSanPham.giaKm.ToString("N0")  <span class="unit">đ</span></div>
+            }
+            else
+            {
+                <div class="product__price__regular">@IdSanPham.gia.ToString("N0") <span class="unit">đ</span></div>
+            }
+        </div>
+        <div class="product__view__info">
+            <p class="info">Thương hiệu : <a href="#" style="font-size: 20px;">@ViewBag.tenThuongHieu </a></p>
+            @if (IdSanPham.trangThai == 1)
+            {
+                <p class="info">Tình trạng: <span class="name">Mới</span></p>
+            }
+            @if (IdSanPham.trangThai == 2)
+            {
+                <p class="info">Tình trạng: <span class="name">Khuyến mãi</span></p>
+            }
+            @if (IdSanPham.trangThai == 3)
+            {
+                <p class="info">Tình trạng: <span class="name">Hết hàng</span></p>
+            }
+            @if (IdSanPham.trangThai == 4)
+            {
+                <p class="info">Tình trạng: <span class="name">Không hoạt động</span></p>
+            }
+            @if (IdSanPham.trangThai == 4)
+            {
+                <p class="info">Tình trạng: <span class="name">Hot</span></p>
+            }
+        </div>
+        <div class="product__view__info">
+            <p class="info">Số lượng : @IdSanPham.soLuong</p>
+        </div>
+        <div class="product__view__desc">
+            <div class="product__desc__title bold">Mô tả:</div>
+            <div class="product__shortdesc__txt">
+                @Html.Raw(IdSanPham.moTa)
+            </div>
+        </div>
+        <div class="product__quantity product__view__quantity">
+            <div class="name">Số lượng:</div>
+            <button class="btn-minus btn" onclick="GiamSoLuongSanPhamXemNhanhChiTiet_xm()">
+                -
+            </button>
+            <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" class="input-number" value="1" id="SoLuongSanPhamXemNhanh_XM">
+            <button class="btn-plus btn" onclick="TangSoLuongSanPhamXemNhanhChiTiet_xm('@IdSanPham.idSp')">
+                +
+            </button>
+            <div class="clearfix"></div>
+        </div>
+        <a class="product__view__button__cart" onclick="ThemGioHangXemNhanh('@IdSanPham.idSp')"><span class="icon fa fa-shopping-bag"></span>Mua ngay</a>
+    </div>
+</div>
+<script>
+    function GiamSoLuongSanPhamXemNhanhChiTiet_xm() {
+        var soLuongSanPham = parseInt($("#SoLuongSanPhamXemNhanh_XM").val(), 10);
+        if (soLuongSanPham > 0) {
+            $("#SoLuongSanPhamXemNhanh").val(soLuongSanPham - 1);
+        }
+        else {
+            MessageBox("Số lượng mua không hợp lệ", "error");
+        }
+    }
+
+    function TangSoLuongSanPhamXemNhanhChiTiet_xm(idSanPham) {
+        var soLuongSanPham = parseInt($("#SoLuongSanPhamXemNhanh_XM").val(), 10);
+        $.post("/Home/KiemTraSoLuongSanPham", { "IdSanPham": idSanPham }, function (data) {
+            if (data.Icon == "success") {
+                var slSP = parseInt(data.Data, 10);
+                if (soLuongSanPham >= 0 && soLuongSanPham < slSP) {
+                    $("#SoLuongSanPhamXemNhanh_XM").val(soLuongSanPham + 1);
+                }
+                else {
+                    MessageBox("Số lượng mua không hợp lệ", "error");
+                }
+            }
+        });
+    }
+</script>

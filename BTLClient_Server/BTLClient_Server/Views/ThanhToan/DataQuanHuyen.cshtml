@@ -1,0 +1,13 @@
+﻿
+@{
+    Layout = null;
+    var lstQuanHuyen = ViewBag.lstQuanHuyen;
+}
+<option value="" data-tentinh="">Quận huyện</option>
+@if (lstQuanHuyen != null)
+{
+    foreach (var item in lstQuanHuyen)
+    {
+        <option value="@item.DistrictID" data-tenquanhuyen="@item.DistrictName">@item.DistrictName</option>
+    }
+}

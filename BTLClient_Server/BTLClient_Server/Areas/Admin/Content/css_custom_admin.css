@@ -1,0 +1,288 @@
+﻿/*Trang Login*/
+.nav-link-account:focus, .nav-link-account:hover {
+    color: #0056b3 !important;
+}
+/*Trang chủ Admin*/
+#return-to-top {
+    position: fixed;
+    z-index: 999;
+    transition: all 0.3s ease-out 0s;
+    transform: translateY(0px);
+    opacity: 0;
+    visibility: visible;
+    right: 10px;
+    bottom: 60px;
+    height: 40px;
+    width: 40px;
+    background-color: #000;
+    border: 2px solid #fff;
+    line-height: 30px;
+    border-radius: 4px;
+    font-size: 20px;
+    text-align: center;
+}
+#return-to-top:hover {
+    color: #fff;
+    background-color: #ddac55;
+    border-color: #d69b33;
+}
+
+.create-new {
+    background-color: #41a741;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    display: inline-block;
+    border: 1px solid;
+}
+
+a.create-new:hover {
+    color: #41a741;
+    background-color: white;
+    border: 1px solid
+}
+
+i.fas fa-plus:hover {
+    color: #41a741;
+    background-color: white;
+    border: 1px solid
+}
+
+
+.note-editing-area {
+    min-height: 130px;
+}
+.btn-group-lg > .btn, .btn-lg {
+    padding: .5rem 0rem;
+}
+.btn-lg {
+    font-size: 1rem !important;
+}
+
+.dz-preview.dz-image-preview {
+    display: inline-block;
+    margin: 5px;
+}
+
+.form-search {
+    background-color: #c0e6f8;
+    padding: 14px;
+    margin-top: 9px;
+}
+.btn-pro {
+    padding: .375rem 0.70rem;
+    color: white;
+}
+.btn-pro i{
+    font-size: 17px; 
+    color: white;
+}
+
+i.fas fa-plus:hover {
+    color: #41a741;
+    background-color: white;
+    border: 1px solid
+}
+.pagination-container {
+    display: flow-root;
+    margin: 20px 0 0 0;
+}
+
+.pagination {
+    float: right;
+}
+
+.pagination li a{
+    padding: 10px 15px;
+    background-color: aliceblue;
+    border-radius: 3px;
+}
+
+.pagination li a:hover {
+    background-color: gainsboro;
+}
+
+.pagination li.active a{
+    background-color: #337ab7;
+    color: white;
+    z-index: 3;
+}
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: aliceblue;
+}
+
+.btn-search{
+    display: flex;
+}
+
+.modal-dialog {
+    max-width: 1000px;
+    margin: 1.75rem auto;
+}
+
+.modal-body img {
+    max-width: 150px;
+}
+
+.btn-delete {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    display: inline-block;
+    border: 1px solid;
+}
+.btn-delete:hover {
+    color: red;
+    background-color: white;
+    border: 1px solid;
+}
+
+.btn-primary {
+    border-radius: 5px;
+}
+
+.pro-status {
+    margin: 0;
+    background: #f95359;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.pro-status-finish {
+    background: #39b54a;
+}
+
+/*Trang chỉnh sửa sản phẩm*/
+div#previews {
+    border: 1px dashed;
+}
+
+.dz-image img {
+    max-width: 120px;
+    max-height: 120px;
+}
+
+a.dz-remove {
+    color: red;
+    text-decoration: none;
+    background-color: white;
+    border: solid 2px;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+}
+
+a.dz-remove:hover {
+    color: white;
+    text-decoration: none;
+    background-color: red;
+    border: solid 2px;
+    border-radius: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 4px;
+}
+
+.dz-error-message {
+    display: none;
+}
+
+body {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/*Trang thêm mới danh mục sản phẩm*/
+i.fas.fa-asterisk {
+    color: red;
+    font-size: 9px;
+}
+
+/*Trang đơn hàng*/
+.page-order .table tbody tr:hover td, .page-order .table tbody tr:hover th {
+    background-color: #f0f8ff00 !important;
+}
+
+ul#ui-id-1 {
+    height: 300px;
+    overflow: scroll;
+}
+
+.table {
+    border: 1px solid #ddd;
+}
+
+.table th {
+    border: 1px solid #ddd;
+    background-color: #e9ecef;
+    vertical-align: middle !important;
+}
+
+.table td {
+    border: 1px solid #ddd;
+    vertical-align: middle !important;
+}
+
+.table-order img {
+    height: 30px;
+}
+
+.table-order input {
+    width: 50px;
+    border: inherit;
+}
+
+.header-edit-order h4{
+    display: inline-block;
+}
+
+.header-edit-order select {
+    width: 25%;
+    display: inline-block;
+    margin-left: 11px;
+}
+
+
+/*Trang kách hàng*/
+.history-order .pagination-container {
+    margin: 0;
+}
+
+.form-search-history-order {
+    margin-bottom: 11px;
+}
+
+.form-search-history-order input {
+    width: 90%;
+    display: initial;
+}
+
+/*Trang thống kê*/
+.form-input-infor{
+    margin-top: 9px;
+}
+
+.form-input-infor .form-control {
+    display: inline-block;
+    width: 70%;
+    margin-left: 5px;
+}
+
+/*Trang tin tức*/
+.news-description .note-editing-area {
+    min-height: 224px;
+}
+
+.pro-status-pay {
+    background-color: gold;
+}
+
+.content-wrapper {
+    background-color: #fffafa00;
+}

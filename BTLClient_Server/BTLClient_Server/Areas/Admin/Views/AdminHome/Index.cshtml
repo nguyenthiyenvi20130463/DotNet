@@ -1,0 +1,270 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<BTLClient_Server.Areas.Admin.Models.DTO.OrderDTO>
+
+@{
+    ViewBag.Title = "Danh sách đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh sách đơn hàng</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid card card-outline card-info page-order">
+        <div class="form-search">
+            @using (Html.BeginForm("Index", "AdminHome", FormMethod.Get, new { }))
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="">
+                                    <input type="text" class="form-control" name="tenK" placeholder="Tên khách hàng" value="@ViewBag.tenK">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="">
+                                    Từ:
+                                    <input type="date" class="form-control" name="tu" value="@ViewBag.tu" style="display:inline; width: 85%;">
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="">
+                                    Đến:
+                                    <input type="date" class="form-control" name="den" value="@ViewBag.den" style="display:inline; width: 85%;">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="">
+                                    <select class="form-control" name="tt">
+                                        <option value="0">Trạng thái đơn hàng</option>
+                                        @{
+                                            var selectNew_ = "";
+                                            var selectNew = "";
+                                            var selectM = "";
+                                            var selectDone = "";
+                                            var selectDone_ = "";
+                                            if (ViewBag.tt == "3")
+                                            {
+                                                selectDone = "selected";
+                                            }
+                                            else if (ViewBag.tt == "2")
+                                            {
+                                                selectM = "selected";
+                                            }
+                                            else if (ViewBag.tt == "5")
+                                            {
+                                                selectNew = "selected";
+                                            }
+                                            else if (ViewBag.tt == "4")
+                                            {
+                                                selectDone_ = "selected";
+                                            }
+                                            else if (ViewBag.tt == "1")
+                                            {
+                                                selectNew_ = "selected";
+                                            }
+                                        }
+                                        <option @selectNew_ value="1">Chờ xác nhận</option>
+                                        <option @selectNew value="5">Đã nhận được hàng</option>
+                                        <option @selectM value="2">Đã thanh toán</option>
+                                        <option @selectDone value="3">Hoàn thành</option>
+                                        <option @selectDone_ value="4">Hủy đơn</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-1">
+                                <div class="btn-search">
+                                    <button type="submit" class="btn btn-default btn-pro" title="Tìm kiếm" style="background-color: #2ea1f8; flex: auto; ">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    <a href="~/Admin/AdminHome" class="btn btn-default btn-pro" title="Tải lại" style="background-color: #34a544">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @using (Html.BeginForm("Index", "AdminHome", FormMethod.Post, new { }))
+        {
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="~/Admin/AdminHome/Create" class="create-new">
+                            <i class="fas fa-plus"></i>
+                            Thêm mới
+                        </a>
+                        <button type="submit" class="btn-delete" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                            <i class="fa fa-trash-alt"></i>
+                            Xóa
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @tenK = @ViewBag.tenK, @tt = @ViewBag.tt, @tu = @ViewBag.tu, @den = @ViewBag.den }))
+                    </div>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            <input type="checkbox" id="checkBoxAll" />
+                        </th>
+                        <th class="text-center">Mã đơn hàng</th>
+                        <th class="text-center">Khách hàng</th>
+                        <th class="text-center">Sản phẩm</th>
+                        <th class="text-center">Giá</th>
+                        <th class="text-center">Số lượng</th>
+                        <th class="text-center">Tổng tiền</th>
+                        <th class="text-center">Đơn vị giao</th>
+                        <th class="text-center">Trạng thái</th>
+                        <th class="text-center">Ghi chú</th>
+                        <th class="text-center">
+                            <i class="fas fa-cogs"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center" rowspan="@item.listItem.Count">
+                                @{ if (item.trangThai != 3)
+                                    {
+                                        <input type="checkbox" class="checkBoxId" value="@item.idDon" name="checkBoxId" />
+                                    }
+                                }
+                            </td>
+                            <td rowspan="@item.listItem.Count">
+                                <i class="fas fa-qrcode"></i>
+                                Mã:
+                                @Html.DisplayFor(modelItem => item.idDon)<br />
+                                <i class="far fa-clock"></i>
+                                @Html.DisplayFor(modelItem => item.ngayDat)
+                            </td>
+                            <td rowspan="@item.listItem.Count">
+                                <i class="fas fa-user"></i>
+                                @Html.DisplayFor(modelItem => item.hoTen)<br />
+                                <i class="fas fa-mobile-alt"></i>
+                                @Html.DisplayFor(modelItem => item.sdt)<br />
+                                <i class="fas fa-map-marker-alt"></i>
+                                @Html.DisplayFor(modelItem => item.diaChiGiao)
+                            </td>
+                            <td>
+                                <img src="~/Theme/Image/@item.listItem[0].anhDaiDien" style="height: 30px">
+                                @Html.DisplayFor(modelItem => item.listItem[0].ten)
+                            </td>
+                            <td class="text-right">
+                                @(item.listItem[0].giaBan.Value.ToString("N0"))
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.listItem[0].soLuong)
+                            </td>
+                            <td class="text-right" rowspan="@item.listItem.Count">
+                                @(item.tongTien.HasValue? item.tongTien.Value.ToString("N0") : "0")
+                            </td>
+                            <td rowspan="@item.listItem.Count">
+                                @Html.DisplayFor(modelItem => item.donViGiao)
+                            </td>
+                            <td class="text-center" rowspan="@item.listItem.Count">
+                                @{ if (item.trangThai == 1)
+                                    {
+                                        <p class="pro-status" style="width: 115px;">Chờ xác nhận</p>
+                                    }
+                                    else if (item.trangThai == 2)
+                                    {
+                                        <p class="pro-status pro-status-pay" style="width: 115px;">Đã thanh toán</p>
+                                    }
+                                    else if (item.trangThai == 3)
+                                    {
+                                        <p class="pro-status pro-status-finish" style="width: 115px;">Hoàn thành</p>
+                                    }
+                                    else if (item.trangThai == 4)
+                                    {
+                                        <p class="pro-status" style="width: 115px;">Hủy đơn</p>
+                                    }
+                                    else if (item.trangThai == 5)
+                                    {
+                                        <p class="pro-status pro-status-finish" style="width: 150px;">Đã nhận được hàng</p>
+                                    }
+                                }
+                            </td>
+                            <td rowspan="@item.listItem.Count">
+                                @Html.DisplayFor(modelItem => item.moTa)
+                            </td>
+                            <td class="text-center" rowspan="@item.listItem.Count">
+                                @{
+                                    <a href="~/Admin/AdminHome/Edit/@item.idDon" title="Sửa">
+                                        <i class="fas fa-edit" aria-hidden="true"></i>
+                                    </a>
+                                    if (item.trangThai != 3)
+                                    {
+                                        <a href="~/Admin/AdminHome/Delete/@item.idDon" title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                            <i class="fas fa-trash-alt" style="color:red;"></i>
+                                        </a>
+                                    }
+                                    <a href="~/Admin/AdminHome/Print/@item.idDon" target="_blank" title="In hóa đơn">
+                                        <i class="fas fa-print" style="color: #39b54a;"></i>
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+
+                        for (int i = 1; i < item.listItem.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Theme/Image/@item.listItem[i].anhDaiDien" style="height: 30px">
+                                    @Html.DisplayFor(modelItem => item.listItem[i].ten)
+                                </td>
+                                <td class="text-right">
+                                    @(item.listItem[i].giaBan.Value.ToString("N0"))
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.listItem[i].soLuong)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+        <div class="row">
+            <div class="col-6">
+                <p class="text-right" style="margin: 0; padding-bottom: 4px;">
+                    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                </p>
+            </div>
+            <div class="col-6 history-order">
+                @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @tenK = @ViewBag.tenK, @tt = @ViewBag.tt, @tu = @ViewBag.tu, @den = @ViewBag.den }))
+            </div>
+        </div>
+    </div>
+</section>
+
+@section script{
+    <script>
+        $(document).ready(function () {
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked"))
+                    $('.checkBoxId').prop('checked', true);
+                else
+                    $('.checkBoxId').prop('checked', false);
+            });
+        });
+
+    </script>
+}

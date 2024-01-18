@@ -1,0 +1,325 @@
+.user-profile__wrap{
+    background: #f4f4f4;
+    .f13;
+    .title-profile{
+        .f24;
+        .block;
+        .thin;
+        padding:20px;
+
+    }
+    .profile-content{
+        padding:20px;
+    }
+    .wrap__profile__info{
+        .corner(3px);
+        background: #fff;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        .input__label{
+            width: 120px;
+            .left;
+            padding:0px 15px;
+            @media(max-width:768px){
+                width: 100%;
+            }
+            .label{
+                padding-top: 20px;
+            }
+        }
+        .input__wrap{
+            .left;   
+            padding:0px 15px;
+            width: 50%;
+            .check__action{
+                margin-top: 10px;
+            }
+            @media(max-width:768px){
+                width: 100%;
+            }
+        }
+        .label{
+            .block;
+            padding:0px;
+            margin-bottom: 10px;
+            .upper;
+            .c(#888);
+            .tleft;
+            .normal;
+        }
+        .form-control{
+            box-shadow: none;
+            padding: 10px 20px;
+            height: 42px;
+            &:focus{
+                border:1px solid @success;
+            }
+        }
+        .btn-submit{
+            background: @main;
+            .inline;
+            color: white;
+            padding:10px 40px;
+            .center;
+            &:hover{
+                background: darken(@main, 10%);
+            }
+        }
+    }
+    
+}
+.sidebar-profile{
+    .profiles{
+        padding-left: 50px;
+        .relative;
+        margin-bottom: 20px;
+        .avatar{
+            .absolute;
+            top: 0px;
+            left: 0px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            .xo;
+            img{
+                width: 100%;
+            }
+        }
+        .headline{
+            .f13;
+            .thin;
+            .c(#242424);
+        }
+        .username{
+            .thick;
+            .c(#242424);
+
+        }
+    }
+    .user-profile__menu{
+        .user-profile__item{
+            .icon{
+                width: 30px;
+                .inline;
+                .c(#999);
+                .f16;
+            }
+            .user-profile__link{
+                padding:10px 20px;
+                .block;
+                .f13;
+                .c(#242424);
+            }
+            &:hover,&.active{
+                background: #ededed;
+                .user-profile__link{
+                    .c(#000);
+                }
+            }
+        }
+
+    }
+    .user-profile__notify-number{
+        .corner(20px);
+        .c(#fff);
+        padding:0px 7px;
+        background: @red;
+        .inline;
+        .f11;
+    }
+
+}
+.profile-notify{
+    .profile-notify__item{
+        padding:25px;
+        border-bottom: 1px solid #eee;
+        .relative;
+        padding-left: 120px;
+        &.unread{
+            padding-right: 130px;    
+            .btn-unread{
+                .block;
+            }
+            .bg(#f6fcff);
+        }
+        .f13;
+        .profile-notify__date{
+            .absolute;
+            top: 25px;
+            left: 0px;
+            width: 100px;
+            .center;
+        }
+        .btn-unread{
+            .absolute;
+            top: 25px;
+            right: 25px;
+            .c(@link);
+            .f13;
+            background: none;
+            border:0px;
+            .hidden;
+            &:hover{
+                .underline;
+
+            }
+        }
+        .profile-notify__desc{
+            a{
+                color: @link;
+                .f13;
+                .inline;
+                margin-left: 5px;
+                &:hover{
+                    .underline;
+                }
+            }
+        }
+    }
+
+
+}
+.profile-order {
+    .table{
+        th{
+            .c(#999);
+            .normal;
+            .vcenter;
+            padding:20px 10px;
+            border-top-color: #eee;
+        }
+        td{
+            .f13;
+            padding:10px;
+            border-top-color: #eee;
+        }
+    }
+    .code{
+        .c(@link);
+    }
+    .status{
+        .icon{
+            color: @success;
+            margin-right: 5px;
+        }
+    }
+}
+.profile-address{
+    .box-add{
+        a{
+            padding:20px;
+            .center;
+            .block;
+            margin-bottom: 10px;
+            .corner(3px);
+            border:1px dashed @borc;
+            .c(@link);
+            &:hover{
+                background: #f9f9f9;
+            }
+        }
+        margin-bottom: 20px;
+    }
+    .list-address{
+        .item{
+            .relative;
+            padding:20px 0px;
+
+            border-bottom: 1px solid #eee;
+            &:last-child{
+                border-bottom: 0px;
+            }
+        }
+        .name{
+            .thick;
+            .upper;
+            margin-bottom: 5px;
+        }
+        .status{
+            .inline;
+            color: @success;
+            text-transform: none;
+            .normal;
+            &:before{
+                content: "\f375";
+                font-family: "ap";
+                .f14;
+                margin-left: 10px;
+                margin-right: 5px;
+
+            }
+        }
+        .info{
+            .lb{
+                .inline;
+                .c(#666);
+                margin-right: 5px;
+            }
+        }
+        .btn-edit{
+            .absolute;
+            top: 20px;
+            right: 0px;
+            .c(@link);
+            &:hover{
+                .underline;
+            }
+        }
+    }
+}
+.profile-create__address{
+    padding:20px;
+    max-width: 600px;
+    .form-control{
+        height: auto;
+    }
+    .bootstrap-select{
+        padding:0px !important;
+        > .btn{
+            padding:10px 20px;
+        }
+    }
+}
+.profile-payment{
+    .pad(20px);
+    .payment-info{
+        .relative;
+        border:1px solid @borc;
+        padding:20px 60px;
+        .corner(3px);
+        margin-bottom: 30px;
+        &.add{
+            padding:0px;
+            border-style: dashed;
+            .center;
+            a{
+                .c(@link);
+                padding:20px;
+                .block;
+            }
+            &:hover{
+                a{
+                    background: #f6f6f6;
+                }
+            }
+        }
+
+    }
+    .icon{
+        width: 30px;
+        .absolute;
+        top: 20px;
+        left: 20px;
+
+    }
+    .btn-action{
+        .absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: 0px;
+        color: @red;
+        &:hover{
+            background: #f6f6f6;
+        }
+    }
+}

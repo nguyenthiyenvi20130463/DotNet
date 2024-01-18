@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = null;
+    var login = ViewBag.login;
+}
+@if (login != null)
+{
+    <div class="title" id="TaiKhoanDangNhap">@login.tenDangNhap</div>
+    <div class="headline">Tài khoản và đơn hàng</div>
+    <ul class="menu-icons__sub">
+        <li class="menu-icons__sub__item"><a class="menu-icon__sub-link" href="#" onclick="XemTaiKhoan()"><span class="icon icon-settings -ap"></span> Tài khoản</a></li>
+        <li class="menu-icons__sub__item"><a class="menu-icon__sub-link" onclick="XemDonHang()" href="#"><span class="icon icon-file -ap"></span> Đơn hàng</a></li>
+        <li class="menu-icons__sub__item"><a class="menu-icon__sub-link" onclick="DangXuat()" href="#"><span class="icon icon-file -ap"></span> Đăng xuất</a></li>
+    </ul>
+}
+else
+{
+    <div class="title" id="TaiKhoanDangNhap">Đăng nhập</div>
+    <div class="headline">Tài khoản và đơn hàng</div>
+    <ul class="menu-icons__sub">
+        <li class="menu-icons__sub__item"><a class="menu-icon__sub-link menu" data-toggle="modal" data-target="#login"><span class="icon icon-lock_outline -ap"></span> Đăng nhập</a></li>
+        <li class="menu-icons__sub__item"><a class="menu-icon__sub-link" onclick="DangKyTK()"><span class="icon icon-lock_open -ap"></span> Đăng ký</a></li>
+        <li class="menu-icons__sub__item"><a class="menu-icon__sub-link" href="#" onclick="XemTaiKhoan()"><span class="icon icon-settings -ap"></span> Tài khoản</a></li>
+        <li class="menu-icons__sub__item"><a class="menu-icon__sub-link" onclick="XemDonHang()" href="#"><span class="icon icon-file -ap"></span> Đơn hàng</a></li>
+    </ul>
+}

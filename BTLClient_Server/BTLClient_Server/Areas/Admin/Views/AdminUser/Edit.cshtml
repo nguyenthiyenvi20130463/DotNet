@@ -1,0 +1,98 @@
+﻿@model BTLClient_Server.EF.User
+@{ 
+    Layout = null;
+}
+<!-- Modal -->
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        @using (Html.BeginForm("Edit", "AdminUser", FormMethod.Post, new { @onsubmit = "return validateFormEdit()", @name = "myFormEdit" }))
+        {
+            <input name="id" value="@Model.idUser" type="hidden" />
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Chỉnh sửa thông tin tài khoản</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <div class="form-group row">
+                        <div class="col-8">
+                            <label>Loại tài khoản</label>
+                            @{ var ad = "";
+                                var st = "";
+                                if (Model.quyen == 0)
+                                {
+                                    ad = "checked";
+                                }
+                                else
+                                {
+                                    st = "checked";
+                                }
+                            }
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="adminTypeEdit" value="1" @st>
+                                        <label class="form-check-label">Nhân viên</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="adminTypeEdit" value="0" @ad>
+                                        <label class="form-check-label">Admin</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label>Trạng thái</label>
+                            <select class="form-control" name="tt">
+                                @{ var a = "";
+                                    var na = "";
+                                    if (Model.trangThai == true)
+                                    {
+                                        a = "selected";
+                                    }
+                                    else
+                                    {
+                                        na = "selected";
+                                    }
+                                }
+                                <option @a value="true">Hoạt động</option>
+                                <option @na value="false">Không hoạt động</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu mới</label>
+                        <input type="password" class="form-control" name="passwordEdit">
+                    </div>
+                    <div class="form-group">
+                        <label>Nhập lại mật khẩu</label>
+                        <input type="password" class="form-control" name="repasswordEdit">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="Submit" class="btn btn-block-modal btn-success">
+                    <i class="ace-icon fa fa-check"></i>
+                    Cập nhật
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    function validateFormEdit() {
+        var x = document.forms["myFormEdit"]["passwordEdit"].value;
+        var y = document.forms["myFormEdit"]["repasswordEdit"].value;
+        if (x != y) {
+            alert("Xác nhận mật khẩu chưa chính xác!");
+            return false;
+        }
+    }
+</script>

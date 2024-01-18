@@ -1,0 +1,328 @@
+﻿
+@{
+    ViewBag.Title = "TienHanhThanhToan";
+    var login = ViewBag.login;
+    var lstTinhThanh = ViewBag.lstTinhThanh;
+}
+<div layout:fragment="content-main">
+    <div class="sec sec__shopcart">
+
+        <div class="container">
+            <div class="nav-steps">
+                <div class="nav-step__item waiting">
+                    <span class="number">1</span>
+                    <span class="txt">Chọn sản phẩm</span>
+                </div>
+                <div class="nav-step__item">
+                    <span class="number">2</span>
+                    <span class="txt">Nhập thông tin</span>
+                </div>
+                <div class="nav-step__item">
+                    <span class="number">3</span>
+                    <span class="txt">Xác nhận</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="sec__shopcart__info col-md-7 col-sm-7 col-xs-12">
+                    <div class="box-user__info panel" style="display:none">
+                        <div class="title">Thông tin cá nhân</div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Họ tên</div>
+                                        <input type="text" class="form-control" placeholder="Họ" value="@login.hoTen" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Tài khoản</div>
+                                        <input type="text" class="form-control" placeholder="Tài khoản" value="@login.tenDangNhap" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="label">Email</div>
+                                <input type="text" class="form-control" placeholder="Email" value="@login.email" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-user__info panel">
+                        <div class="title">Thông tin thanh toán và nhận hàng</div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6" style="display:none">
+                                    <div class="form-group">
+                                        <div class="label">Số điện thoại:</div>
+                                        <input type="text" class="form-control" placeholder="SĐT" id="txtSDT" value="0">
+                                        <small id="errorSDT" class="form-text text-muted AnHienLoad">Không được để trống số diện thoại</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Họ tên:</div>
+                                        <input type="text" class="form-control" placeholder="Tên" id="txtTen" value="@login.hoTen" disabled>
+                                        <small id="errorTen" class="form-text text-muted AnHienLoad">Không được để trống họ tên</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Tài khoản:</div>
+                                        <input type="text" class="form-control" placeholder="Tên" id="txtTen" value="@login.tenDangNhap" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="label">Email</div>
+                                <input type="text" class="form-control" placeholder="Email" id="txtEmail" value="@login.email" disabled>
+                                <small id="errorEmail" class="form-text text-muted AnHienLoad">Không được để trống email</small>
+                            </div>
+                            <div class="form-group" style="display:none">
+                                <div class="label">Địa chỉ:</div>
+                                <input type="text" class="form-control" placeholder="Địa chỉ" id="txtDiaChi" value="0">
+                                <small id="errorDiaChi" class="form-text text-muted AnHienLoad">Không được để trống địa chỉ</small>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Tỉnh thành:</div>
+                                        <select class="form-control" id="txtTinhThanh" onchange="LayDataQuanHuyen()">
+                                            <option value="" data-tentinh="">Tỉnh thành</option>
+                                            @if (lstTinhThanh != null)
+                                            {
+                                                foreach (var item in lstTinhThanh)
+                                                {
+                                                    <option value="@item.ProvinceID" data-tentinh="@item.ProvinceName">@item.ProvinceName</option>
+                                                }
+                                            }
+                                        </select>
+                                        <small id="errorTinhThanh" class="form-text text-muted AnHienLoad">Không được để trống tỉnh thành</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Quận huyện:</div>
+                                        <select class="form-control" id="txtQuanHuyen" onchange="LayDataXaPhuong()">
+                                            <option value="" data-tenquanhuyen="">Quận huyện</option>
+                                        </select>
+                                        <small id="errorQuanHuyen" class="form-text text-muted AnHienLoad">Không được để trống quận huyện</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="label">Xã phường:</div>
+                                        <select class="form-control" id="txtXaPhuong">
+                                            <option value="" data-tenxaphuong="">Xã phường</option>
+                                        </select>
+                                        <small id="errorXaPhuong" class="form-text text-muted AnHienLoad">Không được để trống xã phường</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="label">Ghi chú:</div>
+                                <textarea name="" cols="30" rows="10" class="form-control" placeholder="Nội dung" id="txtNoiDung"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div class="label">Hình thức thanh toán:</div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio1" name="CkHinhThucThanhToan" class="custom-control-input" checked value="0">
+                                    <label class="custom-control-label" for="customRadio1" style="font-weight: normal; font-size: 12px;">Thanh toán khi nhận hàng</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio2" name="CkHinhThucThanhToan" class="custom-control-input" value="1">
+                                    <label class="custom-control-label" for="customRadio2" style="font-weight: normal; font-size: 12px;">Thanh toán qua VNPay</label>
+                                </div>
+                            </div>
+                            <input type="hidden" class="form-control" value="" id="HinhThucGiaoHang">
+                            <input type="hidden" class="form-control" value="0" id="PhiGiaoHang">
+                            <div class="form-group">
+                                <div class="label">Hình thức giao hàng:</div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" name="CkHinhThucGiaoHang" class="custom-control-input" onclick="TinhPhiGiaoHang(0)">
+                                    <label class="custom-control-label" style="font-weight: normal; font-size: 12px;">Giao hàng qua giao hàng tiết kiệm</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" name="CkHinhThucGiaoHang" class="custom-control-input" onclick="TinhPhiGiaoHang(1)">
+                                    <label class="custom-control-label" style="font-weight: normal; font-size: 12px;">Giao hàng qua giao hàng nhanh</label>
+                                </div>
+                                <small id="errorGiaoHang" class="form-text text-muted AnHienLoad">Lựa chọn hình thức giao hàng</small>
+                                <p style="margin-top: 8px;"><strong>Phí: </strong><span id="TongPhi"></span><span> đ</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" class="form-control" value="1" id="HinhThucThanhToan">
+                    <div class="box-user__info panel" style="display:none">
+                        <div class="title">Hình thức thanh toán</div>
+                        <div class="content">
+                            <div class="list-payment">
+                                <div class="item active hinthucthanhtoan hinthucthanhtoan1">
+                                    <a href="javascript:void(0)" onclick="ChonHinhThucThanhToan(1)">
+                                        <img src="/Theme/uploads/payment/bank-transfer.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="item hinthucthanhtoan hinthucthanhtoan2">
+                                    <a href="javascript:void(0)" onclick="ChonHinhThucThanhToan(2)">
+                                        <img src="/Theme/uploads/payment/mastercard.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="item hinthucthanhtoan hinthucthanhtoan3">
+                                    <a href="javascript:void(0)" onclick="ChonHinhThucThanhToan(3)">
+                                        <img src="/Theme/uploads/payment/paypal.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="item hinthucthanhtoan hinthucthanhtoan4">
+                                    <a href="javascript:void(0)" onclick="ChonHinhThucThanhToan(4)">
+                                        <img src="/Theme/uploads/payment/visa.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                    <div class="title">Giỏ hàng</div>
+                    <div class="content">
+                        <div class="product__shopcart">
+                            <div class="product__list" id="GioHangChiTiet">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-button">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12">
+                                <a href="/" class="btn btn__back">Quay lại</a>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <a class="btn btn__next" href="javascript:void(0)" onclick="ThanhToanDonHang()">Tiếp tục thanh toán</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+
+        function TinhPhiGiaoHang(value) {
+            if (value == "0" || value == "1") {
+                $("#HinhThucGiaoHang").val(value)
+                var TenTinh = $("#txtTinhThanh").find(':selected').attr('data-tentinh');
+                var TenQuanHuyen = $("#txtQuanHuyen").find(':selected').attr('data-tenquanhuyen');
+                var TenXaPhuong = $("#txtXaPhuong").find(':selected').attr('data-tenxaphuong');
+
+                if (TenTinh == "" || TenQuanHuyen == "" || TenXaPhuong == "") {
+                    MessageBox("Chưa điền đẩy đủ thông tin tỉnh, xã, phường", "error");
+                    $('input[name="CkHinhThucGiaoHang"]').attr("checked", false);
+                }
+                else if (value == "0") {
+                        $.post("/ThanhToan/TinhPhiGiaoHangTietKiem", { "TenTinh": TenTinh, "TenQuanHuyen": TenQuanHuyen, "TenXaPhuong": TenXaPhuong }, function (data) {
+                            $("#PhiGiaoHang").val(data);
+                            $("#TongPhi").html(data);
+                        });
+                }
+                else {
+                        var IdTenTinh = $("#txtTinhThanh").val();
+                        var IdTenQuanHuyen = $("#txtQuanHuyen").val();
+                        var IdTenXaPhuong = $("#txtXaPhuong").val();
+                        $.post("/ThanhToan/TinhPhiGiaoHangNhanh", { "IdTenTinh": IdTenTinh, "IdTenQuanHuyen": IdTenQuanHuyen, "IdTenXaPhuong": IdTenXaPhuong }, function (data) {
+                            $("#PhiGiaoHang").val(data);
+                            $("#TongPhi").html(data);
+                        });
+                }
+            }
+        }
+
+        function LayDataXaPhuong() {
+            if ($("#txtQuanHuyen").val() == "") {
+                $("#txtXaPhuong").html("<option value=\"\" data-tenxaphuong=\"\">Xã phường</option>");
+            }
+            else {
+                $.post("/ThanhToan/DataXaPhuong", { "IdQuanHuyen": $("#txtQuanHuyen").val() }, function (data) {
+                    $("#txtXaPhuong").html(data);
+                })
+            }
+        }
+
+        function LayDataQuanHuyen() {
+            if ($("#txtTinhThanh").val() == "") {
+                $("#txtQuanHuyen").html("<option value=\"\" data-tenquanhuyen=\"\">Quận huyện</option>");
+                $("#txtXaPhuong").html("<option value=\"\" data-tenxaphuong=\"\">Xã phường</option>");
+            }
+            else {
+                $.post("/ThanhToan/DataQuanHuyen", { "IdTinh": $("#txtTinhThanh").val() }, function (data) {
+                    $("#txtQuanHuyen").html(data);
+                    $("#txtXaPhuong").html("<option value=\"\" data-tenxaphuong=\"\">Xã phường</option>");
+                })
+            }
+        }
+
+        $(document).ready(function () {
+            $.post("/SanPham/ChiTiet_GioHang", {}, function (data) {
+                if (data.Icon == "success") {
+                    $("#GioHangChiTiet").append(data.DataChiTietGioHang);
+                }
+            });
+        });
+
+        function ThanhToanDonHang() {
+            var txtSDT = $("#txtSDT").val();
+            var txtTen = $("#txtTen").val();
+            var txtEmail = $("#txtEmail").val();
+            var txtDiaChi = $("#txtDiaChi").val();
+            var txtTinhThanh = $("#txtTinhThanh").val();
+            var txtQuanHuyen = $("#txtQuanHuyen").val();
+            var txtXaPhuong = $("#txtXaPhuong").val();
+            var txtNoiDung = $("#txtNoiDung").val();
+            var HinhThucThanhToan = $("#HinhThucThanhToan").val();
+            var HinhThucGiaoHang = $("#HinhThucGiaoHang").val();
+            var PhiGiaoHang = $("#PhiGiaoHang").val();
+            if (HinhThucGiaoHang == '') {
+                $("#errorGiaoHang").removeClass("AnHienLoad");
+            }
+            if (txtSDT == '') {
+                $("#errorSDT").removeClass("AnHienLoad");
+            }
+            if (txtTen == '') {
+                $("#errorTen").removeClass("AnHienLoad");
+            }
+            if (txtEmail == '') {
+                $("#errorEmail").removeClass("AnHienLoad");
+            }
+            if (txtDiaChi == '') {
+                $("#errorDiaChi").removeClass("AnHienLoad");
+            }
+            if (txtTinhThanh == '') {
+                $("#errorTinhThanh").removeClass("AnHienLoad");
+            }
+            if (txtQuanHuyen == '') {
+                $("#errorQuanHuyen").removeClass("AnHienLoad");
+            }
+            if (txtXaPhuong == '') {
+                $("#errorXaPhuong").removeClass("AnHienLoad");
+            }
+
+            if (HinhThucGiaoHang != '' && txtSDT != '' && txtTen != '' && txtEmail != '' && txtDiaChi != '' && txtTinhThanh != '' && txtQuanHuyen != '') {
+                var TenTinh = $("#txtTinhThanh").find(':selected').attr('data-tentinh');
+                var TenQuanHuyen = $("#txtQuanHuyen").find(':selected').attr('data-tenquanhuyen');
+                var TenXaPhuong = $("#txtXaPhuong").find(':selected').attr('data-tenxaphuong');
+                var HTThanhToan = $('input[name="CkHinhThucThanhToan"]:checked').val();
+                $.post("/ThanhToan/ThucHienThanhToan", {
+                    "txtSDT": txtSDT, "txtTen": txtTen, "txtEmail": txtEmail, "txtDiaChi": txtDiaChi, "txtTinhThanh": TenTinh, "txtQuanHuyen": TenQuanHuyen, "txtNoiDung": txtNoiDung, "HinhThucThanhToan": HinhThucThanhToan, "txtXaPhuong": TenXaPhuong,
+                    "HTThanhToan": HTThanhToan, "HinhThucGiaoHang": HinhThucGiaoHang, "PhiGiaoHang": PhiGiaoHang}, function (data) {
+                    if (data.Icon = "success") {
+                        location.href = "/ThanhToan/XacNhanThanhToan";
+                    }
+                    else {
+                        MessageBox(data.Title, data.Icon);
+                    }
+                })
+            }
+        }
+    </script>
+</div>

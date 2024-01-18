@@ -1,0 +1,232 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<BTLClient_Server.EF.User>
+
+@{
+    ViewBag.Title = "Quản lý tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh sách tài khoản</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card card-outline card-info">
+                <div class="card-header">
+                    <div class="form-search">
+                        @using (Html.BeginForm("Index", "AdminUser", FormMethod.Get, new { }))
+                        {
+                            <div class="row">
+                                <div class="col-7">
+                                    <div class="">
+                                        <input type="text" class="form-control" name="tendn" placeholder="Tên đăng nhập" value="@ViewBag.tendn">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="">
+                                        <select class="form-control" name="quyen">
+                                            <option value="">Loại tài khoản</option>
+                                            @{ var ad = "";
+                                                var st = "";
+                                                if (ViewBag.quyen == 0)
+                                                {
+                                                    ad = "selected";
+                                                }
+                                                else if (ViewBag.quyen == 1)
+                                                {
+                                                    st = "selected";
+                                                }
+                                            }
+                                            <option @st value="1">Nhân viên</option>
+                                            <option @ad value="0">Admin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="btn-search">
+                                        <button type="submit" class="btn btn-default btn-pro" title="Tìm kiếm" style="background-color: #2ea1f8; flex: auto; ">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <a href="~/Admin/AdminUser" class="btn btn-default btn-pro" title="Tải lại" style="background-color: #34a544; flex: auto; ">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    Tên đăng nhập
+                                </th>
+                                <th class="text-center">
+                                    Loại tài khoản
+                                </th>
+                                <th class="text-center">
+                                    Trạng thái
+                                </th>
+                                <th class="text-center">
+                                    <i class="fas fa-cogs"></i>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tenDangNhap)
+                                    </td>
+                                    <td class="text-center">
+                                        @if (item.quyen == 0)
+                                        {
+                                            <span>Admin</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Nhân viên</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @if (item.trangThai == true)
+                                        {
+                                            <span>Hoạt động</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Không hoạt động</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="#" onclick="funcEdit(@item.idUser)" title="Sửa">
+                                            <i class="fas fa-edit" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="~/Admin/AdminUser/Delete/@item.idUser" title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                            <i class="fas fa-trash-alt" style="color:red;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @tendn = @ViewBag.tendn, @quyen = @ViewBag.quyen }))
+                </div>
+            </div>
+        </div>
+        <!-- /.col-->
+        <div class="col-md-4">
+            <div class="card card-outline card-info">
+                <div class="card-header">
+                    <h4 class="">
+                        Thêm mới
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Create", "AdminUser", FormMethod.Post, new { @onsubmit = "return validateForm()", @name = "myForm" }))
+                    {
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="submit" id="Submit" class="btn btn-block btn-success btn-lg">
+                                        <i class="ace-icon fa fa-check"></i>
+                                        Thêm mới
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="reset" class="btn btn-block btn-info btn-lg">
+                                        <i class="fas fa-sync"></i>
+                                        Nhập lại
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Loại tài khoản:</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="adminType" value="1" checked>
+                                        <label class="form-check-label">Nhân viên</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="adminType" value="0">
+                                        <label class="form-check-label">Admin</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Tên đăng nhập
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control float-right" name="username" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Mật khẩu
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            <div class="input-group">
+                                <input type="password" class="form-control float-right" name="password" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Nhập lại mật khẩu
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            <div class="input-group">
+                                <input type="password" class="form-control float-right" name="repassword" required>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./row -->
+</section>
+
+<div class="modal fade" id="modalEdit" role="dialog" aria-hidden="true">
+
+</div>
+
+@section script{
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["password"].value;
+            var y = document.forms["myForm"]["repassword"].value;
+            if (x == "" || x != y) {
+                alert("Xác nhận mật khẩu chưa chính xác!");
+                return false;
+            }
+        }
+
+        function funcEdit(id) {
+            var url = "/Admin/AdminUser/Edit?id=" + id;
+            $("#modalEdit").load(url, function (data) {
+                $("#modalEdit").html(data);
+                $("#modalEdit").modal("show");
+            });
+        }
+    </script>
+}

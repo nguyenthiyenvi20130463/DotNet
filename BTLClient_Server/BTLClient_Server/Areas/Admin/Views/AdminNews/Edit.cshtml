@@ -1,0 +1,134 @@
+﻿@model BTLClient_Server.EF.TinTuc
+
+@{
+    ViewBag.Title = "Thông tin bài viết";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thông tin bài viết</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        @Html.ActionLink("Danh sách bài viết", "Index", "AdminNews")
+                    </li>
+                    <li class="breadcrumb-item active">Thông tin bài viết</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <form action="Create" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-outline card-info">
+                    <div class="card-header">
+                        <h4 class="">
+                            Thông tin chính
+                        </h4>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="nameProduct">
+                                Tiêu đề
+                                <i class="fas fa-asterisk"></i>
+                            </label>
+                            @Html.EditorFor(model => model.tieuDe, new { htmlAttributes = new { @class = "form-control", @placeholder = "Tiêu đề bài viết", required = true } })
+                            @Html.ValidationMessageFor(model => model.tieuDe, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.idTin, new { htmlAttributes = new { @type = "hidden" } })
+                        </div>
+                        <div class="form-group news-description">
+                            <label for="summernote">Nội dung</label>
+                            @Html.TextAreaFor(model => model.noiDung)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-md-4">
+                <div class="card card-outline card-info">
+                    <div class="card-header">
+                        <h4 class="">
+                            Đăng bài
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="submit" id="Submit" class="btn btn-block btn-success btn-lg">
+                                        <i class="ace-icon fa fa-check"></i>
+                                        Cập nhật
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="~/Admin/AdminNews/Edit/@Model.idTin" class="btn btn-block btn-info btn-lg">
+                                        <i class="fas fa-sync"></i>
+                                        Nhập lại
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label>
+                                <i class="far fa-clock"></i>
+                                Thời gian tạo:
+                            </label>
+                            @Html.DisplayFor(model => model.ngayTao)
+                            @Html.EditorFor(model => model.ngayTao, new { htmlAttributes = new { @type = "hidden" } })
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <i class="far fa-image"></i>
+                                Ảnh đại diện:
+                            </label>
+                            <input type="file" id="photo" name="photo" onchange="previewFile(this);">
+                            <img id="previewImg" src="~/Theme/Image/@Model.anh" style="width: 90px; display: block; margin-top: 10px;">
+                            @Html.EditorFor(model => model.anh, new { htmlAttributes = new { @type = "hidden" } })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./row -->
+    </form>
+</section>
+
+@section linkCss{
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/plugins/summernote/summernote-bs4.min.css">
+}
+
+@section script{
+    <script>
+        $(function () {
+            // Summernote
+            $('#noiDung').summernote()
+        });
+
+        function previewFile(input) {
+            var file = $("#photo").get(0).files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $("#previewImg").attr("src", reader.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+    </script>
+
+    <!-- Summernote -->
+    <script src="~/Areas/Admin/Content/plugins/summernote/summernote-bs4.min.js"></script>
+}
+

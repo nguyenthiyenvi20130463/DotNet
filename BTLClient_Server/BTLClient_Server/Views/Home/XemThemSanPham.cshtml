@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+    var lstDanhSachSanPham = ViewBag.lstDanhSachSanPham;
+}
+@if (lstDanhSachSanPham != null)
+{
+    foreach (var item in lstDanhSachSanPham)
+    {
+        <div class="product__item">
+            <div class="product__image">
+                <a href="#" class="product__link"><img src="~/Theme/Image/@item.anhDaiDien" alt="name your product"></a>
+                <div class="product-item__actions">
+                    <a href="javascript:void(0)" class="btn btn-cart" onclick="ThemGioHang('@item.idSp')">Thêm vào giỏ</a>
+                    <a class="btn btn-detail" data-toggle="tooltip" data-placement="left" title="Chi tiết" href="/Home/ChiTietSanPham?IdSanPham=@item.idSp"><span class="-ap  icon-search2"></span></a>
+                    <a href="javascript:void(0)" class="btn btn-quickview" onclick="XemNhanhSanPham('@item.idSp')" data-placement="top" title="Xem nhanh"><span class="fa fa-eye"></span></a>
+                </div>
+                <div class="product__overlay"></div>
+                @if (item.trangThai == 1)
+                {
+                    <div class="product__status -new">@item.trangThaiMieuTa</div>
+                }
+                @if (item.trangThai == 2)
+                {
+                    <div class="product__sale">@item.trangThaiMieuTa</div>
+                }
+                @if (item.trangThai == 5)
+                {
+                    <div class="product__status -hot">@item.trangThaiMieuTa</div>
+                }
+            </div>
+            <h3 class="product__name"><a href="#">@item.ten</a></h3>
+            <p>Số lượng: @item.soLuong</p>
+            <div class="product__price">
+                @if (item.trangThai == 2)
+                {
+                    <div class="product__price__old">@item.gia.ToString("N0") <span class="unit">đ</span></div>
+                    <div class="product__price__regular">@item.giaKm.ToString("N0")  <span class="unit">đ</span></div>
+                }
+                else
+                {
+                    <div class="product__price__regular">@item.gia.ToString("N0")  <span class="unit">đ</span></div>
+                }
+            </div>
+        </div>
+    }
+}

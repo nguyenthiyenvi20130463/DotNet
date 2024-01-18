@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebBanHangModelStoreContainer" CdmEntityContainer="WebBanHangEntities">
+    <FunctionImportMapping FunctionName="WebBanHangModel.Store.DlNgay" FunctionImportName="DlNgay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.DlNgay_Result">
+          <ScalarProperty Name="Thang" ColumnName="Thang" />
+          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="WebBanHangModel.Store.Func_ThongKeDoanhThu" FunctionImportName="Func_ThongKeDoanhThu">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.Func_ThongKeDoanhThu_Result">
+          <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+          <ScalarProperty Name="DoanhThu" ColumnName="DoanhThu" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BaoCaoDoanhThuThang" FunctionName="WebBanHangModel.Store.BaoCaoDoanhThuThang">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.BaoCaoDoanhThuThang_Result">
+          <ScalarProperty Name="N1" ColumnName="N1" />
+          <ScalarProperty Name="N2" ColumnName="N2" />
+          <ScalarProperty Name="N3" ColumnName="N3" />
+          <ScalarProperty Name="N4" ColumnName="N4" />
+          <ScalarProperty Name="N5" ColumnName="N5" />
+          <ScalarProperty Name="N6" ColumnName="N6" />
+          <ScalarProperty Name="N7" ColumnName="N7" />
+          <ScalarProperty Name="N8" ColumnName="N8" />
+          <ScalarProperty Name="N9" ColumnName="N9" />
+          <ScalarProperty Name="N10" ColumnName="N10" />
+          <ScalarProperty Name="N11" ColumnName="N11" />
+          <ScalarProperty Name="N12" ColumnName="N12" />
+          <ScalarProperty Name="N13" ColumnName="N13" />
+          <ScalarProperty Name="N14" ColumnName="N14" />
+          <ScalarProperty Name="N15" ColumnName="N15" />
+          <ScalarProperty Name="N16" ColumnName="N16" />
+          <ScalarProperty Name="N17" ColumnName="N17" />
+          <ScalarProperty Name="N18" ColumnName="N18" />
+          <ScalarProperty Name="N19" ColumnName="N19" />
+          <ScalarProperty Name="N20" ColumnName="N20" />
+          <ScalarProperty Name="N21" ColumnName="N21" />
+          <ScalarProperty Name="N22" ColumnName="N22" />
+          <ScalarProperty Name="N23" ColumnName="N23" />
+          <ScalarProperty Name="N24" ColumnName="N24" />
+          <ScalarProperty Name="N25" ColumnName="N25" />
+          <ScalarProperty Name="N26" ColumnName="N26" />
+          <ScalarProperty Name="N27" ColumnName="N27" />
+          <ScalarProperty Name="N28" ColumnName="N28" />
+          <ScalarProperty Name="N29" ColumnName="N29" />
+          <ScalarProperty Name="N30" ColumnName="N30" />
+          <ScalarProperty Name="N31" ColumnName="N31" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DanhSachSanPham" FunctionName="WebBanHangModel.Store.DanhSachSanPham">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.DanhSachSanPham_Result">
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="moTa" ColumnName="moTa" />
+          <ScalarProperty Name="chiTiet" ColumnName="chiTiet" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="giaKm" ColumnName="giaKm" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="idLoai" ColumnName="idLoai" />
+          <ScalarProperty Name="idThuongHieu" ColumnName="idThuongHieu" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="soLuong" ColumnName="soLuong" />
+          <ScalarProperty Name="trangThaiMieuTa" ColumnName="trangThaiMieuTa" />
+          <ScalarProperty Name="anhDaiDien" ColumnName="anhDaiDien" />
+          <ScalarProperty Name="MieuTaSanPhamNoiBat" ColumnName="MieuTaSanPhamNoiBat" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetListDonHang" FunctionName="WebBanHangModel.Store.GetListDonHang">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.GetListDonHang_Result">
+          <ScalarProperty Name="idDon" ColumnName="idDon" />
+          <ScalarProperty Name="ngayDat" ColumnName="ngayDat" />
+          <ScalarProperty Name="diaChiGiao" ColumnName="diaChiGiao" />
+          <ScalarProperty Name="tongTien" ColumnName="tongTien" />
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="donViGiao" ColumnName="donViGiao" />
+          <ScalarProperty Name="moTa" ColumnName="moTa" />
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getListNews" FunctionName="WebBanHangModel.Store.getListNews">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.getListNews_Result">
+          <ScalarProperty Name="idTin" ColumnName="idTin" />
+          <ScalarProperty Name="anh" ColumnName="anh" />
+          <ScalarProperty Name="ngayTao" ColumnName="ngayTao" />
+          <ScalarProperty Name="tieuDe" ColumnName="tieuDe" />
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetListOrder" FunctionName="WebBanHangModel.Store.GetListOrder" />
+    <FunctionImportMapping FunctionImportName="GetListOrderByPage" FunctionName="WebBanHangModel.Store.GetListOrderByPage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.GetListOrderByPage_Result">
+          <ScalarProperty Name="idDon" ColumnName="idDon" />
+          <ScalarProperty Name="ngayDat" ColumnName="ngayDat" />
+          <ScalarProperty Name="diaChiGiao" ColumnName="diaChiGiao" />
+          <ScalarProperty Name="tongTien" ColumnName="tongTien" />
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="moTa" ColumnName="moTa" />
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listCustomer" FunctionName="WebBanHangModel.Store.listCustomer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.listCustomer_Result">
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+          <ScalarProperty Name="tenDangNhap" ColumnName="tenDangNhap" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="matKhau" ColumnName="matKhau" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="diaChi" ColumnName="diaChi" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listCustomerByPage" FunctionName="WebBanHangModel.Store.listCustomerByPage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.listCustomerByPage_Result">
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+          <ScalarProperty Name="tenDangNhap" ColumnName="tenDangNhap" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="matKhau" ColumnName="matKhau" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="diaChi" ColumnName="diaChi" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listNews" FunctionName="WebBanHangModel.Store.listNews">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.listNews_Result">
+          <ScalarProperty Name="idTin" ColumnName="idTin" />
+          <ScalarProperty Name="tieuDe" ColumnName="tieuDe" />
+          <ScalarProperty Name="anh" ColumnName="anh" />
+          <ScalarProperty Name="noiDung" ColumnName="noiDung" />
+          <ScalarProperty Name="ngayTao" ColumnName="ngayTao" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listNewsByPage" FunctionName="WebBanHangModel.Store.listNewsByPage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.listNewsByPage_Result">
+          <ScalarProperty Name="idTin" ColumnName="idTin" />
+          <ScalarProperty Name="tieuDe" ColumnName="tieuDe" />
+          <ScalarProperty Name="anh" ColumnName="anh" />
+          <ScalarProperty Name="ngayTao" ColumnName="ngayTao" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listPro" FunctionName="WebBanHangModel.Store.listPro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.listPro_Result">
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="anhDaiDien" ColumnName="anhDaiDien" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="giaKm" ColumnName="giaKm" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="tenThuongHieu" ColumnName="tenThuongHieu" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listProByPage" FunctionName="WebBanHangModel.Store.listProByPage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.listProByPage_Result">
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="anhDaiDien" ColumnName="anhDaiDien" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="giaKm" ColumnName="giaKm" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="tenThuongHieu" ColumnName="tenThuongHieu" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listProduct" FunctionName="WebBanHangModel.Store.listProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.listProduct_Result">
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="anhDaiDien" ColumnName="anhDaiDien" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="giaKm" ColumnName="giaKm" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="tenThuongHieu" ColumnName="tenThuongHieu" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="lstOrderByIdKhachAndPage" FunctionName="WebBanHangModel.Store.lstOrderByIdKhachAndPage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.lstOrderByIdKhachAndPage_Result">
+          <ScalarProperty Name="idDon" ColumnName="idDon" />
+          <ScalarProperty Name="ngayDat" ColumnName="ngayDat" />
+          <ScalarProperty Name="diaChiGiao" ColumnName="diaChiGiao" />
+          <ScalarProperty Name="moTa" ColumnName="moTa" />
+          <ScalarProperty Name="tongTien" ColumnName="tongTien" />
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="donViGiao" ColumnName="donViGiao" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="lstSearchCusByNameInOrder" FunctionName="WebBanHangModel.Store.lstSearchCusByNameInOrder">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.lstSearchCusByNameInOrder_Result">
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+          <ScalarProperty Name="diaChi" ColumnName="diaChi" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="tenDangNhap" ColumnName="tenDangNhap" />
+          <ScalarProperty Name="matKhau" ColumnName="matKhau" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="lstSearchHotProduct" FunctionName="WebBanHangModel.Store.lstSearchHotProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.lstSearchHotProduct_Result">
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="giaKm" ColumnName="giaKm" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="anhDaiDien" ColumnName="anhDaiDien" />
+          <ScalarProperty Name="tenThuongHieu" ColumnName="tenThuongHieu" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="lstSearchPro" FunctionName="WebBanHangModel.Store.lstSearchPro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.lstSearchPro_Result">
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="giaKm" ColumnName="giaKm" />
+          <ScalarProperty Name="trangThaiMieuTa" ColumnName="trangThaiMieuTa" />
+          <ScalarProperty Name="anhDaiDien" ColumnName="anhDaiDien" />
+          <ScalarProperty Name="tenLoaiSp" ColumnName="tenLoaiSp" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="lstSearchProByNameInOrder" FunctionName="WebBanHangModel.Store.lstSearchProByNameInOrder">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.lstSearchProByNameInOrder_Result">
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="giaKm" ColumnName="giaKm" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="anhDaiDien" ColumnName="anhDaiDien" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="WebBanHangModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="WebBanHangModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="WebBanHangModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="WebBanHangModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="WebBanHangModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="WebBanHangModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="WebBanHangModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="listLienHe" FunctionName="WebBanHangModel.Store.listLienHe">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WebBanHangModel.listLienHe_Result">
+          <ScalarProperty Name="IdLienHe" ColumnName="IdLienHe" />
+          <ScalarProperty Name="Ho" ColumnName="Ho" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Anhs">
+      <EntityTypeMapping TypeName="WebBanHangModel.Anh">
+        <MappingFragment StoreEntitySet="Anh">
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="idAnh" ColumnName="idAnh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CT_DonHang">
+      <EntityTypeMapping TypeName="WebBanHangModel.CT_DonHang">
+        <MappingFragment StoreEntitySet="CT_DonHang">
+          <ScalarProperty Name="thanhTien" ColumnName="thanhTien" />
+          <ScalarProperty Name="soLuong" ColumnName="soLuong" />
+          <ScalarProperty Name="giaBan" ColumnName="giaBan" />
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+          <ScalarProperty Name="idDon" ColumnName="idDon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DanhGias">
+      <EntityTypeMapping TypeName="WebBanHangModel.DanhGia">
+        <MappingFragment StoreEntitySet="DanhGia">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="noiDung" ColumnName="noiDung" />
+          <ScalarProperty Name="ngayTao" ColumnName="ngayTao" />
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonHangs">
+      <EntityTypeMapping TypeName="WebBanHangModel.DonHang">
+        <MappingFragment StoreEntitySet="DonHang">
+          <ScalarProperty Name="donViGiao" ColumnName="donViGiao" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+          <ScalarProperty Name="tongTien" ColumnName="tongTien" />
+          <ScalarProperty Name="moTa" ColumnName="moTa" />
+          <ScalarProperty Name="diaChiGiao" ColumnName="diaChiGiao" />
+          <ScalarProperty Name="ngayDat" ColumnName="ngayDat" />
+          <ScalarProperty Name="idDon" ColumnName="idDon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHangs">
+      <EntityTypeMapping TypeName="WebBanHangModel.KhachHang">
+        <MappingFragment StoreEntitySet="KhachHang">
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="matKhau" ColumnName="matKhau" />
+          <ScalarProperty Name="tenDangNhap" ColumnName="tenDangNhap" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="diaChi" ColumnName="diaChi" />
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LienHes">
+      <EntityTypeMapping TypeName="WebBanHangModel.LienHe">
+        <MappingFragment StoreEntitySet="LienHe">
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="idKhach" ColumnName="idKhach" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Ho" ColumnName="Ho" />
+          <ScalarProperty Name="IdLienHe" ColumnName="IdLienHe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoaiSps">
+      <EntityTypeMapping TypeName="WebBanHangModel.LoaiSp">
+        <MappingFragment StoreEntitySet="LoaiSp">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="tenLoaiSp" ColumnName="tenLoaiSp" />
+          <ScalarProperty Name="idLoai" ColumnName="idLoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanPhams">
+      <EntityTypeMapping TypeName="WebBanHangModel.SanPham">
+        <MappingFragment StoreEntitySet="SanPham">
+          <ScalarProperty Name="MieuTaSanPhamNoiBat" ColumnName="MieuTaSanPhamNoiBat" />
+          <ScalarProperty Name="anhDaiDien" ColumnName="anhDaiDien" />
+          <ScalarProperty Name="trangThaiMieuTa" ColumnName="trangThaiMieuTa" />
+          <ScalarProperty Name="soLuong" ColumnName="soLuong" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="idThuongHieu" ColumnName="idThuongHieu" />
+          <ScalarProperty Name="idLoai" ColumnName="idLoai" />
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="giaKm" ColumnName="giaKm" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="chiTiet" ColumnName="chiTiet" />
+          <ScalarProperty Name="moTa" ColumnName="moTa" />
+          <ScalarProperty Name="ten" ColumnName="ten" />
+          <ScalarProperty Name="idSp" ColumnName="idSp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="WebBanHangModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThuongHieux">
+      <EntityTypeMapping TypeName="WebBanHangModel.ThuongHieu">
+        <MappingFragment StoreEntitySet="ThuongHieu">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="tenThuongHieu" ColumnName="tenThuongHieu" />
+          <ScalarProperty Name="idThuongHieu" ColumnName="idThuongHieu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TinTucs">
+      <EntityTypeMapping TypeName="WebBanHangModel.TinTuc">
+        <MappingFragment StoreEntitySet="TinTuc">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="ngayTao" ColumnName="ngayTao" />
+          <ScalarProperty Name="noiDung" ColumnName="noiDung" />
+          <ScalarProperty Name="anh" ColumnName="anh" />
+          <ScalarProperty Name="tieuDe" ColumnName="tieuDe" />
+          <ScalarProperty Name="idTin" ColumnName="idTin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="WebBanHangModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+          <ScalarProperty Name="quyen" ColumnName="quyen" />
+          <ScalarProperty Name="matKhau" ColumnName="matKhau" />
+          <ScalarProperty Name="tenDangNhap" ColumnName="tenDangNhap" />
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

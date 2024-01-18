@@ -1,0 +1,151 @@
+.product__shopcart{
+    .product__list{
+        padding:10px;
+        .product__img{
+            width: 100px;
+            .left;
+            margin-right: 10px;
+            img{
+                .fullw;
+            }
+        }
+        .product__list__item{
+            border-bottom: 1px dotted #eee;
+            padding:10px 0px;
+            .relative;
+            &:last-child{
+                border-bottom: 0px;
+            }
+        }
+    }
+    .product__price{
+        .f12;
+        .relative;
+        padding-right: 40px;
+    }
+    .product__delete{
+        .absolute;
+        top: 0px;
+        right: 0px;
+        .c(#444);
+        &:hover{
+            .c(@red);
+        }
+    }
+    .product__name{
+        padding-right: 20px;
+        .relative;
+
+    }
+    .product__quantity{
+        .absolute;
+        top: 0px;
+        right: 0px;
+        .c(#555);
+        .btn,.input-number{
+            height: 20px;
+            line-height: 18px;
+        }
+        .btn{
+            width: 20px;
+        }
+        .input-number{
+            width: 30px;
+        }
+    }
+}
+
+.sec__shopcart{
+    padding:40px 0px !important;
+    .container{
+        max-width: 991px;
+    }
+    .content{
+        padding:20px;
+        border:1px solid @borc;
+    }
+    .product__shopcart .product__list{
+        padding:0px;
+    }
+    .label{
+        .block;
+        padding:0px;
+        margin-bottom: 10px;
+        .upper;
+        .c(#888);
+        .tleft;
+        .normal;
+    }
+    .title{
+        .upper;
+        .f16;
+        padding:10px 20px;
+        background: #f6f6f6;
+        border: 1px solid @borc;
+        border-bottom: 0px;
+    }
+    .form-control{
+        box-shadow: none;
+        height: 42px;
+        .corner(0px);
+        &:focus{
+            border-color: @success;
+        }
+    }
+    .box-user__info{
+        box-shadow: none;
+
+    }
+    .bootstrap-select{
+        .btn{
+            height: 40px;
+        }
+    }
+    .list-payment{
+        .item{
+            .inline;
+            .pointer;
+            border:2px solid @borc;
+            .corner(0px);
+            margin-right: 5px;
+            padding:5px;
+            &.active,&:hover{
+                border:2px solid @main;
+                img{
+                    filter:none;
+                    .opacity(1);
+                }
+            }
+            img{
+                height: 40px;
+                -webkit-filter: grayscale(100%);
+                filter: grayscale(100%);
+                .opacity(0.5);
+            }
+
+        }
+    }
+    .list-button{
+        margin-top: 20px;
+        .btn{
+            padding:10px 20px;
+            .corner(0px);
+            .c(#fff);
+            .center;
+            .block;
+            .fullw;
+            &.btn__back{
+                background: #999;
+                &:hover{
+                    background: darken(#999, 10%);
+                }
+            }
+            &.btn__next{
+                background: @main;
+                &:hover{
+                    background: darken(@main, 10%);
+                }
+            }
+        }
+    }
+}

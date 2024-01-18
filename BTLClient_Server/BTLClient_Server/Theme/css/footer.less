@@ -1,0 +1,124 @@
+.footer{
+    .f13;
+    background: #212121;
+    .c(#9e9e9e);
+    .footer__box{
+        padding:20px 0px;
+    }
+    .icon{
+        
+        margin-right: 10px;
+    }
+    .footer__title{
+        .normal;
+        .upper;
+        margin-bottom: 10px;
+        .block;
+        .bold;
+        color: #fff;
+    }
+    .contact{
+        .f13;
+        margin-bottom: 10px;
+    }
+    .url{
+        .block;
+        margin-bottom:10px;
+        .f13;
+        .c(#9e9e9e);
+        &:hover{
+            color: #fff;
+        }
+    }
+    .list-social{
+        .item{
+            .inline;
+            margin-right: 5px;
+        }
+        .btn{
+            .inline;
+            width: 30px;
+            height: 30px;
+            .bg(#eee);
+            .corner(50%);
+            padding:0px;
+            .center;
+            line-height: 30px;
+            .c(#777);
+            .relative;
+            .transition(0.4s);
+            .fa{
+                .f14;    
+            }
+            &:before{
+                top: 0px;
+                left: 0px;
+                content: "";
+                width: 100%;
+                .absolute;
+                height: 100%;
+                .corner(50%);
+                .transform(scale(1));
+                .transition(0.4s);
+                .opacity(0);
+                border:4px solid fade(@main, 30%);
+            }
+            &:hover{
+                .c(#fff);
+                background: @main;
+                .transition(0.4s);
+                &:before{
+                    .transform(scale(1.3));
+                    .transition(0.4s);
+                    .opacity(1);
+                }
+            }
+        }
+    }
+    .sub{
+        .form-control{
+            border:none;
+            .corner(3px);
+            .rgba(#000,0.5);
+            box-shadow: none;
+            padding: 10px 10px;
+            margin-bottom: 20px;
+            &:focus{
+                border-bottom-color: #fff;
+            }
+
+        }
+    }
+    .cer{
+        img{
+            height: 50px;
+        }
+    }
+    .bottom{
+        background: #111111;
+        padding:10px 15px;
+        .f12;
+        color: #9e9e9e;
+        .url{
+            .inline;
+            margin:0px 5px;
+        }
+    }
+    .copyright{
+        padding: 10px 0px ;
+    }
+    .payment{
+        margin-top: 5px;
+        .img{
+            
+
+            img{
+                background: #fff;
+                padding: 5px;
+                .corner(3px);
+                height: 30px;
+
+            }
+        }
+    }
+}

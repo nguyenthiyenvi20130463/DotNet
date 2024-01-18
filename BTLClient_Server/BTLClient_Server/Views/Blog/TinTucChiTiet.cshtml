@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "TinTucChiTiet";
+    var lstRandomTinTuc = ViewBag.lstRandomTinTuc;
+    var ChiTietTinTuc = ViewBag.ChiTietTinTuc;
+}
+<div>
+    <section class="sec sec__category">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="category__sidebar">
+                        <div class="category__sidebar__box">
+                            <h2 class="sidebar__cat__title"> TIN TỨC LIÊN QUAN</h2>
+                            @foreach (var item in lstRandomTinTuc)
+                            {
+                                <div class="news__cat__list">
+                                    <div class="news__cat__item">
+                                        <div class="news__image">
+                                            <a href="#">
+                                                <img src="~/Theme/Image/@item.anh" alt="">
+                                            </a>
+                                        </div>
+                                        <h4 class="news__title">
+                                            <a href="/Blog/TinTucChiTiet?idTinTuc=@item.idTin">@item.tieuDe</a>
+                                        </h4>
+                                        <div class="news__date">
+                                            <span class="-ap icon icon-access_time"></span>
+                                            <span>@item.ngayTao</span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                             }
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12" th:each="ChiTietTinTuc:${ChiTietTinTuc}">
+                    <article class="article">
+                        <h1 class="article__title" th:text="${ChiTietTinTuc['tieuDe']}">@ChiTietTinTuc.tieuDe</h1>
+                        <div class="news__date">
+                            <span class="-ap icon icon-access_time"></span>
+                            <span>@ChiTietTinTuc.ngayTao</span>
+                        </div>
+                        <div class="article__content">
+                            @Html.Raw(ChiTietTinTuc.noiDung)
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+	    $(document).ready(function() {
+	      	$(".catalog__item").removeClass("active");
+	      	$(".layout_menu_blog").addClass("active");
+	      	$("#ViTriXemThemTinTuc").val('0');
+	    });
+
+    </script>
+</div>

@@ -1,0 +1,652 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>Laptop shop</title>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="It, it solution,solution, techonogy,internet" />
+    <link href="https://plus.google.com/114644939574462223089" rel="author">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" id="viewport" />
+    <meta content="Thời trang nam phong cách trẻ trung năng động của nam giới, xu thế thời trang 2016" name="description">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" id="viewport" />
+    <meta content="index, follow" name="ROBOTS">
+    <!-- General style -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700&amp;subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Theme/vendor/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Theme/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Theme/vendor/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/Theme/vendor/css/ap8.css">
+    <link rel="stylesheet" type="text/css" href="~/Theme/vendor/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Theme/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/Theme/vendor/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Theme/vendor/css/bootstrap-select.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script type="text/javascript" src="~/Theme/vendor/js/jquery.2.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <style>
+        .DanhGia {
+            border: 2px solid #ccc;
+            background-color: #eee;
+            border-radius: 5px;
+            padding: 16px;
+            margin: 16px 0
+        }
+
+        .DanhGia::after {
+            content: " ";
+            clear: both;
+            display: table;
+        }
+
+        .DanhGia img {
+            float: left;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+
+        .DanhGia span {
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        .swal2-cancel {
+            margin-left: 5px;
+        }
+
+        .AnHienLoad {
+            display: none;
+        }
+
+        .styleError {
+            font-size: 10px;
+            color: red;
+        }
+        html,
+          body {
+            position: relative;
+            height: 100%;
+          }
+
+          .swiper {
+            width: 100%;
+            height: 100%;
+          }
+
+          .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+          }
+
+          .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="common-overlay"></div>
+    <header class="header">
+        <div class="header-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <div class="menu-category">
+                            <div class="catalog__list">
+                                <ul class="catalog__wrap">
+                                    <li class="catalog__item -sub layout_menu_trangchu">
+                                        <a href="/" class="catalog__link">Trang chủ</a>
+                                    </li>
+                                    <li class="catalog__item -sub layout_menu_sanPham">
+                                        <a href="#" class="catalog__link">Sản phẩm</a>
+                                        <div class="catalog__sub">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-5 col-xs-12">
+                                                    @{
+                                                        Html.RenderAction("DanhSachThuongHieu", "Home");
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="catalog__item layout_menu_blog"><a href="/Blog" class="catalog__link"> Blog</a></li>
+                                    <li class="catalog__item layout_menu_gioiThieu"><a href="/GioiThieu" class="catalog__link">Giới thiệu</a></li>
+                                    <li class="catalog__item layout_menu_lienhe"><a href="/LienHe" class="catalog__link">Liên hệ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="hotline"><span class="-ap icon-phone-handset"></span> Hotline: <b class="">091 111 8683</b></div>
+                        <div class="social">
+                            <a href="#" class="btn"><span class="-ap icon-facebook"></span></a>
+                            <a href="#" class="btn"><span class="-ap icon-google"></span></a>
+                            <a href="#" class="btn"><span class="-ap icon-mail"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="nav-toggle">
+                            <span class="fa fa-bars"></span>
+                        </div>
+                        <h1 class="logo"><a class="logo__img"><img src="~/Theme/Image/logoweb.jpg" alt="Biznet"></a> <span class="name">Thoi trang bui</span></h1>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="box-search">
+                            <div class="form-input">
+                                <input type="text" class="form-control" placeholder="Search..." id="GiaTriSearch">
+                                <button class="btn btn__search" onclick="SreachSanPham()"><span class="fa fa-search"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="header-top__shopcart">
+                            <div class="icon">
+                                <span class="-ap icon-cart"></span>
+                            </div>
+                            <div class="headline">Giỏ hàng</div>
+                            <div class="product__price">
+                                <span id="TongGiaGioHang">0 </span><span class="unit">đ</span>
+                            </div>
+                            <div class="dropdown__shop__cart" style="min-width:350px">
+                                <div class="dropdown__head">
+                                    <span class="number" id="SoLuongSanPhamTrongGioHang">0</span>
+                                    <span class="txt">Sản phẩm trong giỏ hàng</span>
+                                </div>
+                                <div class="product__shopcart" id="ChiTietGioHang">
+
+                                </div>
+                                <div class="dropdown__bottom">
+                                    <div class="total">Tổng cộng: <span class="product__price number"><span id="TongTienGioHang"></span> <span class="unit"></span>đ</span></div>
+                                    <button class="btn__checkout" onclick="DatHang()">Tiến hành đặt hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-top__login">
+                            <div class="icon">
+                                <span class="-ap icon-user6"></span>
+
+                            </div>
+                            @{
+                                Html.RenderAction("DangNhap", "Login");
+                            }
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!-- End menu -->
+    <div class="nav-anchor"></div>
+    <div class="hero-banner">
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+    <div id="HienThiTimKiemSanPham" style="min-height:550px">
+        @RenderBody()
+    </div>
+    <!-- footer -->
+    <footer class="footer">
+        <!-- End topfoter -->
+        <!-- footer -->
+        <div class="container">
+            <div class="footer__box">
+                <div class="row ">
+                    <div class="col-md-4  col-sm-4 col-xs-12">
+                        <h3 class="footer__title ">CÔNG TY NHÓM 12</h3>
+                        <div class="contact">
+                            <p class="info ">
+                                <span class="icon -ap icon-location3"></span>
+                                <span class="name-header texU disb fow">Địa chỉ: </span>
+                                <span class="disb">Trường đại học Nông Lâm</span>
+                            </p>
+                        </div>
+                        <div class="contact">
+                            <p class="info ">
+                                <span class="icon -ap  icon-envelope2"></span>
+                                <span class="name-header texU disb fow">Email:</span>
+                                <span class="disb">nhom12@st.hcmauf.edu.vn</span>
+                            </p>
+                        </div>
+                        <div class="contact">
+
+                            <p class="info ">
+                                <span class="icon fa fa-phone"></span>
+                                <span class="name-header texU disb fow"> Phone: </span>
+                                <span class="disb">0123456789 - 0987654321</span>
+                            </p>
+                        </div>
+                      
+                    </div>
+                    <div class="col-md-2  col-sm-2 col-xs-12">
+                        <h3 class="footer__title ">Liên Kết</h3>
+                        <div class="list">
+                            <a href="#" class="url">Trang chủ</a>
+                            <a href="#" class="url">Sản phẩm</a>
+                            <a href="#" class="url">Blog</a>
+                            <a href="#" class="url">Giới thiệu</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3  col-sm-3 col-xs-12">
+                        <h3 class="footer__title ">Đăng ký</h3>
+                        <div class="sub">
+                            <input type="text" class="form-control" placeholder="Nhập email của bạn">
+                            <p class="note">Hãy nhập email của bạn vào đây để nhận tin!</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <h3 class="footer__title ">Kết nối</h3>
+                        <ul class="list-social">
+                            <li class="item"><a href="" class="btn"><span class="fa fa-facebook"></span></a></li>
+                            <li class="item"><a href="" class="btn"><span class="fa fa-google"></span></a></li>
+                            <li class="item"> <a href="" class="btn"><span class="fa fa-youtube-play"></span></a></li>
+                            <li class="item"><a href="" class="btn"><span class="fa fa-twitter"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End footer -->
+        <!-- Copyright -->
+        <div class="bottom">
+            <div class="container">
+                <div class="pull-left">
+                    <div class="copyright">
+                        Copyright ® 2023 <a href="http://dreamfonticons.com" class="url"><i>Nhom12</i></a>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <div class="payment">
+                        <span class="img">
+                            <img src="~/Theme/uploads/payment/bank-transfer.png" alt="">
+                        </span>
+                        <span class="img">
+                            <img src="~/Theme/uploads/payment/mastercard.png" alt="">
+                        </span>
+                        <span class="img">
+                            <img src="~/Theme/uploads/payment/paypal.png" alt="">
+                        </span>
+                        <span class="img">
+                            <img src="~/Theme/uploads/payment/visa.png" alt="">
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- end copyright -->
+    </footer>
+    <div id="QuickView" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <button type="button" class="modal__close" data-dismiss="modal"><span class="icon -ap icon-ion-android-close"></span></button>
+            <div id="LoadXemNhanhSanPham">
+
+            </div>
+
+        </div>
+    </div>
+    <div id="login" class="modal__account modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="padding-bottom: 0;">
+                    <button type="button" class="close" data-dismiss="modal"><span class="-ap icon-close"></span></button>
+                    <h4 class="modal-title">Đăng nhập</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="account__input" style="padding: 10px;">
+                            <div class="form-group has-error">
+                                <div class="label">Tên đăng nhập</div>
+                                <div>
+                                    <input type="text" value="" class="form-control" placeholder="Tên đăng nhập" id="txtTenDangNhap" style="border-color: #cccccc;">
+                                </div>
+                                <div class="help-block AnHienLoad" id="errorTenDangNhap">Tên đăng nhập không được để trống</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="label">Mật khẩu</div>
+                                <div>
+                                    <input type="password" value="" class="form-control" id="txtMatKhau" placeholder="Mật khẩu" style="border-color: #cccccc;">
+                                </div>
+                                <div class="help-block AnHienLoad" id="errorMatKhau">Mật khẩu không được để trống</div>
+                            </div>
+                            <div class="form-group login__action">
+                                <button class="btn btn-submit" onclick="DangNhapTaiKhoan()">Đăng nhập</button>
+                            </div>
+                            <div class="login__note">
+                                Bạn chưa có tài khoản? <a onclick="DangKyTaiKhoan()">Đăng ký ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="register" class="modal__account modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="width: 80%;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="-ap icon-close"></span></button>
+                    <h4 class="modal-title">Đăng ký tài khoản</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12 account__input">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input__label">
+                                        <div class="label">Email</div>
+                                    </div>
+                                    <div class="input__wrap">
+                                        <input type="email" class="form-control" placeholder="Email..." id="txtemail">
+                                        <small id="errortxtemail" class="form-text text-muted AnHienLoad styleError">Không được bỏ trống Email</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input__label">
+                                        <div class="label">Số điện thoại</div>
+                                    </div>
+                                    <div class="input__wrap">
+                                        <input type="text" id="txtSDT" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" class="form-control" placeholder="Số điện thoại">
+                                        <small id="errortxtSDT" class="form-text text-muted AnHienLoad styleError">Không được bỏ trống số điện thoại</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input__label">
+                                        <div class="label">Tài khoản:</div>
+                                    </div>
+                                    <div class="input__wrap">
+                                        <input type="text" id="txtTaiKhoan" class="form-control" placeholder="Tài khoản">
+                                        <small id="errortxtTaiKhoan" class="form-text text-muted AnHienLoad styleError">Không được bỏ trống tài khoản</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input__label">
+                                        <div class="label">Mật khẩu:</div>
+                                    </div>
+                                    <div class="input__wrap">
+                                        <input type="password" id="txtpassword" class="form-control" placeholder="Mật khẩu từ 6 đến 32 ký tự">
+                                        <small id="errortxtpassword" class="form-text text-muted AnHienLoad styleError">Không được bỏ trống mật khẩu</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input__label">
+                                        <div class="label">Nhập lại mật khẩu:</div>
+                                    </div>
+                                    <div class="input__wrap">
+                                        <input type="password" id="txtNhaplaipassword" class="form-control" placeholder="Mật khẩu từ 6 đến 32 ký tự">
+                                        <small id="errortxtNhaplaipassword" class="form-text text-muted AnHienLoad styleError">Mật kaaur không trùng khớp</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input__label">
+                                        <div class="label">Họ tên:</div>
+                                    </div>
+                                    <div class="input__wrap">
+                                        <input type="text" id="txtHoTen" class="form-control" placeholder="Nhập họ tên">
+                                        <small id="errortxtHoTen" class="form-text text-muted AnHienLoad styleError">Không được bỏ trống họ tên</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input__label">
+                                        <div class="label">Giới tính:</div>
+                                    </div>
+                                    <div class="input__wrap">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <div class="check__action -radio">
+                                                    <input type="radio" class="checkbox" name="gender" checked>
+                                                    <span class="icon"></span>
+                                                    Nam
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <div class="check__action -radio">
+                                                    <input type="radio" class="checkbox" name="gender">
+                                                    <span class="icon"></span>
+                                                    Nữ
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="input__label">
+                                        <div class="label">Ngày sinh:</div>
+                                    </div>
+                                    <div class="input__wrap">
+                                        <input type="date" id="txtNgaySinh" class="form-control" placeholder="Ngày sinh">
+                                        <small id="errortxtNgaySinh" class="form-text text-muted AnHienLoad styleError">Không được bỏ trống ngày sinh</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <div class="input__label">
+                                        <div class="label">Địa chỉ:</div>
+                                    </div>
+                                    <div class="input__wrap">
+                                        <textarea style="width: 100%;" id="txtdiachi"></textarea>
+                                        <small id="errortxtdiachi" class="form-text text-muted AnHienLoad styleError">Không được bỏ trống địa chỉ</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group login__action">
+                                <a href="#" class="btn btn-submit" onclick="DangKyTaiKhoan()">Đăng Ký</a>
+                            </div>
+                            <div class="login__note">
+                                Bạn đã có tài khoản? <a href="#" onclick="DangNhap_TaiKhoan()">Đăng nhập</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <a class="scroll-top"><span class="fa fa-angle-up"></span></a>
+    <!-- end footer -->
+
+    <script type="text/javascript" src="~/Theme/vendor/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Theme/vendor/js/slick.min.js"></script>
+    <script type="text/javascript" src="~/Theme/vendor/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="~/Theme/vendor/js/jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript" src="~/Theme/vendor/js/jquery.elevateZoom-3.0.8.min.js"></script>
+    <script type="text/javascript" src="~/Theme/vendor/js/jquery.fancybox.min.js"></script>
+    <script type="text/javascript" src="~/Theme/vendor/js/nouislider.min.js"></script>
+    <script type="text/javascript" src="~/Theme/js/custom.js"></script>
+    <script type="text/javascript" src="~/Theme/js/Custommine.js"></script>
+    <script>
+        function XemTaiKhoan() {
+            $.post("/Login/KiemTraDangNhap", {}, function (data) {
+                if (data.Icon == "success") {
+                    location.href = "/GioiThieu/Account";
+                }
+                else {
+                    MessageBox("Bạn cần đăng nhập để thực hiện chức năng này", "error");
+                }
+            });
+        }
+
+        function DangXuat() {
+            $.post("/Login/DangXuat", {}, function (data) {
+                if (data.Icon == "success") {
+                    location.reload(); // Reload the page or redirect to the home page after logout
+                } else {
+                    MessageBox("Đăng xuất thất bại", "error");
+                }
+            });
+        }
+
+        function XemDonHang() {
+            $.post("/Login/KiemTraDangNhap", {}, function (data) {
+                if (data.Icon == "success") {
+                    location.href = "/SanPham/XemDonHangDaMua";
+                }
+                else {
+                    MessageBox("Bạn cần đăng nhập để thực hiện chức năng này", "error");
+                }
+            });
+        }
+
+        function DangKyTaiKhoan() {
+            debugger
+            var txtemail = $("#txtemail").val();
+            var txtSDT = $("#txtSDT").val();
+            var txtTaiKhoan = $("#txtTaiKhoan").val();
+            var txtpassword = $("#txtpassword").val();
+            var txtNhaplaipassword = $("#txtNhaplaipassword").val();
+            var txtHoTen = $("#txtHoTen").val();
+            var txtNgaySinh = $("#txtNgaySinh").val();
+            var txtdiachi = $("#txttxtdiachi").val();
+            if (txtemail == "") {
+                $("#errortxtemail").removeClass("AnHienLoad");
+            }
+            if (txtSDT == "") {
+                $("#errortxtSDT").removeClass("AnHienLoad");
+            }
+            if (txtTaiKhoan == "") {
+                $("#errortxtTaiKhoan").removeClass("AnHienLoad");
+            }
+            if (txtpassword == "") {
+                $("#errortxtpassword").removeClass("AnHienLoad");
+            }
+            if (txtNhaplaipassword == "") {
+                $("#errortxtNhaplaipassword").removeClass("AnHienLoad");
+            }
+            if (txtNgaySinh == "") {
+                $("#errortxtNgaySinh").removeClass("AnHienLoad");
+            }
+            if (txtHoTen == "") {
+                $("#errortxtHoTen").removeClass("AnHienLoad");
+            }
+            if (txtdiachi == "") {
+                $("#errortxtdiachi").removeClass("AnHienLoad");
+            }
+            if (txtNhaplaipassword != txtpassword) {
+                $("#errortxtNhaplaipassword").removeClass("AnHienLoad");
+            }
+            if (txtemail != "" && txtSDT != "" && txtTaiKhoan != "" && txtpassword != "" && txtHoTen != "" && txtNgaySinh != "" && txtNhaplaipassword == txtpassword) {
+                var GioiTinh = $('input[name="gender"]:checked').val();
+                $.post("/Login/DangKyTaiKhoan", { "txtemail": txtemail, "txtSDT": txtSDT, "txtTaiKhoan": txtTaiKhoan, "txtpassword": txtpassword, "txtHoTen": txtHoTen, "txtNgaySinh": txtNgaySinh, "GioiTinh": GioiTinh, "txtdiachi": txtdiachi}, function (data) {
+                    MessageBox(data.Title, data.Icon);
+                    if (data.Icon = "success") {
+                        $("#login").modal("show");
+                        $("#register").modal("hide");
+
+                        $("#txtemail").val("");
+                        $("#txtSDT").val("");
+                        $("#txtTaiKhoan").val("");
+                        $("#txtpassword").val("");
+                        $("#txtNhaplaipassword").val("");
+                        $("#txtHoTen").val("");
+                        $("#txtNgaySinh").val("");
+                        $("#txttxtdiachi").val("");
+                    }
+                });
+            }
+        }
+
+        $(document).ready(function () {
+            LayDuLieuGioHang();
+        });
+
+        function DangNhap_TaiKhoan() {
+            $("#login").modal("show");
+            $("#register").modal("hide");
+        }
+
+        function SreachSanPham() {
+            var TuKhoa = $("#GiaTriSearch").val();
+            $.post("/SanPham/TimKiemSanpham", { "TuKhoa": TuKhoa }, function (data) {
+                $("#HienThiTimKiemSanPham").html(data)
+            });
+        }
+
+        function DangNhapTaiKhoan() {
+            var txtTenDangNhap = $("#txtTenDangNhap").val();
+            var txtMatKhau = $("#txtMatKhau").val();
+            if (txtTenDangNhap == "") {
+                $("#errorTenDangNhap").removeClass("AnHienLoad");
+            }
+            if (txtMatKhau == "") {
+                $("#errorMatKhau").removeClass("AnHienLoad");
+            }
+            if (txtTenDangNhap != "" && txtMatKhau != "") {
+                $.post("/Login/DangNhapKhachHang", { "txtTenDangNhap": txtTenDangNhap, "txtMatKhau": txtMatKhau }, function (data) {
+                    if (data.Icon == "success") {
+                        $("#TaiKhoanDangNhap").html(data.Data);
+                        $("#login").modal('hide');
+                    }
+                    MessageBox(data.Title, data.Icon);
+                });
+            }
+        }
+
+        function DangKyTK() {
+            $("#errortxtemail").addClass("AnHienLoad");
+            $("#errortxtSDT").addClass("AnHienLoad");
+            $("#errortxtTaiKhoan").addClass("AnHienLoad");
+            $("#errortxtpassword").addClass("AnHienLoad");
+            $("#errortxtNhaplaipassword").addClass("AnHienLoad");
+            $("#errortxtNgaySinh").addClass("AnHienLoad");
+            $("#errortxtHoTen").addClass("AnHienLoad");
+            $("#errortxtdiachi").addClass("AnHienLoad");
+            $("#errortxtNhaplaipassword").addClass("AnHienLoad");
+            $("#register").modal("show");
+        }
+    </script>
+</body>
+
+</html>

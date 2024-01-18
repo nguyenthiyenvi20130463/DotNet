@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "XemDonHangDaMua";
+    var lstDonHang = ViewBag.lstDonHang;
+}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" style="text-align: center;">MĐH</th>
+            <th scope="col" style="text-align: center;">Ngày đặt</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col" style="text-align: center;">Tổng tiền</th>
+            <th scope="col">Mô tả</th>
+            <th scope="col" style="text-align: center;">Trạng thái</th>
+            <th scope="col" style="text-align: center;">Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (lstDonHang != null)
+        {
+            foreach (var item in lstDonHang)
+            {
+                <tr>
+                    <th style="text-align: center;">@item.idDon</th>
+                    <td style="text-align: center;">@item.ngayDat.ToString("dd-MM-yyyy")</td>
+                    <td style="max-width: 280px;">@item.diaChiGiao</td>
+                    <td style="text-align: center;">@item.tongTien.ToString("N0")</td>
+                    <td>@item.moTa</td>
+                    <td style="text-align: center;">
+                        @if (item.trangThai == 1)
+                        {
+                            <span>Chờ xác nhận</span>
+                        }
+                        else if (item.trangThai == 3 || item.trangThai == 2)
+                        {
+                            <span>Chờ giao</span>
+                        }
+                        else if (item.trangThai == 4)
+                        {
+                            <span>Hủy đơn</span>
+                        }
+                        else if (item.trangThai == 5)
+                        {
+                            <span>Đã nhận được hàng</span>
+                        }
+                    </td>
+                    <td style="text-align: center;">
+                        <a href="#" class="btn btn-primary" onclick="ChiTietDonHang('@item.idDon')">Chi tiết</a>
+                        @if (item.trangThai == 1)
+                        {
+                            <a href="#" class="btn btn-danger" onclick="HuyDonDatHang('@item.idDon')">Hủy đơn đặt hàng</a>
+                        }
+                        @if (item.trangThai == 3 || item.trangThai == 2)
+                        {
+                            <a href="#" class="btn btn-primary" onclick="DaNhanHang('@item.idDon')">Đã nhận hàng</a>
+                        }
+                        @if (item.trangThai == 4)
+                        {
+                            <a href="#" class="btn btn-primary" onclick="DatHang('@item.idDon')">Đặt hàng</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
